@@ -9,11 +9,24 @@
 /* Begin PBXBuildFile section */
 		444F20B619B48A2C00BE4C26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B519B48A2C00BE4C26 /* main.m */; };
 		444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B819B48A2C00BE4C26 /* AppDelegate.m */; };
-		444F20BC19B48A2C00BE4C26 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20BB19B48A2C00BE4C26 /* FirstViewController.m */; };
-		444F20BF19B48A2C00BE4C26 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20BE19B48A2C00BE4C26 /* SecondViewController.m */; };
 		444F20C219B48A2C00BE4C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C019B48A2C00BE4C26 /* Main.storyboard */; };
 		444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C319B48A2C00BE4C26 /* Images.xcassets */; };
 		444F20D019B48A2C00BE4C26 /* eBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20CF19B48A2C00BE4C26 /* eBookTests.m */; };
+		444F20EB19B4C10500BE4C26 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EA19B4C10500BE4C26 /* Parse.framework */; };
+		444F20ED19B4C13500BE4C26 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EC19B4C13500BE4C26 /* AudioToolbox.framework */; };
+		444F20EF19B4C13D00BE4C26 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EE19B4C13D00BE4C26 /* CFNetwork.framework */; };
+		444F20F119B4C14300BE4C26 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20F019B4C14300BE4C26 /* CoreGraphics.framework */; };
+		444F20F319B4C14A00BE4C26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20F219B4C14A00BE4C26 /* CoreLocation.framework */; };
+		444F20F519B4C15000BE4C26 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20F419B4C15000BE4C26 /* libz.dylib */; };
+		444F20F719B4C15700BE4C26 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20F619B4C15700BE4C26 /* MobileCoreServices.framework */; };
+		444F20F919B4C15E00BE4C26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20F819B4C15E00BE4C26 /* QuartzCore.framework */; };
+		444F20FB19B4C16800BE4C26 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20FA19B4C16800BE4C26 /* Security.framework */; };
+		444F20FD19B4C16E00BE4C26 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20FC19B4C16E00BE4C26 /* StoreKit.framework */; };
+		444F20FF19B4C17600BE4C26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20FE19B4C17600BE4C26 /* SystemConfiguration.framework */; };
+		444F210719B4C24E00BE4C26 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210619B4C24E00BE4C26 /* User.m */; };
+		444F210A19B4C81F00BE4C26 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210919B4C81F00BE4C26 /* Books.m */; };
+		444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210C19B4C8DD00BE4C26 /* BooksManager.m */; };
+		44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,15 +45,30 @@
 		444F20B519B48A2C00BE4C26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		444F20B719B48A2C00BE4C26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		444F20B819B48A2C00BE4C26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		444F20BA19B48A2C00BE4C26 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		444F20BB19B48A2C00BE4C26 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		444F20BD19B48A2C00BE4C26 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		444F20BE19B48A2C00BE4C26 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		444F20C119B48A2C00BE4C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		444F20C319B48A2C00BE4C26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		444F20C919B48A2C00BE4C26 /* eBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20CE19B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444F20CF19B48A2C00BE4C26 /* eBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eBookTests.m; sourceTree = "<group>"; };
+		444F20EA19B4C10500BE4C26 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		444F20EC19B4C13500BE4C26 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		444F20EE19B4C13D00BE4C26 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		444F20F019B4C14300BE4C26 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		444F20F219B4C14A00BE4C26 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		444F20F419B4C15000BE4C26 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		444F20F619B4C15700BE4C26 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		444F20F819B4C15E00BE4C26 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		444F20FA19B4C16800BE4C26 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		444F20FC19B4C16E00BE4C26 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		444F20FE19B4C17600BE4C26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		444F210519B4C24E00BE4C26 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		444F210619B4C24E00BE4C26 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		444F210819B4C81F00BE4C26 /* Books.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Books.h; sourceTree = "<group>"; };
+		444F210919B4C81F00BE4C26 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Books.m; sourceTree = "<group>"; };
+		444F210B19B4C8DD00BE4C26 /* BooksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksManager.h; sourceTree = "<group>"; };
+		444F210C19B4C8DD00BE4C26 /* BooksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksManager.m; sourceTree = "<group>"; };
+		44E8FFB319B4CC7A003F8FD5 /* CategoryBooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBooks.h; sourceTree = "<group>"; };
+		44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBooks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +76,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				444F20FF19B4C17600BE4C26 /* SystemConfiguration.framework in Frameworks */,
+				444F20FD19B4C16E00BE4C26 /* StoreKit.framework in Frameworks */,
+				444F20FB19B4C16800BE4C26 /* Security.framework in Frameworks */,
+				444F20F919B4C15E00BE4C26 /* QuartzCore.framework in Frameworks */,
+				444F20F719B4C15700BE4C26 /* MobileCoreServices.framework in Frameworks */,
+				444F20F519B4C15000BE4C26 /* libz.dylib in Frameworks */,
+				444F20F319B4C14A00BE4C26 /* CoreLocation.framework in Frameworks */,
+				444F20F119B4C14300BE4C26 /* CoreGraphics.framework in Frameworks */,
+				444F20EF19B4C13D00BE4C26 /* CFNetwork.framework in Frameworks */,
+				444F20ED19B4C13500BE4C26 /* AudioToolbox.framework in Frameworks */,
+				444F20EB19B4C10500BE4C26 /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,7 +103,9 @@
 		444F20A719B48A2B00BE4C26 = {
 			isa = PBXGroup;
 			children = (
+				444F20C019B48A2C00BE4C26 /* Main.storyboard */,
 				444F20B219B48A2C00BE4C26 /* eBook */,
+				444F20E919B4C0E800BE4C26 /* Frameworks */,
 				444F20CC19B48A2C00BE4C26 /* eBookTests */,
 				444F20B119B48A2C00BE4C26 /* Products */,
 			);
@@ -84,11 +125,9 @@
 			children = (
 				444F20B719B48A2C00BE4C26 /* AppDelegate.h */,
 				444F20B819B48A2C00BE4C26 /* AppDelegate.m */,
-				444F20BA19B48A2C00BE4C26 /* FirstViewController.h */,
-				444F20BB19B48A2C00BE4C26 /* FirstViewController.m */,
-				444F20BD19B48A2C00BE4C26 /* SecondViewController.h */,
-				444F20BE19B48A2C00BE4C26 /* SecondViewController.m */,
-				444F20C019B48A2C00BE4C26 /* Main.storyboard */,
+				444F210319B4C23800BE4C26 /* Model */,
+				444F210419B4C23800BE4C26 /* View */,
+				444F20D919B48A5E00BE4C26 /* Controller */,
 				444F20C319B48A2C00BE4C26 /* Images.xcassets */,
 				444F20B319B48A2C00BE4C26 /* Supporting Files */,
 			);
@@ -119,6 +158,53 @@
 				444F20CE19B48A2C00BE4C26 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		444F20D919B48A5E00BE4C26 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		444F20E919B4C0E800BE4C26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				444F20FE19B4C17600BE4C26 /* SystemConfiguration.framework */,
+				444F20FC19B4C16E00BE4C26 /* StoreKit.framework */,
+				444F20FA19B4C16800BE4C26 /* Security.framework */,
+				444F20F819B4C15E00BE4C26 /* QuartzCore.framework */,
+				444F20F619B4C15700BE4C26 /* MobileCoreServices.framework */,
+				444F20F419B4C15000BE4C26 /* libz.dylib */,
+				444F20F219B4C14A00BE4C26 /* CoreLocation.framework */,
+				444F20F019B4C14300BE4C26 /* CoreGraphics.framework */,
+				444F20EE19B4C13D00BE4C26 /* CFNetwork.framework */,
+				444F20EC19B4C13500BE4C26 /* AudioToolbox.framework */,
+				444F20EA19B4C10500BE4C26 /* Parse.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		444F210319B4C23800BE4C26 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				444F210519B4C24E00BE4C26 /* User.h */,
+				444F210619B4C24E00BE4C26 /* User.m */,
+				44E8FFB319B4CC7A003F8FD5 /* CategoryBooks.h */,
+				44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */,
+				444F210819B4C81F00BE4C26 /* Books.h */,
+				444F210919B4C81F00BE4C26 /* Books.m */,
+				444F210B19B4C8DD00BE4C26 /* BooksManager.h */,
+				444F210C19B4C8DD00BE4C26 /* BooksManager.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		444F210419B4C23800BE4C26 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,10 +306,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444F20BF19B48A2C00BE4C26 /* SecondViewController.m in Sources */,
+				444F210A19B4C81F00BE4C26 /* Books.m in Sources */,
 				444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */,
-				444F20BC19B48A2C00BE4C26 /* FirstViewController.m in Sources */,
 				444F20B619B48A2C00BE4C26 /* main.m in Sources */,
+				444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */,
+				44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */,
+				444F210719B4C24E00BE4C26 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +340,7 @@
 				444F20C119B48A2C00BE4C26 /* Base */,
 			);
 			name = Main.storyboard;
+			path = eBook;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -338,9 +427,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = eBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -349,9 +444,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = eBook/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -408,6 +509,7 @@
 				444F20D519B48A2C00BE4C26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		444F20D619B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "eBookTests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +518,7 @@
 				444F20D819B48A2C00BE4C26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

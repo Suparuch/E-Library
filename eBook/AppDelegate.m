@@ -7,16 +7,61 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+#import "Books.h"
+#import "CategoryBooks.h"
+#import "BooksManager.h"
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-            
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [Parse setApplicationId:@"rwGuh8JoEfakRipXoGzbgpE6x7kfg8rDZbmmOulG"
+                  clientKey:@"iBiQCuogARC38uyPFvSG9Yt4Rog76psbX1j2wuGk"];
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    /*
+     ShelfViewController  *shelfView = [[ShelfViewController alloc] init];
+     BookStoreViewController *bookstore = [[BookStoreViewController alloc] init];
+     CatagoriesViewController *catagories = [[CatagoriesViewController alloc] init];
+     
+     
+     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:shelfView];
+     UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:bookstore];
+     UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];*/
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    //self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2,myNav3, nil];
+    
+    /*
+     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor_HexString colorFromHexString:@"#FFFFFF"]}]; //change coloer title name
+     [[UITabBar appearance] setTintColor:[UIColor_HexString colorFromHexString:@"#87CEFA"]]; //change color tabbar icon
+     
+     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; //change status bar
+     */
+    
+    
+    //[User loginWithSystem:@"admin" withPassword:@"12345" withDelegate:self];
+    //[User getUserData];
+    //[Books getAllBook];
+    //[CategoryBooks getAllCategory];
+    //[BooksManager searchBook:@"i"];
+    //[BooksManager addBookToDownload:@"Objective_C_Chapter_1"];
+    //[BooksManager getALlBookDidAdd];
+
+    
+    //set the login view
+    self.window.rootViewController = self.tabBarController;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
