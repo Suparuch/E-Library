@@ -19,9 +19,11 @@
 @interface BooksManager : NSObject
 
 + (NSArray *)searchBook:(NSString *)bookname;
++ (NSArray *)getAllBookDidAdd;
 + (void)addBookToDownload:(NSString *)select;
-+ (NSArray *)getALlBookDidAdd;
 + (void)download:(NSString *)selected forDelegate:(id<BooksDelegate>)delegate;
-+(void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
-
++ (void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
++ (NSInteger)getRating:(NSString *)bookname;
++ (NSArray *)getReview:(NSString *)bookId;
++ (void)saveReview:(NSString *)text;
 @end

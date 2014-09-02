@@ -7,6 +7,7 @@
 //
 
 #import "BooksManager.h"
+#import "User.h"
 #import <Parse/Parse.h>
 
 @implementation BooksManager
@@ -36,13 +37,14 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Books"];
     [query whereKey:@"bookname" equalTo:select];
-    NSArray *addBook = [query findObjects];
-    
-    PFObject *book = addBook.lastObject;
-    
-    PFRelation *relation = [[PFUser currentUser] objectForKey:@"order"];
-    [relation addObject:book]; // friendUser is a PFUser that represents the friend
-    [[PFUser currentUser] saveInBackground];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *addBook, NSError *error) {
+        
+        PFObject *book = addBook.lastObject;
+        
+        PFRelation *relation = [[PFUser currentUser] objectForKey:@"order"];
+        [relation addObject:book]; // friendUser is a PFUser that represents the friend
+        [[PFUser currentUser] saveInBackground];
+    }];
 }
 
 /*
@@ -50,7 +52,7 @@
  *  Des : show all book data did add
  *
  */
-+ (NSArray *)getALlBookDidAdd {
++ (NSArray *)getAllBookDidAdd {
     
     PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
     PFQuery *query = [relation query];
@@ -72,34 +74,34 @@
     PFQuery *query = [relation query];
     [query whereKey:@"bookname" equalTo:selected];
     
-    NSArray *getBookData = [query findObjects];
-    NSLog(@"getBookData %@",getBookData);
-    
-    PFFile *bookData = [[getBookData objectAtIndex:0] valueForKey:@"bookdata"];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
-    NSString *filePath = [path stringByAppendingPathComponent:selected];
-    
-    NSLog(@"filepath %@",filePath);
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    
-    if (![fileManager fileExistsAtPath:path])
-    {
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *getBookData, NSError *error) {
         
-    }
-    [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-        if (!error) {
-            [data writeToFile:filePath atomically:YES];
-            [delegate booksDownloadComplete:YES];
-        }
-    } progressBlock:^(int percentDone) {
-        if ([delegate respondsToSelector:@selector(booksDownloadProgress:)]) {
-            [delegate booksDownloadProgress:percentDone];
-        }
+        NSLog(@"getBookData %@",getBookData);
         
+        PFFile *bookData = [[getBookData objectAtIndex:0] valueForKey:@"bookdata"];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
+        NSString *filePath = [path stringByAppendingPathComponent:selected];
+        
+        NSLog(@"filepath %@",filePath);
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        
+        if (![fileManager fileExistsAtPath:path])
+        {
+            [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        }
+        [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                [data writeToFile:filePath atomically:YES];
+                [delegate booksDownloadComplete:YES];
+            }
+        } progressBlock:^(int percentDone) {
+            if ([delegate respondsToSelector:@selector(booksDownloadProgress:)]) {
+                [delegate booksDownloadProgress:percentDone];
+            }
+            
+        }];
     }];
 }
 
@@ -110,35 +112,79 @@
  *
  */
 +(void)saveReview:(NSString *)text {
-    
+    PFQuery *query = [PFQuery queryWithClassName:@"Review"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *queryReview, NSError *error) {
+        NSLog(@"queryRating %@",queryReview);
+        
+        PFObject *Review = [PFObject objectWithClassName:@"Review"];
+        PFObject *addUserId = [PFObject objectWithoutDataWithClassName:@"Review" objectId:@"userId.objectId"];
+        NSLog(@"addUserId %@",addUserId);
+        Review[@"userId"] = addUserId;
+        [Review saveInBackground];
+    }];
 }
 
 /*
  *  Method : getReview
  *  Des : get review from db
+ *  param : bookId = objectId
  *
  */
-+(void)getReview {
++(NSArray *)getReview:(NSString *)bookId {
     
+    PFQuery *query = [PFQuery queryWithClassName:@"Review"];
+    NSArray *queryReview = [query findObjects];
+    
+    return queryReview;
 }
 
 /*
  *  Method : saveRating
  *  Des : save rating to DB
  *  param : rating = rating
+ *          bookname = bookname
  *
  */
 +(void)saveRating:(NSInteger)rating withName:(NSString *)bookname{
     PFQuery *query = [PFQuery queryWithClassName:@"Books"];
     [query whereKey:@"bookname" equalTo:bookname];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *queryRating, NSError *error) {
+        
+        //NSLog(@"queryRating %@",queryRating);
+        
+        NSInteger defaultRating = [[[queryRating objectAtIndex:0] valueForKey:@"rating"]integerValue];
+        NSInteger resultRating =  defaultRating+rating;
+        
+        [query getObjectInBackgroundWithId:[[queryRating objectAtIndex:0] valueForKey:@"objectId"] block:^(PFObject *save, NSError *error) {
+            
+            save[@"rating"] = [NSNumber numberWithInt:resultRating];
+            [save incrementKey:@"ratingcount"];
+            [save saveInBackground];
+            
+        }];
+    }];
+}
+
+/*
+ *  Method : getRating
+ *  Des : get rating from db
+ *  param : bookname = bookname
+ *
+ */
++(NSInteger)getRating:(NSString *)bookname {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Books"];
+    [query whereKey:@"bookname" equalTo:bookname];
     NSArray *queryRating = [query findObjects];
     
-    //NSLog(@"queryRating %@",queryRating);
+    NSLog(@"queryRating %@",queryRating);
     
-    NSInteger defaultRating = [[queryRating valueForKey:@"rating"]integerValue];
+    NSInteger ratingCount = [[[queryRating objectAtIndex:0]valueForKey:@"ratingcount"]integerValue];
+    NSInteger allRating = [[[queryRating objectAtIndex:0]valueForKey:@"rating"]integerValue];
     
-    NSLog(@"defaultRating %ld",(long)defaultRating);
+    NSInteger average = (ratingCount * 5)/allRating;
     
-    
+    NSLog(@"average %d",average);
+    return average;
 }
 @end
