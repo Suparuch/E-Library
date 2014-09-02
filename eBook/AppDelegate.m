@@ -56,7 +56,7 @@
     //[BooksManager searchBook:@"i"];
     //[BooksManager addBookToDownload:@"Objective_C_Chapter_1"];
     //[BooksManager getALlBookDidAdd];
-
+    [BooksManager saveRating:0 withName:@"Objective_C_Chapter_1"];
     
     //set the login view
     self.window.rootViewController = self.tabBarController;

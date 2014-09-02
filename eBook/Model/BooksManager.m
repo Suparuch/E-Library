@@ -113,4 +113,32 @@
     
 }
 
+/*
+ *  Method : getReview
+ *  Des : get review from db
+ *
+ */
++(void)getReview {
+    
+}
+
+/*
+ *  Method : saveRating
+ *  Des : save rating to DB
+ *  param : rating = rating
+ *
+ */
++(void)saveRating:(NSInteger)rating withName:(NSString *)bookname{
+    PFQuery *query = [PFQuery queryWithClassName:@"Books"];
+    [query whereKey:@"bookname" equalTo:bookname];
+    NSArray *queryRating = [query findObjects];
+    
+    //NSLog(@"queryRating %@",queryRating);
+    
+    NSInteger defaultRating = [[queryRating valueForKey:@"rating"]integerValue];
+    
+    NSLog(@"defaultRating %ld",(long)defaultRating);
+    
+    
+}
 @end

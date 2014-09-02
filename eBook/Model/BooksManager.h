@@ -22,5 +22,6 @@
 + (void)addBookToDownload:(NSString *)select;
 + (NSArray *)getALlBookDidAdd;
 + (void)download:(NSString *)selected forDelegate:(id<BooksDelegate>)delegate;
++(void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
 
 @end
