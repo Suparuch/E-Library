@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */; };
+		2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */; };
+		2D66F42819B5FA70001CA7E1 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D66F42619B5FA70001CA7E1 /* StoreViewController.m */; };
+		2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */; };
 		444F20B619B48A2C00BE4C26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B519B48A2C00BE4C26 /* main.m */; };
 		444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B819B48A2C00BE4C26 /* AppDelegate.m */; };
-		444F20C219B48A2C00BE4C26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C019B48A2C00BE4C26 /* Main.storyboard */; };
 		444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C319B48A2C00BE4C26 /* Images.xcassets */; };
 		444F20D019B48A2C00BE4C26 /* eBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20CF19B48A2C00BE4C26 /* eBookTests.m */; };
 		444F20EB19B4C10500BE4C26 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EA19B4C10500BE4C26 /* Parse.framework */; };
@@ -40,12 +43,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D66F41E19B5F37A001CA7E1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		2D66F42519B5FA70001CA7E1 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		2D66F42619B5FA70001CA7E1 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
+		2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
 		444F20B019B48A2C00BE4C26 /* eBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20B419B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444F20B519B48A2C00BE4C26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		444F20B719B48A2C00BE4C26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		444F20B819B48A2C00BE4C26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		444F20C119B48A2C00BE4C26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		444F20C319B48A2C00BE4C26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		444F20C919B48A2C00BE4C26 /* eBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20CE19B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,10 +108,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D66F41C19B5F362001CA7E1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2D66F41E19B5F37A001CA7E1 /* LoginViewController.h */,
+				2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */,
+				2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */,
+				2D66F42519B5FA70001CA7E1 /* StoreViewController.h */,
+				2D66F42619B5FA70001CA7E1 /* StoreViewController.m */,
+				2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2D66F41D19B5F362001CA7E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		444F20A719B48A2B00BE4C26 = {
 			isa = PBXGroup;
 			children = (
-				444F20C019B48A2C00BE4C26 /* Main.storyboard */,
 				444F20B219B48A2C00BE4C26 /* eBook */,
 				444F20E919B4C0E800BE4C26 /* Frameworks */,
 				444F20CC19B48A2C00BE4C26 /* eBookTests */,
@@ -126,8 +153,8 @@
 				444F20B719B48A2C00BE4C26 /* AppDelegate.h */,
 				444F20B819B48A2C00BE4C26 /* AppDelegate.m */,
 				444F210319B4C23800BE4C26 /* Model */,
-				444F210419B4C23800BE4C26 /* View */,
-				444F20D919B48A5E00BE4C26 /* Controller */,
+				2D66F41D19B5F362001CA7E1 /* View */,
+				2D66F41C19B5F362001CA7E1 /* Controller */,
 				444F20C319B48A2C00BE4C26 /* Images.xcassets */,
 				444F20B319B48A2C00BE4C26 /* Supporting Files */,
 			);
@@ -158,13 +185,6 @@
 				444F20CE19B48A2C00BE4C26 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		444F20D919B48A5E00BE4C26 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		444F20E919B4C0E800BE4C26 /* Frameworks */ = {
@@ -198,13 +218,6 @@
 				444F210C19B4C8DD00BE4C26 /* BooksManager.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		444F210419B4C23800BE4C26 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,8 +300,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444F20C219B48A2C00BE4C26 /* Main.storyboard in Resources */,
+				2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */,
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
+				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +324,8 @@
 				444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */,
 				444F20B619B48A2C00BE4C26 /* main.m in Sources */,
 				444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */,
+				2D66F42819B5FA70001CA7E1 /* StoreViewController.m in Sources */,
+				2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */,
 				44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */,
 				444F210719B4C24E00BE4C26 /* User.m in Sources */,
 			);
@@ -332,18 +348,6 @@
 			targetProxy = 444F20CA19B48A2C00BE4C26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		444F20C019B48A2C00BE4C26 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				444F20C119B48A2C00BE4C26 /* Base */,
-			);
-			name = Main.storyboard;
-			path = eBook;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		444F20D119B48A2C00BE4C26 /* Debug */ = {

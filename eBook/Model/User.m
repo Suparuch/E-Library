@@ -60,5 +60,14 @@
     return userData;
 }
 
+/*
+ *  Method : resetPassword
+ *  Des : reset password with email
+ *  param : email = email address
+ *
+ */
++ (void) resetPassword:(NSString *)email {
+    [PFUser requestPasswordResetForEmailInBackground:email];
+}
 
 @end

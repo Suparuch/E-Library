@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>64F1A617-D892-42C6-BE4E-B19E550F9FBE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>eBook</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7DF9AAB192D61FFEC8A9826239DCCF349AB0D26B</key>
+		<string>https://bitbucket.org/poppo191/ebook.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>eBook.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7DF9AAB192D61FFEC8A9826239DCCF349AB0D26B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/poppo191/ebook.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7DF9AAB192D61FFEC8A9826239DCCF349AB0D26B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7DF9AAB192D61FFEC8A9826239DCCF349AB0D26B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ebook</string>
+		</dict>
+	</array>
+</dict>
+</plist>

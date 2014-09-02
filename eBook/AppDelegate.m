@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "StoreViewController.h"
 
 @interface AppDelegate () 
 
@@ -25,18 +26,19 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    
+     StoreViewController  *storeView = [[StoreViewController alloc] init];
     /*
-     ShelfViewController  *shelfView = [[ShelfViewController alloc] init];
      BookStoreViewController *bookstore = [[BookStoreViewController alloc] init];
      CatagoriesViewController *catagories = [[CatagoriesViewController alloc] init];
-     
-     
-     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:shelfView];
+     */
+    
+    
+     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
+    /*
      UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:bookstore];
      UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];*/
     
-    self.tabBarController = [[UITabBarController alloc] init];
-    //self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2,myNav3, nil];
     
     /*
      [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor_HexString colorFromHexString:@"#FFFFFF"]}]; //change coloer title name
@@ -45,7 +47,7 @@
      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; //change status bar
      */
     //set the login view
-    self.window.rootViewController = self.tabBarController;
+    self.window.rootViewController = myNav1;
     [self.window makeKeyAndVisible];
     
     return YES;

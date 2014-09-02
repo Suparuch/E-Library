@@ -19,5 +19,6 @@
 
 + (NSArray *)getUserData;
 + (void) loginWithSystem :(NSString *)email withPassword:(NSString *)password withDelegate:(id<UserDelegate>)delegate;
++ (void) resetPassword:(NSString *)email;
 
 @end
