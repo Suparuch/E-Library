@@ -25,5 +25,5 @@
 + (void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
 + (NSInteger)getRating:(NSString *)bookname;
 + (NSArray *)getReview:(NSString *)bookId;
-+ (void)saveReview:(NSString *)text;
++ (void)saveReview:(NSString *)text withBookname:(NSString *)bookname;
 @end

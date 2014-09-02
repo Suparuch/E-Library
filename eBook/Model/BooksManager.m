@@ -111,15 +111,18 @@
  *  param : text = text review
  *
  */
-+(void)saveReview:(NSString *)text {
++(void)saveReview:(NSString *)text withBookname:(NSString *)bookId{
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Review"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *queryReview, NSError *error) {
+       
         NSLog(@"queryRating %@",queryReview);
         
         PFObject *Review = [PFObject objectWithClassName:@"Review"];
-        PFObject *addUserId = [PFObject objectWithoutDataWithClassName:@"Review" objectId:@"userId.objectId"];
-        NSLog(@"addUserId %@",addUserId);
-        Review[@"userId"] = addUserId;
+        Review[@"userId"] = [PFObject objectWithoutDataWithClassName:@"_User" objectId:[PFUser currentUser].objectId];
+        Review[@"bookId"] = [PFObject objectWithoutDataWithClassName:@"Books" objectId:bookId];
+        Review[@"comment"] = text;
+        
         [Review saveInBackground];
     }];
 }

@@ -8,12 +8,8 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
-#import "Books.h"
-#import "CategoryBooks.h"
-#import "BooksManager.h"
-#import "User.h"
 
-@interface AppDelegate () <UserDelegate>
+@interface AppDelegate () 
 
 @end
 
@@ -48,20 +44,6 @@
      
      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; //change status bar
      */
-    
-    
-    [User loginWithSystem:@"admin" withPassword:@"12345" withDelegate:self];
-    //[User getUserData];
-    //[Books getAllBook];
-    //[CategoryBooks getAllCategory];
-    //[BooksManager searchBook:@"i"];
-    //[BooksManager addBookToDownload:@"Objective_C_Chapter_1"];
-    //[BooksManager getALlBookDidAdd];
-    //[BooksManager saveRating:4 withName:@"Objective_C_Chapter_1"];
-    //[BooksManager getRating:@"Objective_C_Chapter_1"];
-    //[BooksManager getReview:@"UouimAmNI0"];
-    [BooksManager saveReview:@"xxx"];
-    
     //set the login view
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
