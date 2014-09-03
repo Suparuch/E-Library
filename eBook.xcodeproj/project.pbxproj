@@ -11,6 +11,9 @@
 		2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */; };
 		2D66F42819B5FA70001CA7E1 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D66F42619B5FA70001CA7E1 /* StoreViewController.m */; };
 		2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */; };
+		440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440D878719B62D8B0067EE28 /* ProfileViewController.xib */; };
+		440D878D19B62DE40067EE28 /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878C19B62DE40067EE28 /* GBPathImageView.m */; };
+		440D879019B62DF80067EE28 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878F19B62DF80067EE28 /* ProfileViewController.m */; };
 		444F20B619B48A2C00BE4C26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B519B48A2C00BE4C26 /* main.m */; };
 		444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B819B48A2C00BE4C26 /* AppDelegate.m */; };
 		444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C319B48A2C00BE4C26 /* Images.xcassets */; };
@@ -29,6 +32,22 @@
 		444F210719B4C24E00BE4C26 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210619B4C24E00BE4C26 /* User.m */; };
 		444F210A19B4C81F00BE4C26 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210919B4C81F00BE4C26 /* Books.m */; };
 		444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210C19B4C8DD00BE4C26 /* BooksManager.m */; };
+		446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D1BAF19B6D2530050D003 /* SettingTableViewController.m */; };
+		446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D1BB019B6D2530050D003 /* SettingTableViewController.xib */; };
+		44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */; };
+		44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */; };
+		44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48C119B6E36100844AF6 /* NotificationTableViewController.m */; };
+		44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CE48C219B6E36100844AF6 /* NotificationTableViewController.xib */; };
+		44CE48CE19B6E4AB00844AF6 /* ReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48CC19B6E4AB00844AF6 /* ReportViewController.m */; };
+		44CE48CF19B6E4AB00844AF6 /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CE48CD19B6E4AB00844AF6 /* ReportViewController.xib */; };
+		44CE48D219B6E6CA00844AF6 /* problem.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48D119B6E6CA00844AF6 /* problem.m */; };
+		44D04CF119B6E7CC00CD32FD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D04CEF19B6E7CC00CD32FD /* AboutViewController.m */; };
+		44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D04CF019B6E7CC00CD32FD /* AboutViewController.xib */; };
+		44D04CF519B6E87700CD32FD /* SG-Emblem-Color-EN.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44D04CF419B6E87700CD32FD /* SG-Emblem-Color-EN.jpg */; };
+		44D91EC219B6D935001DD683 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D91EC019B6D935001DD683 /* AccountTableViewController.m */; };
+		44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D91EC119B6D935001DD683 /* AccountTableViewController.xib */; };
+		44D91ECC19B6DB8D001DD683 /* ChangeEmailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D91ECA19B6DB8D001DD683 /* ChangeEmailViewController.m */; };
+		44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44D91ECB19B6DB8D001DD683 /* ChangeEmailViewController.xib */; };
 		44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +68,11 @@
 		2D66F42519B5FA70001CA7E1 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		2D66F42619B5FA70001CA7E1 /* StoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 		2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
+		440D878719B62D8B0067EE28 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		440D878B19B62DE40067EE28 /* GBPathImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPathImageView.h; sourceTree = "<group>"; };
+		440D878C19B62DE40067EE28 /* GBPathImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPathImageView.m; sourceTree = "<group>"; };
+		440D878E19B62DF80067EE28 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		440D878F19B62DF80067EE28 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		444F20B019B48A2C00BE4C26 /* eBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20B419B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444F20B519B48A2C00BE4C26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -75,6 +99,30 @@
 		444F210919B4C81F00BE4C26 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Books.m; sourceTree = "<group>"; };
 		444F210B19B4C8DD00BE4C26 /* BooksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksManager.h; sourceTree = "<group>"; };
 		444F210C19B4C8DD00BE4C26 /* BooksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksManager.m; sourceTree = "<group>"; };
+		446D1BAE19B6D2530050D003 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		446D1BAF19B6D2530050D003 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		446D1BB019B6D2530050D003 /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
+		44CE48BA19B6E06100844AF6 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
+		44CE48C019B6E36100844AF6 /* NotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewController.h; sourceTree = "<group>"; };
+		44CE48C119B6E36100844AF6 /* NotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewController.m; sourceTree = "<group>"; };
+		44CE48C219B6E36100844AF6 /* NotificationTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationTableViewController.xib; sourceTree = "<group>"; };
+		44CE48CB19B6E4AB00844AF6 /* ReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportViewController.h; sourceTree = "<group>"; };
+		44CE48CC19B6E4AB00844AF6 /* ReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportViewController.m; sourceTree = "<group>"; };
+		44CE48CD19B6E4AB00844AF6 /* ReportViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReportViewController.xib; sourceTree = "<group>"; };
+		44CE48D019B6E6CA00844AF6 /* problem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = problem.h; sourceTree = "<group>"; };
+		44CE48D119B6E6CA00844AF6 /* problem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = problem.m; sourceTree = "<group>"; };
+		44D04CEE19B6E7CC00CD32FD /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		44D04CEF19B6E7CC00CD32FD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		44D04CF019B6E7CC00CD32FD /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		44D04CF419B6E87700CD32FD /* SG-Emblem-Color-EN.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SG-Emblem-Color-EN.jpg"; sourceTree = "<group>"; };
+		44D91EBF19B6D935001DD683 /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountTableViewController.h; sourceTree = "<group>"; };
+		44D91EC019B6D935001DD683 /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountTableViewController.m; sourceTree = "<group>"; };
+		44D91EC119B6D935001DD683 /* AccountTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewController.xib; sourceTree = "<group>"; };
+		44D91EC919B6DB8D001DD683 /* ChangeEmailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangeEmailViewController.h; sourceTree = "<group>"; };
+		44D91ECA19B6DB8D001DD683 /* ChangeEmailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangeEmailViewController.m; sourceTree = "<group>"; };
+		44D91ECB19B6DB8D001DD683 /* ChangeEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangeEmailViewController.xib; sourceTree = "<group>"; };
 		44E8FFB319B4CC7A003F8FD5 /* CategoryBooks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBooks.h; sourceTree = "<group>"; };
 		44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBooks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,6 +165,7 @@
 				2D66F42519B5FA70001CA7E1 /* StoreViewController.h */,
 				2D66F42619B5FA70001CA7E1 /* StoreViewController.m */,
 				2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */,
+				440D878319B62D5E0067EE28 /* Setting */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -126,6 +175,40 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		440D878319B62D5E0067EE28 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				446D1BAE19B6D2530050D003 /* SettingTableViewController.h */,
+				446D1BAF19B6D2530050D003 /* SettingTableViewController.m */,
+				446D1BB019B6D2530050D003 /* SettingTableViewController.xib */,
+				440D878419B62D710067EE28 /* Profile */,
+				44D91EBE19B6D91B001DD683 /* Account */,
+				44CE48BF19B6E31B00844AF6 /* Notification */,
+				44CE48C519B6E47D00844AF6 /* Report */,
+				44D04CED19B6E7AE00CD32FD /* About */,
+			);
+			name = Setting;
+			sourceTree = "<group>";
+		};
+		440D878419B62D710067EE28 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				440D878E19B62DF80067EE28 /* ProfileViewController.h */,
+				440D878F19B62DF80067EE28 /* ProfileViewController.m */,
+				440D878719B62D8B0067EE28 /* ProfileViewController.xib */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		440D878A19B62DD00067EE28 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				440D878B19B62DE40067EE28 /* GBPathImageView.h */,
+				440D878C19B62DE40067EE28 /* GBPathImageView.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		444F20A719B48A2B00BE4C26 = {
@@ -155,6 +238,7 @@
 				444F210319B4C23800BE4C26 /* Model */,
 				2D66F41D19B5F362001CA7E1 /* View */,
 				2D66F41C19B5F362001CA7E1 /* Controller */,
+				44D04CF319B6E7F000CD32FD /* Image */,
 				444F20C319B48A2C00BE4C26 /* Images.xcassets */,
 				444F20B319B48A2C00BE4C26 /* Supporting Files */,
 			);
@@ -208,16 +292,73 @@
 		444F210319B4C23800BE4C26 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				440D878A19B62DD00067EE28 /* API */,
 				444F210519B4C24E00BE4C26 /* User.h */,
 				444F210619B4C24E00BE4C26 /* User.m */,
 				44E8FFB319B4CC7A003F8FD5 /* CategoryBooks.h */,
 				44E8FFB419B4CC7A003F8FD5 /* CategoryBooks.m */,
 				444F210819B4C81F00BE4C26 /* Books.h */,
 				444F210919B4C81F00BE4C26 /* Books.m */,
+				44CE48D019B6E6CA00844AF6 /* problem.h */,
+				44CE48D119B6E6CA00844AF6 /* problem.m */,
 				444F210B19B4C8DD00BE4C26 /* BooksManager.h */,
 				444F210C19B4C8DD00BE4C26 /* BooksManager.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		44CE48BF19B6E31B00844AF6 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				44CE48C019B6E36100844AF6 /* NotificationTableViewController.h */,
+				44CE48C119B6E36100844AF6 /* NotificationTableViewController.m */,
+				44CE48C219B6E36100844AF6 /* NotificationTableViewController.xib */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
+		44CE48C519B6E47D00844AF6 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				44CE48CB19B6E4AB00844AF6 /* ReportViewController.h */,
+				44CE48CC19B6E4AB00844AF6 /* ReportViewController.m */,
+				44CE48CD19B6E4AB00844AF6 /* ReportViewController.xib */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
+		44D04CED19B6E7AE00CD32FD /* About */ = {
+			isa = PBXGroup;
+			children = (
+				44D04CEE19B6E7CC00CD32FD /* AboutViewController.h */,
+				44D04CEF19B6E7CC00CD32FD /* AboutViewController.m */,
+				44D04CF019B6E7CC00CD32FD /* AboutViewController.xib */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
+		44D04CF319B6E7F000CD32FD /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				44D04CF419B6E87700CD32FD /* SG-Emblem-Color-EN.jpg */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		44D91EBE19B6D91B001DD683 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				44D91EBF19B6D935001DD683 /* AccountTableViewController.h */,
+				44D91EC019B6D935001DD683 /* AccountTableViewController.m */,
+				44D91EC119B6D935001DD683 /* AccountTableViewController.xib */,
+				44D91EC919B6DB8D001DD683 /* ChangeEmailViewController.h */,
+				44D91ECA19B6DB8D001DD683 /* ChangeEmailViewController.m */,
+				44D91ECB19B6DB8D001DD683 /* ChangeEmailViewController.xib */,
+				44CE48BA19B6E06100844AF6 /* ChangePasswordViewController.h */,
+				44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */,
+				44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */,
+			);
+			name = Account;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,9 +441,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44CE48CF19B6E4AB00844AF6 /* ReportViewController.xib in Resources */,
+				44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */,
 				2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */,
+				44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */,
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
+				446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */,
+				44D04CF519B6E87700CD32FD /* SG-Emblem-Color-EN.jpg in Resources */,
+				44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */,
 				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
+				44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */,
+				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
+				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,14 +470,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44D04CF119B6E7CC00CD32FD /* AboutViewController.m in Sources */,
 				444F210A19B4C81F00BE4C26 /* Books.m in Sources */,
+				44CE48D219B6E6CA00844AF6 /* problem.m in Sources */,
 				444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */,
 				444F20B619B48A2C00BE4C26 /* main.m in Sources */,
+				44D91EC219B6D935001DD683 /* AccountTableViewController.m in Sources */,
+				44D91ECC19B6DB8D001DD683 /* ChangeEmailViewController.m in Sources */,
+				44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */,
+				44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */,
 				444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */,
 				2D66F42819B5FA70001CA7E1 /* StoreViewController.m in Sources */,
+				446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */,
 				2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */,
 				44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */,
+				44CE48CE19B6E4AB00844AF6 /* ReportViewController.m in Sources */,
+				440D879019B62DF80067EE28 /* ProfileViewController.m in Sources */,
 				444F210719B4C24E00BE4C26 /* User.m in Sources */,
+				440D878D19B62DE40067EE28 /* GBPathImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +591,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -439,6 +600,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
@@ -448,6 +610,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",

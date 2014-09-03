@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "StoreViewController.h"
+#import "SettingTableViewController.h"
 
-@interface AppDelegate () 
+@interface AppDelegate ()
 
 @end
 
@@ -27,17 +28,18 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     
-     StoreViewController  *storeView = [[StoreViewController alloc] init];
+    StoreViewController  *storeView = [[StoreViewController alloc] init];
+    SettingTableViewController *settingView = [[SettingTableViewController alloc]init];
+    
     /*
-     BookStoreViewController *bookstore = [[BookStoreViewController alloc] init];
      CatagoriesViewController *catagories = [[CatagoriesViewController alloc] init];
      */
     
     
-     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
-    /*
-     UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:bookstore];
-     UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];*/
+    UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
+    UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:settingView];
+    
+    //UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];
     
     
     /*
@@ -46,8 +48,13 @@
      
      [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent]; //change status bar
      */
+    
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2, nil];
+    
     //set the login view
-    self.window.rootViewController = myNav1;
+    self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
     return YES;

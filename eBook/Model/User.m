@@ -70,4 +70,48 @@
     [PFUser requestPasswordResetForEmailInBackground:email];
 }
 
+
+/*
+ *  Method : newEmail
+ *  Des : change email
+ *  param : email = email address
+ *          password = current password
+ *          retye = re input password
+ *
+ */
++ (void) newEmail:(NSString *)email password:(NSString *)password reTypePassword:(NSString *)retype withDelegate:(id<UserDelegate>)delegate{
+    if (![password isEqualToString:[PFUser currentUser].password] && ![password isEqualToString:retype]) {
+        NSLog(@"Sorry Password is not correct");
+        [delegate userdidChange:NO];
+    } else if ([[PFUser user].username isEqualToString:email]){
+        NSLog(@"Sorry new email already token");
+        [delegate userdidChange:NO];
+    } else {
+        [[PFUser currentUser] setEmail:email];
+        [[PFUser currentUser] saveInBackground];
+        [delegate userdidChange:YES];
+    }
+}
+
+/*
+ *  Method : currentPassword
+ *  Des : change password
+ *  param : current = current password
+ *          password = new password
+ *          retye = re input new password
+ *
+ */
++ (void) currentPassword:(NSString *)current changePassword:(NSString *)password retype:(NSString *)retype withDelegate:(id<UserDelegate>)delegate{
+    
+    if (![password isEqualToString:retype]){
+        NSLog(@"Password is not equl");
+        [delegate userdidchangePassWord:NO];
+    } else if ([PFUser logInWithUsername:[PFUser currentUser].username password:current] && [password isEqualToString:retype]){
+        [PFUser currentUser].password = password;
+        [[PFUser currentUser] saveInBackground];
+        [delegate userdidchangePassWord:YES];
+    } else {
+        [delegate userdidchangePassWord:NO];
+    }
+}
 @end
