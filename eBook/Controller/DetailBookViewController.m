@@ -77,6 +77,7 @@
 }
 
 -(void)createUI {
+    
     PFFile *userImageFile = self.detailItem[@"image"];
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
@@ -90,6 +91,30 @@
     self.authorName.text = self.detailItem[@"author"];
     self.publishName.text = self.detailItem[@"publisher"];
     self.numberPage.text = [self.detailItem[@"page"]stringValue];
+    
+    NSArray *bookAdd = [BooksManager getAllBookDidAdd];
+    
+    for (int i = 0; i < bookAdd.count; i++) {
+        
+        NSString *bookname = [[bookAdd objectAtIndex:i]valueForKey:@"bookname"];
+        
+        if ([[self.detailItem objectForKey:@"title"] isEqualToString:bookname]) {
+            [self.downloadButton setFrame:CGRectMake(224,65,63 + 19, 26)];
+            self.downloadButton.layer.borderWidth = 1;
+            self.downloadButton.layer.cornerRadius = 6;
+            self.downloadButton.layer.masksToBounds = YES;
+            self.downloadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+            [self.downloadButton setTitle:@"GOT BOOK" forState:UIControlStateNormal];
+            [self.downloadButton.titleLabel sizeToFit];
+            self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
+            [self.downloadButton setTitleColor:[UIColor_HexString colorFromHexString:@"#B7B7B7"] forState:UIControlStateNormal];
+            self.downloadButton.enabled = NO;
+            
+            break;
+        } else {
+            [self.downloadButton setTitle:@"FREE" forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (IBAction)segmentAction:(id)sender {
@@ -187,7 +212,7 @@
 }
 
 -(void)addOrder {
-
+    
     self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
     [self.downloadButton setTitleColor:[UIColor_HexString colorFromHexString:@"#B7B7B7"] forState:UIControlStateNormal];
     self.downloadButton.enabled = NO;
@@ -196,6 +221,6 @@
     
     UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];
-
+    
 }
 @end

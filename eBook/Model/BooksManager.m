@@ -59,6 +59,7 @@
     
     NSArray *getAllBook = [query findObjects];
     NSLog(@"getAllBook %@",getAllBook);
+    
     return getAllBook;
 }
 

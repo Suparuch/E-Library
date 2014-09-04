@@ -45,6 +45,11 @@
 		44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186719B8C80100BAC2FC /* UIColor+HexString.m */; };
 		44BC186C19B8CECE00BAC2FC /* ShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */; };
 		44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */; };
+		44BC187319B8E5B300BAC2FC /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 44BC186E19B8E5B300BAC2FC /* 1.png */; };
+		44BC187419B8E5B300BAC2FC /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44BC186F19B8E5B300BAC2FC /* 2.jpg */; };
+		44BC187519B8E5B300BAC2FC /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44BC187019B8E5B300BAC2FC /* 3.jpg */; };
+		44BC187619B8E5B300BAC2FC /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44BC187119B8E5B300BAC2FC /* 4.jpg */; };
+		44BC187719B8E5B300BAC2FC /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44BC187219B8E5B300BAC2FC /* 5.jpg */; };
 		44C2399F19B752F0009DF6ED /* ORGArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C2399819B752F0009DF6ED /* ORGArticleCollectionViewCell.xib */; };
 		44C239A019B752F0009DF6ED /* ORGArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2399919B752F0009DF6ED /* ORGArticleCollectionViewCell.m */; };
 		44C239A119B752F0009DF6ED /* ORGContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2399B19B752F0009DF6ED /* ORGContainerCell.m */; };
@@ -139,6 +144,11 @@
 		44BC186919B8CECE00BAC2FC /* ShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfViewController.h; sourceTree = "<group>"; };
 		44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfViewController.m; sourceTree = "<group>"; };
 		44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfViewController.xib; sourceTree = "<group>"; };
+		44BC186E19B8E5B300BAC2FC /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		44BC186F19B8E5B300BAC2FC /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		44BC187019B8E5B300BAC2FC /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
+		44BC187119B8E5B300BAC2FC /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		44BC187219B8E5B300BAC2FC /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		44C2399719B752F0009DF6ED /* ORGArticleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGArticleCollectionViewCell.h; sourceTree = "<group>"; };
 		44C2399819B752F0009DF6ED /* ORGArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORGArticleCollectionViewCell.xib; sourceTree = "<group>"; };
 		44C2399919B752F0009DF6ED /* ORGArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGArticleCollectionViewCell.m; sourceTree = "<group>"; };
@@ -494,6 +504,11 @@
 		44DDB1EF19B7629400408B2A /* Book */ = {
 			isa = PBXGroup;
 			children = (
+				44BC186E19B8E5B300BAC2FC /* 1.png */,
+				44BC186F19B8E5B300BAC2FC /* 2.jpg */,
+				44BC187019B8E5B300BAC2FC /* 3.jpg */,
+				44BC187119B8E5B300BAC2FC /* 4.jpg */,
+				44BC187219B8E5B300BAC2FC /* 5.jpg */,
 				44DDB1F019B7630A00408B2A /* book1.png */,
 				448DDF0919B876A2002D2A63 /* page.png */,
 			);
@@ -589,17 +604,22 @@
 				44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */,
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
 				44DDB1F119B7630A00408B2A /* book1.png in Resources */,
+				44BC187719B8E5B300BAC2FC /* 5.jpg in Resources */,
 				44B8913C19B83B2300CE581A /* 3star.png in Resources */,
 				44B8913F19B83C4D00CE581A /* allRating.png in Resources */,
 				446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */,
 				44D04CF519B6E87700CD32FD /* SG-Emblem-Color-EN.jpg in Resources */,
+				44BC187319B8E5B300BAC2FC /* 1.png in Resources */,
 				44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */,
+				44BC187519B8E5B300BAC2FC /* 3.jpg in Resources */,
 				44B8913819B83B2300CE581A /* 1star.png in Resources */,
 				44B8913B19B83B2300CE581A /* 2star.png in Resources */,
 				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
 				44D69C3A19B825770089F639 /* ReviewCell.xib in Resources */,
+				44BC187619B8E5B300BAC2FC /* 4.jpg in Resources */,
 				44C2399F19B752F0009DF6ED /* ORGArticleCollectionViewCell.xib in Resources */,
 				44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */,
+				44BC187419B8E5B300BAC2FC /* 2.jpg in Resources */,
 				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
 				44D04D3C19B7156400CD32FD /* DetailBookViewController.xib in Resources */,
 				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,

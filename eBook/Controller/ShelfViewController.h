@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShelfViewController : UIViewController
+@interface ShelfViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate>
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *mainBookView;
+
 
 @end

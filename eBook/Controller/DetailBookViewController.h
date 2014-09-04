@@ -10,6 +10,6 @@
 
 @interface DetailBookViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSDictionary *detailItem;
 
 @end
