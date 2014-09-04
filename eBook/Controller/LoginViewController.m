@@ -35,6 +35,7 @@
 }
 
 - (IBAction)forgotAction:(id)sender {
+    [User resetPassword:self.usernameTextField.text];
 }
 
 - (void) userDidLogin:(BOOL)loggedIn {

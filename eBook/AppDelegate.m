@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "StoreViewController.h"
 #import "SettingTableViewController.h"
+#import "ShelfViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,14 +31,16 @@
     
     StoreViewController  *storeView = [[StoreViewController alloc] init];
     SettingTableViewController *settingView = [[SettingTableViewController alloc]init];
-    
+    ShelfViewController *shelfView = [[ShelfViewController alloc]init];
     /*
      CatagoriesViewController *catagories = [[CatagoriesViewController alloc] init];
      */
     
     
     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
-    UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:settingView];
+    UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:shelfView];
+    UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:settingView];
+    
     
     //UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];
     
@@ -51,7 +54,7 @@
     
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2,myNav3, nil];
     
     //set the login view
     self.window.rootViewController = self.tabBarController;
