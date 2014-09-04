@@ -34,7 +34,6 @@
 		444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210C19B4C8DD00BE4C26 /* BooksManager.m */; };
 		446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D1BAF19B6D2530050D003 /* SettingTableViewController.m */; };
 		446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D1BB019B6D2530050D003 /* SettingTableViewController.xib */; };
-		448DDF0A19B876A2002D2A63 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 448DDF0919B876A2002D2A63 /* page.png */; };
 		44B8913819B83B2300CE581A /* 1star.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913219B83B2300CE581A /* 1star.png */; };
 		44B8913919B83B2300CE581A /* 4star.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913319B83B2300CE581A /* 4star.png */; };
 		44B8913A19B83B2300CE581A /* 5star.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913419B83B2300CE581A /* 5star.png */; };
@@ -131,7 +130,6 @@
 		446D1BAE19B6D2530050D003 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		446D1BAF19B6D2530050D003 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		446D1BB019B6D2530050D003 /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
-		448DDF0919B876A2002D2A63 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 		44B8913219B83B2300CE581A /* 1star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1star.png; sourceTree = "<group>"; };
 		44B8913319B83B2300CE581A /* 4star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4star.png; sourceTree = "<group>"; };
 		44B8913419B83B2300CE581A /* 5star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5star.png; sourceTree = "<group>"; };
@@ -510,7 +508,6 @@
 				44BC187119B8E5B300BAC2FC /* 4.jpg */,
 				44BC187219B8E5B300BAC2FC /* 5.jpg */,
 				44DDB1F019B7630A00408B2A /* book1.png */,
-				448DDF0919B876A2002D2A63 /* page.png */,
 			);
 			name = Book;
 			sourceTree = "<group>";
@@ -597,7 +594,6 @@
 			files = (
 				44D69C2B19B80D1C0089F639 /* InformationCell.xib in Resources */,
 				44CE48CF19B6E4AB00844AF6 /* ReportViewController.xib in Resources */,
-				448DDF0A19B876A2002D2A63 /* page.png in Resources */,
 				44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */,
 				44B8913A19B83B2300CE581A /* 5star.png in Resources */,
 				2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */,
