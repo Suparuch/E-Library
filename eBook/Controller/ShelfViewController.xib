@@ -6,8 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShelfViewController">
             <connections>
-                <outlet property="mainBookView" destination="1dT-A1-wyU" id="UFU-aV-mbN"/>
-                <outlet property="scrollView" destination="sfX-l1-Jrq" id="NlG-es-zhE"/>
+                <outlet property="mainBookView" destination="rfH-Ee-neV" id="8ra-CT-hhk"/>
+                <outlet property="scrollView" destination="Ggi-sT-zco" id="46f-vq-NBR"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,12 +16,12 @@
             <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sfX-l1-Jrq">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ggi-sT-zco">
                     <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1dT-A1-wyU">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfH-Ee-neV" userLabel="MainBookView">
+                            <rect key="frame" x="-31" y="-50" width="1567" height="2098"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                     </subviews>
                 </scrollView>

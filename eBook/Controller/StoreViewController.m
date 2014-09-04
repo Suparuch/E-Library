@@ -52,7 +52,7 @@
     
     self.sampleData = [Books getAllBook];
     
-    NSLog(@"sempleData %@",self.sampleData);
+    //NSLog(@"sempleData %@",self.sampleData);
     
     // Register the table cell
     [self.tableView registerClass:[ORGContainerCell class] forCellReuseIdentifier:@"ORGContainerCell"];

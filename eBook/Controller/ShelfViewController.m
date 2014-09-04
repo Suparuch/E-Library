@@ -12,6 +12,7 @@
 
 @interface ShelfViewController ()
 
+@property (strong, nonatomic) UIButton *buttonDownload;
 @property (strong, nonatomic) NSArray *bookArray;
 
 @end
@@ -32,18 +33,31 @@
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Book Shelf";
+        self.title = @"Shelf";
     }
     return self;
+}
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.bookArray = [BooksManager getAllBookDidAdd];
+    [self setShelf];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    NSArray *viewsToRemove = [self.mainBookView subviews];
+    
+    for (UIView *v in viewsToRemove) {
+        [v removeFromSuperview];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.bookArray = [BooksManager getAllBookDidAdd];
-    self.bookArray = [NSArray arrayWithObjects:@"1.png",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",@"1.png",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",@"1.png",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",@"1.png",@"2.jpg",@"3.jpg",@"4.jpg",@"5.jpg",nil];
-    
-    [self setShelf];
+    rectArray = [[NSMutableArray alloc] initWithCapacity:self.mainBookView.subviews.count];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,38 +74,60 @@
     CGFloat view_x = 5;
     CGFloat view_y = 50;
     
-    for (UIView *view in self.mainBookView.subviews)
-    {
-        if (![view isKindOfClass:[UIImageView class]])
-            [view removeFromSuperview];
+    if ([self.bookArray count]>3) {
+        if ([self.bookArray count]/ 3 == 0){
+            shelfNeed = ([self.bookArray count]/3);
+        } else {
+            shelfNeed = ([self.bookArray count]/3)+1;
+        }
     }
-    for (NSString *book in self.bookArray) {
-        
-        NSString *bookImagePath = book;
-        //NSLog(@"bookImagePath %@", book);
-        
+    else
+    {
+        shelfNeed = 2;
+    }
+    
+    for (int i = 0; i < [self.bookArray count] ; i++) {
         
         UIView *bookView = [[UIView alloc]initWithFrame:CGRectMake(view_x, view_y, view_w, view_h)];
         bookView.backgroundColor = [UIColor clearColor];
         
         UIImageView *bookImageView = [[UIImageView alloc]initWithFrame:CGRectMake(23, 0, 175, 230)];
+        PFFile *userImageFile = [[self.bookArray objectAtIndex:i] valueForKey:@"imagebook"];
+        NSData *imageData = [userImageFile getData];
+        bookImageView.image = [UIImage imageWithData:imageData];
+        bookImageView.layer.borderWidth = 1;
+        bookImageView.layer.masksToBounds = YES;
+        bookImageView.layer.cornerRadius = 15.;
         
-        bookImageView.image = [UIImage imageNamed:bookImagePath];
+        UILabel *booknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(view_x - 20 ,view_y + 10, view_w -20, view_h +50)];
+        booknameLabel.font = [UIFont systemFontOfSize:12];
+        booknameLabel.text = [[self.bookArray objectAtIndex:i] valueForKey:@"bookname"];
+        booknameLabel.textAlignment = NSTextAlignmentCenter;
         
+        
+        self.buttonDownload = [[UIButton alloc]init];
+        self.buttonDownload.frame = CGRectMake(23, 0,175, 230);
+        self.buttonDownload.tag = i;
+        self.buttonDownload.layer.masksToBounds = YES;
+        self.buttonDownload.layer.cornerRadius = 4;
+        [self.buttonDownload addTarget:self action:@selector(download:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        [bookView addSubview:self.buttonDownload];
+        [bookView addSubview:booknameLabel];
         [bookView addSubview:bookImageView];
-        
         [self.mainBookView addSubview:bookView];
         [self moveBook];
     }
 }
 
--(void)moveBook{
+-(void)moveBook
+{
     
-    // iPhone
     CGFloat view_w = 170;
     CGFloat view_h = 200;
-    CGFloat view_x = 40;
-    CGFloat view_y = 90;
+    CGFloat view_x = 75;
+    CGFloat view_y = 100;
     
     CGFloat bookMarginX = 230;
     CGFloat bookMarginY = 310;
@@ -107,94 +143,152 @@
     //CGFloat shelfWidth = 693;
     CGFloat shelfHeight = 5;
     
-    
-    int totalShelf ;
+    NSInteger totalShelf ;
     CGFloat pageHeight;
+    shelfBook  = 2;
     
-    if ([self isLandScape]) {
+    if (([self.mainBookView.subviews count] % shelfBook)==0) {
+        NSLog(@"in shelf =0  %lu",[self.mainBookView.subviews count] % shelfBook);
+        [self.scrollView setScrollEnabled:YES];
         
-        shelfBook =5;
-        // bookMarginX = 190;
-        // bookMarginY = 200;
-        if (([self.mainBookView.subviews count] % shelfBook)==0) {
-//            NSLog(@"in shelf =0  %lu",[self.mainBookView.subviews count] % shelfBook);
-            totalShelf = ([self.mainBookView.subviews count] / shelfBook);
-            
-        }else{
-//            NSLog(@"in shelf =!0  %lu",[self.mainBookView.subviews count] % shelfBook);
-            totalShelf = ([self.mainBookView.subviews count]/shelfBook + 1);
-        }
-        //  totalShelf = ([self.mainBookView.subviews count]/shelfBook)+1;
-        if (totalShelf <= 4) {
-            totalShelf = 4;
-            [self.scrollView setScrollEnabled:YES];
-            pageHeight = 748;
-        }
-        else
-        {
-            pageHeight = shelfY + ((totalShelf -1)*shelfMarginY) + shelfHeight + 20;
-        }
-        [self.mainBookView setFrame:CGRectMake(40, self.mainBookView.frame.origin.y, 1024, pageHeight)];
+        totalShelf = ([self.mainBookView.subviews count]/shelfBook);
         
-        [self.scrollView setContentSize:CGSizeMake(1024, pageHeight)];
+    }else{
+        
+        NSLog(@"in shelf =!0  %lu",[self.mainBookView.subviews count] % shelfBook);
+        totalShelf = ([self.mainBookView.subviews count]/shelfBook+1);
     }
-    
+    if (totalShelf <= 1) {
+        totalShelf = 1;
+        [self.scrollView setScrollEnabled:YES];
+        pageHeight = 586;
+    }
     else
     {
-        shelfBook  = 3;
-        //bookMarginX = 100;
-        // bookMarginY = 250;
-        if (([self.mainBookView.subviews count] % shelfBook)==0) {
-//            NSLog(@"in shelf =0  %d",[self.mainBookView.subviews count] % shelfBook);
-            [self.scrollView setScrollEnabled:YES];
-            
-            totalShelf = ([self.mainBookView.subviews count]/shelfBook);
-            
-        }else{
-//            NSLog(@"in shelf =!0  %d",[self.mainBookView.subviews count] % shelfBook);
-            totalShelf = ([self.mainBookView.subviews count]/shelfBook+1);
-        }
-        // totalShelf = ([self.mainBookView.subviews count]/shelfBook)+1;
-        if (totalShelf <= 3) {
-            totalShelf = 3;
-            [self.scrollView setScrollEnabled:YES];
-            pageHeight = 586;
-        }
-        else
-        {
-            pageHeight = shelfY + ((totalShelf -1)*shelfMarginY) + shelfHeight + 20;
-        }
-        
-        CGSize result = [[UIScreen mainScreen] bounds].size;
-        if (result.height < 500){
-            [self.scrollView setFrame:CGRectMake(0, 76, 768, 1024)];
-            
-        }
-        else{
-            [self.scrollView setFrame:CGRectMake(0, 76, 768, 1024)];
-            
-        }
-        
-        [self.scrollView setContentSize:CGSizeMake(320, pageHeight)];
-        [self.mainBookView setFrame:CGRectMake(-5, -145, 320, pageHeight)];
-//        NSLog(@"mainBookView %f",self.mainBookView.frame.origin.y );
+        pageHeight = shelfY + ((totalShelf -1)*shelfMarginY) + shelfHeight + 75;
     }
     
+    [self.scrollView setFrame:CGRectMake(0, 0, 1536, 2048)];
+    [self.scrollView setContentSize:CGSizeMake(320, pageHeight)];
+    [self.mainBookView setFrame:CGRectMake(0, -78, 320, pageHeight)];
+    NSLog(@"mainBookView %f",self.mainBookView.frame.origin.y);
     
-    for (UIView *bookView in self.mainBookView.subviews) {
+    [self ManageShelf:totalShelf];
+    NSLog(@"subview %@",self.mainBookView.subviews);
+    for (UIView *bookViewDetail in self.mainBookView.subviews) {
         
         if (bookIndex % (shelfBook+1) == 0) {
             shelfBarIndex++;
             bookIndex = 1;
         }
-        CGFloat book_x = view_x + (bookMarginX * (bookIndex++-1));
+        CGFloat book_x = view_x + (bookMarginX * (bookIndex++ -1));
         CGFloat book_y = view_y + (bookMarginY * (shelfBarIndex -1));
         
-        bookView.frame = CGRectMake(book_x, book_y, view_w, view_h);
+        bookViewDetail.frame = CGRectMake(book_x, book_y, view_w, view_h);
+        
+        
+        CGRect Rect = bookViewDetail.frame;
+        [rectArray addObject:[NSValue valueWithCGRect:Rect]];
     }
-    
     [self.scrollView scrollsToTop];
     
 }
+-(void)ManageShelf:(NSInteger)totalShowShelf
+{
+    for (NSInteger i=1; i <= shelfNeed; i++) {
+        [self.scrollView viewWithTag:i].hidden = (i>totalShowShelf);
+    }
+}
+
+
+#pragma Download
+
+
+-(IBAction)download:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    NSInteger i = button.tag;
+    
+    NSInteger index = [rectArray count] - 1;
+    for (id object in [rectArray reverseObjectEnumerator]) {
+        if ([rectArray indexOfObject:object inRange:NSMakeRange(0, index)] != NSNotFound) {
+            [rectArray removeObjectAtIndex:index];
+        }
+        index--;
+    }
+    
+    //NSLog(@"%@", NSStringFromCGRect(myRect));
+    PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
+    PFQuery *query = [relation query];
+    [query whereKey:@"bookname" equalTo:[[self.bookArray objectAtIndex:i]valueForKey:@"bookname"]];
+    
+    NSArray *getBookData = [query findObjects];
+    
+    NSLog(@"getBookData %@",getBookData);
+    
+    PFFile *bookData = [[getBookData objectAtIndex:0] valueForKey:@"bookdata"];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
+    NSString *filePath = [path stringByAppendingPathComponent:[[self.bookArray objectAtIndex:i]valueForKey:@"bookname"]];
+    
+    NSLog(@"filepath %@",path);
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    if (![fileManager fileExistsAtPath:path])
+    {
+        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+        
+    }
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    if (!fileExists) {
+        [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                
+                [data writeToFile:filePath atomically:YES];
+            }
+        } progressBlock:^(int percentDone) {
+            
+        }];
+    } else {
+        [self didClickOpenPDF:sender];
+    }
+}
+
+-(void)didClickOpenPDF:(id)sender {
+    
+    BOOL success;
+    
+    UIButton *button = (UIButton *)sender;
+    NSInteger i = button.tag;
+    
+    NSString* filePathName = [[self.bookArray objectAtIndex:i]valueForKey:@"bookname"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *dataPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
+    NSString *filePath = [dataPath stringByAppendingPathComponent:filePathName];
+    
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    success = [fileManager fileExistsAtPath:filePath];
+    if (success) {
+        NSLog(@"Open : %@",filePathName);
+    }
+    
+    /*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
+     
+     if (document != nil)
+     {
+     ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+     readerViewController.delegate = self;
+     
+     readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+     readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+     
+     [self.navigationController presentViewController:readerViewController animated:YES completion:nil];
+     }*/
+}
+
 
 @end

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ShelfViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate>
+{
+    NSInteger shelfNeed;
+}
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIView *mainBookView;

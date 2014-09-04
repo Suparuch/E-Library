@@ -84,7 +84,7 @@
         NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
         NSString *filePath = [path stringByAppendingPathComponent:selected];
         
-        NSLog(@"filepath %@",filePath);
+        NSLog(@"filepath %@",path);
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         
@@ -92,17 +92,24 @@
         {
             [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
         }
-        [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            if (!error) {
-                [data writeToFile:filePath atomically:YES];
-                [delegate booksDownloadComplete:YES];
-            }
-        } progressBlock:^(int percentDone) {
-            if ([delegate respondsToSelector:@selector(booksDownloadProgress:)]) {
-                [delegate booksDownloadProgress:percentDone];
-            }
-            
-        }];
+        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+        
+        if (!fileExists) {
+            [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                if (!error) {
+                    
+                    if ([delegate respondsToSelector:@selector(booksDownloadComplete:)]) {
+                        [data writeToFile:filePath atomically:YES];
+                        [delegate booksDownloadComplete:YES];
+                    }
+                }
+            } progressBlock:^(int percentDone) {
+                if ([delegate respondsToSelector:@selector(booksDownloadProgress:)]) {
+                    [delegate booksDownloadProgress:percentDone];
+                }
+                
+            }];
+        }
     }];
 }
 
@@ -116,7 +123,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Review"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *queryReview, NSError *error) {
-       
+        
         NSLog(@"queryRating %@",queryReview);
         
         PFObject *Review = [PFObject objectWithClassName:@"Review"];
@@ -188,7 +195,9 @@
     
     NSInteger average = (ratingCount * 5)/allRating;
     
-    NSLog(@"average %d",average);
+    NSLog(@"average %ld",(long)average);
     return average;
 }
+
+
 @end
