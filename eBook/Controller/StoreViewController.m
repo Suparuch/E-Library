@@ -20,7 +20,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *sampleData;
 @property (strong, nonatomic) NSArray *keepBookDic;
-@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) NSArray *items;
 @end
 
 @implementation StoreViewController
@@ -29,7 +29,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Book Store";
-        
+    
+        self.items = [NSArray arrayWithObjects:[UIImage imageNamed:@"book1.jpg"],
+                     [UIImage imageNamed:@"book2.jpg"],
+                     [UIImage imageNamed:@"book3.jpg"],
+                     [UIImage imageNamed:@"book4.png"],
+                     [UIImage imageNamed:@"book5.pgn"],
+                      nil];
     }
     return self;
 }
@@ -85,7 +91,7 @@
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
     //return the total number of items in the carousel
-    return 10;
+    return self.items.count;
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
@@ -97,8 +103,9 @@
         //don't do anything specific to the index within
         //this `if (view == nil) {...}` statement because the view will be
         //recycled and used with other index values later
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(200, 0, 200.0f, 150.0f)];
-        ((UIImageView *)view).image = [UIImage imageNamed:@"page.png"];
+        
+        UIView *view = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[self.items objectAtIndex:index]]];
+        view.frame = CGRectMake(200, 0, 200.0f, 150.0f);
         view.contentMode = UIViewContentModeCenter;
     
     }

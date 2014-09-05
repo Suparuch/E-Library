@@ -9,11 +9,15 @@
 #import "ShelfViewController.h"
 #import "BooksManager.h"
 #import <Parse/Parse.h>
+#import "ReaderViewController.h"
+#import "UIColor+HexString.h"
 
-@interface ShelfViewController ()
+@interface ShelfViewController () <ReaderViewControllerDelegate>
 
 @property (strong, nonatomic) UIButton *buttonDownload;
 @property (strong, nonatomic) NSArray *bookArray;
+@property (strong, nonatomic) UIProgressView *progressView;
+@property (weak, nonatomic) NSTimer *timer;
 
 @end
 
@@ -125,7 +129,7 @@
 {
     
     CGFloat view_w = 170;
-    CGFloat view_h = 200;
+    CGFloat view_h = 230;
     CGFloat view_x = 75;
     CGFloat view_y = 100;
     
@@ -145,17 +149,18 @@
     
     NSInteger totalShelf ;
     CGFloat pageHeight;
-    shelfBook  = 2;
+    
+    shelfBook  = 3;
     
     if (([self.mainBookView.subviews count] % shelfBook)==0) {
-        NSLog(@"in shelf =0  %lu",[self.mainBookView.subviews count] % shelfBook);
+        NSLog(@"in shelf =0  %u",[self.mainBookView.subviews count] % shelfBook);
         [self.scrollView setScrollEnabled:YES];
         
         totalShelf = ([self.mainBookView.subviews count]/shelfBook);
         
     }else{
         
-        NSLog(@"in shelf =!0  %lu",[self.mainBookView.subviews count] % shelfBook);
+        NSLog(@"in shelf =!0  %u",[self.mainBookView.subviews count] % shelfBook);
         totalShelf = ([self.mainBookView.subviews count]/shelfBook+1);
     }
     if (totalShelf <= 1) {
@@ -171,6 +176,7 @@
     [self.scrollView setFrame:CGRectMake(0, 0, 1536, 2048)];
     [self.scrollView setContentSize:CGSizeMake(320, pageHeight)];
     [self.mainBookView setFrame:CGRectMake(0, -78, 320, pageHeight)];
+    
     NSLog(@"mainBookView %f",self.mainBookView.frame.origin.y);
     
     [self ManageShelf:totalShelf];
@@ -216,6 +222,7 @@
         index--;
     }
     
+    CGRect myRect = [[rectArray objectAtIndex:i] CGRectValue];
     //NSLog(@"%@", NSStringFromCGRect(myRect));
     PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
     PFQuery *query = [relation query];
@@ -242,16 +249,55 @@
     }
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     if (!fileExists) {
+        
+        self.progressView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleBar];
+        self.progressView.frame = CGRectMake(myRect.origin.x +40 ,myRect.origin.y + 200, myRect.size.width - 20, myRect.size.height -100);
+        self.progressView.layer.borderWidth = 0.1;
+        self.progressView.progress = 0.0;
+        self.progressView.trackTintColor = [UIColor whiteColor];
+        [self.progressView setProgressTintColor:[UIColor_HexString colorFromHexString:@"#87CEFA"]];
+        [self.progressView setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
+        
+        [self.mainBookView addSubview:self.progressView];
+        
         [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            
             if (!error) {
-                
                 [data writeToFile:filePath atomically:YES];
             }
+            
         } progressBlock:^(int percentDone) {
             
-        }];
+            self.progressView.progress = (float) percentDone/100.0;
+        }
+         ];
+        
+        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+        [self.view setUserInteractionEnabled:NO];
+        
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(setCustomProgress) userInfo:nil repeats:YES];
+        
     } else {
+        
         [self didClickOpenPDF:sender];
+        
+    }
+}
+
+-(void)setCustomProgress
+{
+    
+    if(self.progressView.progress == 1.0)
+        
+    {
+        
+        [self.timer invalidate];
+        self.timer = nil;
+        [self.progressView removeFromSuperview];
+        [self.view setUserInteractionEnabled:YES];
+        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        
+        NSLog(@"DONE !!!");
     }
 }
 
@@ -276,18 +322,18 @@
         NSLog(@"Open : %@",filePathName);
     }
     
-    /*ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
-     
-     if (document != nil)
-     {
-     ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-     readerViewController.delegate = self;
-     
-     readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-     readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-     
-     [self.navigationController presentViewController:readerViewController animated:YES completion:nil];
-     }*/
+    ReaderDocument *document = [ReaderDocument withDocumentFilePath:filePath password:nil];
+    
+    if (document != nil)
+    {
+        ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+        readerViewController.delegate = self;
+        
+        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        
+        [self.navigationController presentViewController:readerViewController animated:YES completion:nil];
+    }
 }
 
 
