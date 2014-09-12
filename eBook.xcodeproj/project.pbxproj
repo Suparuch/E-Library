@@ -31,11 +31,8 @@
 		4409FF5219B92A37000051A4 /* ThumbsMainToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF3C19B92A37000051A4 /* ThumbsMainToolbar.m */; };
 		4409FF5319B92A37000051A4 /* ThumbsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF3E19B92A37000051A4 /* ThumbsViewController.m */; };
 		4409FF5419B92A37000051A4 /* UIXToolbarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF4019B92A37000051A4 /* UIXToolbarView.m */; };
-		4409FF5C19B9420A000051A4 /* book1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF5719B9420A000051A4 /* book1.jpg */; };
-		4409FF5D19B9420A000051A4 /* book2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF5819B9420A000051A4 /* book2.jpg */; };
-		4409FF5E19B9420A000051A4 /* book3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF5919B9420A000051A4 /* book3.jpg */; };
-		4409FF5F19B9420A000051A4 /* book4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF5A19B9420A000051A4 /* book4.png */; };
-		4409FF6019B9420A000051A4 /* book5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF5B19B9420A000051A4 /* book5.png */; };
+		4409FF6219B94394000051A4 /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF6119B94394000051A4 /* page.png */; };
+		4409FF7019B94DAA000051A4 /* book1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4409FF6D19B94DAA000051A4 /* book1.jpg */; };
 		440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440D878719B62D8B0067EE28 /* ProfileViewController.xib */; };
 		440D878D19B62DE40067EE28 /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878C19B62DE40067EE28 /* GBPathImageView.m */; };
 		440D879019B62DF80067EE28 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878F19B62DF80067EE28 /* ProfileViewController.m */; };
@@ -75,11 +72,6 @@
 		44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186719B8C80100BAC2FC /* UIColor+HexString.m */; };
 		44BC186C19B8CECE00BAC2FC /* ShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */; };
 		44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */; };
-		44C2399F19B752F0009DF6ED /* ORGArticleCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C2399819B752F0009DF6ED /* ORGArticleCollectionViewCell.xib */; };
-		44C239A019B752F0009DF6ED /* ORGArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2399919B752F0009DF6ED /* ORGArticleCollectionViewCell.m */; };
-		44C239A119B752F0009DF6ED /* ORGContainerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2399B19B752F0009DF6ED /* ORGContainerCell.m */; };
-		44C239A219B752F0009DF6ED /* ORGContainerCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44C2399D19B752F0009DF6ED /* ORGContainerCellView.xib */; };
-		44C239A319B752F0009DF6ED /* ORGContainerCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C2399E19B752F0009DF6ED /* ORGContainerCellView.m */; };
 		44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */; };
 		44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */; };
 		44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48C119B6E36100844AF6 /* NotificationTableViewController.m */; };
@@ -161,11 +153,8 @@
 		4409FF3E19B92A37000051A4 /* ThumbsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbsViewController.m; sourceTree = "<group>"; };
 		4409FF3F19B92A37000051A4 /* UIXToolbarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIXToolbarView.h; sourceTree = "<group>"; };
 		4409FF4019B92A37000051A4 /* UIXToolbarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXToolbarView.m; sourceTree = "<group>"; };
-		4409FF5719B9420A000051A4 /* book1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book1.jpg; sourceTree = "<group>"; };
-		4409FF5819B9420A000051A4 /* book2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book2.jpg; sourceTree = "<group>"; };
-		4409FF5919B9420A000051A4 /* book3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book3.jpg; sourceTree = "<group>"; };
-		4409FF5A19B9420A000051A4 /* book4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book4.png; sourceTree = "<group>"; };
-		4409FF5B19B9420A000051A4 /* book5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book5.png; sourceTree = "<group>"; };
+		4409FF6119B94394000051A4 /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
+		4409FF6D19B94DAA000051A4 /* book1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = book1.jpg; sourceTree = "<group>"; };
 		440D878719B62D8B0067EE28 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		440D878B19B62DE40067EE28 /* GBPathImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBPathImageView.h; sourceTree = "<group>"; };
 		440D878C19B62DE40067EE28 /* GBPathImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPathImageView.m; sourceTree = "<group>"; };
@@ -218,14 +207,6 @@
 		44BC186919B8CECE00BAC2FC /* ShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfViewController.h; sourceTree = "<group>"; };
 		44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfViewController.m; sourceTree = "<group>"; };
 		44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfViewController.xib; sourceTree = "<group>"; };
-		44C2399719B752F0009DF6ED /* ORGArticleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGArticleCollectionViewCell.h; sourceTree = "<group>"; };
-		44C2399819B752F0009DF6ED /* ORGArticleCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORGArticleCollectionViewCell.xib; sourceTree = "<group>"; };
-		44C2399919B752F0009DF6ED /* ORGArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGArticleCollectionViewCell.m; sourceTree = "<group>"; };
-		44C2399A19B752F0009DF6ED /* ORGContainerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGContainerCell.h; sourceTree = "<group>"; };
-		44C2399B19B752F0009DF6ED /* ORGContainerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGContainerCell.m; sourceTree = "<group>"; };
-		44C2399C19B752F0009DF6ED /* ORGContainerCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORGContainerCellView.h; sourceTree = "<group>"; };
-		44C2399D19B752F0009DF6ED /* ORGContainerCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ORGContainerCellView.xib; sourceTree = "<group>"; };
-		44C2399E19B752F0009DF6ED /* ORGContainerCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORGContainerCellView.m; sourceTree = "<group>"; };
 		44CE48BA19B6E06100844AF6 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
@@ -567,11 +548,8 @@
 		44D04CF319B6E7F000CD32FD /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				4409FF5719B9420A000051A4 /* book1.jpg */,
-				4409FF5819B9420A000051A4 /* book2.jpg */,
-				4409FF5919B9420A000051A4 /* book3.jpg */,
-				4409FF5A19B9420A000051A4 /* book4.png */,
-				4409FF5B19B9420A000051A4 /* book5.png */,
+				4409FF6D19B94DAA000051A4 /* book1.jpg */,
+				4409FF6119B94394000051A4 /* page.png */,
 				44B8913119B83AE100CE581A /* Stars */,
 				44D04CF419B6E87700CD32FD /* SG-Emblem-Color-EN.jpg */,
 			);
@@ -590,7 +568,6 @@
 		44D04D0819B709AE00CD32FD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				44D69C2619B80CEF0089F639 /* BookStore */,
 				44D69C2519B80CE60089F639 /* DetailCell */,
 			);
 			name = View;
@@ -608,21 +585,6 @@
 				44D69C3819B825770089F639 /* ReviewCell.xib */,
 			);
 			name = DetailCell;
-			sourceTree = "<group>";
-		};
-		44D69C2619B80CEF0089F639 /* BookStore */ = {
-			isa = PBXGroup;
-			children = (
-				44C2399719B752F0009DF6ED /* ORGArticleCollectionViewCell.h */,
-				44C2399919B752F0009DF6ED /* ORGArticleCollectionViewCell.m */,
-				44C2399819B752F0009DF6ED /* ORGArticleCollectionViewCell.xib */,
-				44C2399A19B752F0009DF6ED /* ORGContainerCell.h */,
-				44C2399B19B752F0009DF6ED /* ORGContainerCell.m */,
-				44C2399C19B752F0009DF6ED /* ORGContainerCellView.h */,
-				44C2399E19B752F0009DF6ED /* ORGContainerCellView.m */,
-				44C2399D19B752F0009DF6ED /* ORGContainerCellView.xib */,
-			);
-			name = BookStore;
 			sourceTree = "<group>";
 		};
 		44D91EBE19B6D91B001DD683 /* Account */ = {
@@ -723,7 +685,6 @@
 			files = (
 				44D69C2B19B80D1C0089F639 /* InformationCell.xib in Resources */,
 				44CE48CF19B6E4AB00844AF6 /* ReportViewController.xib in Resources */,
-				4409FF6019B9420A000051A4 /* book5.png in Resources */,
 				44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */,
 				44B8913A19B83B2300CE581A /* 5star.png in Resources */,
 				2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */,
@@ -733,24 +694,20 @@
 				44B8913F19B83C4D00CE581A /* allRating.png in Resources */,
 				446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */,
 				44D04CF519B6E87700CD32FD /* SG-Emblem-Color-EN.jpg in Resources */,
-				4409FF5D19B9420A000051A4 /* book2.jpg in Resources */,
+				4409FF7019B94DAA000051A4 /* book1.jpg in Resources */,
 				44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */,
 				44B8913819B83B2300CE581A /* 1star.png in Resources */,
-				4409FF5E19B9420A000051A4 /* book3.jpg in Resources */,
 				44B8913B19B83B2300CE581A /* 2star.png in Resources */,
 				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
 				44D69C3A19B825770089F639 /* ReviewCell.xib in Resources */,
-				4409FF5F19B9420A000051A4 /* book4.png in Resources */,
-				44C2399F19B752F0009DF6ED /* ORGArticleCollectionViewCell.xib in Resources */,
 				44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */,
 				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
+				4409FF6219B94394000051A4 /* page.png in Resources */,
 				44D04D3C19B7156400CD32FD /* DetailBookViewController.xib in Resources */,
 				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,
 				44B8913D19B83B2300CE581A /* emplyStar.png in Resources */,
 				44B8913919B83B2300CE581A /* 4star.png in Resources */,
 				44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */,
-				4409FF5C19B9420A000051A4 /* book1.jpg in Resources */,
-				44C239A219B752F0009DF6ED /* ORGContainerCellView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,10 +743,8 @@
 				44D91ECC19B6DB8D001DD683 /* ChangeEmailViewController.m in Sources */,
 				44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */,
 				4409FF5419B92A37000051A4 /* UIXToolbarView.m in Sources */,
-				44C239A019B752F0009DF6ED /* ORGArticleCollectionViewCell.m in Sources */,
 				44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */,
 				4409FF5319B92A37000051A4 /* ThumbsViewController.m in Sources */,
-				44C239A319B752F0009DF6ED /* ORGContainerCellView.m in Sources */,
 				4409FF4D19B92A37000051A4 /* ReaderThumbRender.m in Sources */,
 				4409FF4B19B92A37000051A4 /* ReaderThumbFetch.m in Sources */,
 				44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */,
@@ -799,7 +754,6 @@
 				44D04D0019B6EE9A00CD32FD /* iCarousel.m in Sources */,
 				4409FF4119B92A37000051A4 /* CGPDFDocument.m in Sources */,
 				44D69C3919B825770089F639 /* ReviewCell.m in Sources */,
-				44C239A119B752F0009DF6ED /* ORGContainerCell.m in Sources */,
 				446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */,
 				2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */,
 				44D69C2A19B80D1C0089F639 /* InformationCell.m in Sources */,

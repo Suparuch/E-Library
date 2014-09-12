@@ -13,6 +13,6 @@
 @interface StoreViewController : UIViewController <iCarouselDataSource,iCarouselDelegate>
 
 @property (strong, nonatomic) DetailBookViewController *detailViewController;
-@property (strong, nonatomic) IBOutlet iCarousel *carousel;
+
 
 @end

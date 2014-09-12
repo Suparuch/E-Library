@@ -29,6 +29,40 @@
 
 /*
  *  Method : searchBook
+ *  Des : search book with authorname
+ *  parum : author : authorname
+ *
+ */
++ (NSArray *)searchBookWithAuthor:(NSString *)author {
+    
+    PFQuery *autherObjectId = [PFQuery queryWithClassName:@"Publisher"];
+    [autherObjectId whereKey:@"name" equalTo:author];
+    
+    PFQuery *bookname = [PFQuery queryWithClassName:@"Books"];
+    [bookname whereKey:@"authorname" matchesQuery:autherObjectId];
+    
+    NSArray *bookFound = [bookname findObjects];
+    
+    NSLog(@"bookFound %@",bookFound);
+    
+    return bookFound;
+}
+
+/*
+ *  Method : searchBookWithCategory
+ *  Des : search book with Category name
+ *  parum : category : categoryName
+ *
+ */
++ (NSArray *)searchBookWithCategory:(NSString *)category {
+    
+    NSArray *categoryArray = @[@"nil"];
+    
+    return categoryArray;
+}
+
+/*
+ *  Method : searchBook
  *  Des : add book in db for prepare downloading
  *  param : select = bookname
  *
@@ -41,10 +75,14 @@
         
         PFObject *book = addBook.lastObject;
         
+        [book incrementKey:@"downloadcount"];
+        
         PFRelation *relation = [[PFUser currentUser] objectForKey:@"order"];
         [relation addObject:book]; // friendUser is a PFUser that represents the friend
         [[PFUser currentUser] saveInBackground];
     }];
+    
+    
 }
 
 /*
@@ -199,5 +237,34 @@
     return average;
 }
 
+/*
+ *  Method : adduserInterestBook
+ *  Des : user interesting book can add more than one
+ *  param : selected = selected Category
+ *
+ */
++(void)adduserInterestBook:(NSArray *)selected {
+    
+}
+
+/*
+ *  Method : getUserInterestBook
+ *  Des : get about user interest from selected
+ *
+ */
++(NSArray *)getUserInterestBook {
+    NSArray *array;
+    
+    return array;
+}
+
+/*
+ *  Method : notificationWithInterestBookCommingNew
+ *  Des : if book selected interest new release. It will notice
+ *
+ */
++(void)notificationWithInterestBookCommingNew {
+    
+}
 
 @end

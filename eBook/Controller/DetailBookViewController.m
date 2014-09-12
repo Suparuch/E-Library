@@ -35,7 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self changeBackground];
-    [self createUI];
+    //[self createUI];
     self.segmentSelect.selectedSegmentIndex = 0;
     
     self.tableView.delegate = self;
@@ -112,6 +112,11 @@
             
             break;
         } else {
+            
+            self.downloadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+            self.downloadButton.layer.borderWidth = 1;
+            self.downloadButton.layer.cornerRadius = 6;
+            self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
             [self.downloadButton setTitle:@"FREE" forState:UIControlStateNormal];
         }
     }

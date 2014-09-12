@@ -13,41 +13,61 @@
 
 /*
  *  Method : getAllBook
- *  Des : get Book Data
+ *  Des : get Books Data
  *
  */
 +(NSArray *)getAllBook {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Books"];
+    
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
     NSArray *bookData = [query findObjects];
-
-    
-    NSMutableArray *dataBook = [[NSMutableArray alloc]initWithCapacity:bookData.count];
-    
-    for (int i = 0; i < bookData.count; i++) {
-        NSDictionary *bookArray =  @{ @"description": @"Top View",
-                                    @"articles": @[
-                                            @{@"objectId" : [[bookData objectAtIndex:i]valueForKey:@"objectId"]
-                                              ,@"author" : [[bookData objectAtIndex:i]valueForKey:@"authorname"]
-                                              ,@"bookdata" : [[bookData objectAtIndex:i]valueForKey:@"bookdata"]
-                                              ,@"title" : [[bookData objectAtIndex:i]valueForKey:@"bookname"]
-                                              ,@"categoryid" : [[bookData objectAtIndex:i]valueForKey:@"categoryId"]
-                                              ,@"des" : [[bookData objectAtIndex:i]valueForKey:@"des"]
-                                              ,@"size" : [[bookData objectAtIndex:i]valueForKey:@"filesize"]
-                                              ,@"image" : [[bookData objectAtIndex:i]valueForKey:@"imagebook"]
-                                              ,@"page" : [[bookData objectAtIndex:i]valueForKey:@"page"]
-                                              ,@"rating" : [[bookData objectAtIndex:i]valueForKey:@"rating"]
-                                              ,@"ratingcount" : [[bookData objectAtIndex:i]valueForKey:@"ratingcount"]
-                                              ,@"type" : [[bookData objectAtIndex:i]valueForKey:@"type"]
-                                              ,@"publisher" : [[bookData objectAtIndex:i]valueForKey:@"publisher"]
-                                              ,@"downloadcount" : [[bookData objectAtIndex:i]valueForKey:@"downloadcount"]}
-                                            ]};
-        [dataBook addObject:bookArray];
-    }
     
     //NSLog(@"dataBook %@",dataBook);
     
-    return dataBook;
+    return bookData;
 }
 
+/*
+ *  Method : getTop10Book
+ *  Des : get top 10 download books
+ *
+ */
++(NSArray *)getTop10Book {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Books"];
+    [query orderByDescending:@"downloadcount"];
+    
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    NSArray *bookData = [query findObjects];
+    
+    NSLog(@"dataBook %@",bookData);
+    
+    return bookData;
+}
+
+/*
+ *  Method : getRelationBook
+ *  Des : get book relation with name
+ *  parum : authorname = objectId
+ *
+ */
++(NSArray *)getRelationBook:(NSString *)authorname {
+    
+    PFQuery *book = [PFQuery queryWithClassName:@"Books"];
+    [book includeKey:@"authorname.ojbectId"];
+    
+    book.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
+    NSArray *bookData = [book findObjects];
+    
+    NSLog(@"dataBook %@",bookData);
+    
+    return bookData;
+}
+
+
 @end
+

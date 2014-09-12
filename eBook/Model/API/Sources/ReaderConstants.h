@@ -29,7 +29,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define READER_BOOKMARKS TRUE1
+#define READER_BOOKMARKS TRUE
 #define READER_ENABLE_MAIL FALSE
 #define READER_ENABLE_PRINT FALSE
 #define READER_ENABLE_THUMBS TRUE

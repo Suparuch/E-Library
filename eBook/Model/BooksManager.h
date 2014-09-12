@@ -19,6 +19,8 @@
 @interface BooksManager : NSObject
 
 + (NSArray *)searchBook:(NSString *)bookname;
++ (NSArray *)searchBookWithAuthor:(NSString *)author;
++ (NSArray *)searchBookWithCategory:(NSString *)category;
 + (NSArray *)getAllBookDidAdd;
 + (void)addBookToDownload:(NSString *)select;
 + (void)download:(NSString *)selected forDelegate:(id<BooksDelegate>)delegate;
