@@ -11,17 +11,16 @@
 #import "LoginViewController.h"
 #import "Books.h"
 #import "SettingTableViewController.h"
-#import "BooksManager.h"
+#import "FXImageView.h"
 
-@interface StoreViewController ()
+@interface StoreViewController () <iCarouselDataSource,iCarouselDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
+@property (strong, nonatomic) UIImageView *titleView2;
+
 @property (nonatomic, strong) iCarousel *carousel1;
 @property (nonatomic, strong) iCarousel *carousel2;
-
-@property (nonatomic, assign) BOOL wrap;
-
 
 @end
 
@@ -47,9 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addTitleView];
-    //[self addTop10Book];
-    [BooksManager searchBookWithAuthor:@"Jakrit Tamnakpho"];
-
+    [self addTop10Book];
+    
 }
 
 - (void)viewDidUnload
@@ -80,19 +78,17 @@
     
     //add background
     UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
-    titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    titleView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
+    titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    titleView.backgroundColor = [[UIColor yellowColor]colorWithAlphaComponent:0.7];
     [self.scrollView addSubview:titleView];
     
     
     //create carousel
     carousel1 = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
-    carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     carousel1.type = iCarouselTypeRotary;
     carousel1.delegate = self;
     carousel1.dataSource = self;
-    
-    _wrap = !_wrap;
     
     //add carousel to view
     [self.scrollView addSubview:carousel1];
@@ -101,20 +97,38 @@
 
 - (void)addTop10Book {
     
-    //add background
-    UIImageView *titleView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 600, self.scrollView.frame.size.width, 300)];
-    titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    titleView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-    [self.scrollView addSubview:titleView];
+    //add label top10
+    UILabel *top10text = [[UILabel alloc]initWithFrame:CGRectMake(10, 165, self.scrollView.frame.size.width, 300)];
+    top10text.text = @"Top10";
+    top10text.font = [UIFont boldSystemFontOfSize:16];
+    [self.scrollView addSubview:top10text];
     
-    //create carousel
+    //add button to change to see top 100
+    UIButton *seeAllButton = [[UIButton alloc]initWithFrame:CGRectMake(685, 306, 100, 18)];
+    [seeAllButton setTitle:@"See All >" forState:UIControlStateNormal];
+    seeAllButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    [seeAllButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [seeAllButton addTarget:self action:@selector(changeToSeeAll:) forControlEvents:UIControlEventTouchUpInside];
+    [self.scrollView addSubview:seeAllButton];
+    
+    //add background
+    self.titleView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 330, self.scrollView.frame.size.width, 200)];
+    self.titleView2.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    self.titleView2.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.7];
+    [self.scrollView addSubview:self.titleView2];
+    
+    //create carousel2
     carousel2 = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
-    carousel2.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    carousel2.autoresizingMask = UIViewAutoresizingFlexibleWidth ;
     carousel2.type = iCarouselTypeLinear;
     carousel2.delegate = self;
     carousel2.dataSource = self;
     
-    [self.scrollView addSubview:carousel2];
+    //[self.scrollView addSubview:carousel2];
+}
+
+-(IBAction)changeToSeeAll:(id)sender {
+    NSLog(@"come");
 }
 
 #pragma mark -
@@ -132,20 +146,25 @@
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view
 {
-    UIButton *button = (UIButton *)view;
-    if (button == nil)
+    
+    if (view == nil)
     {
-        //no button available to recycle, so create new one
-        UIImage *image = [UIImage imageNamed:@"book1.jpg"];
-        button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [button setBackgroundImage:image forState:UIControlStateNormal];
-        button.titleLabel.font = [button.titleLabel.font fontWithSize:50];
-        [button addTarget:self action:@selector(buttonTapped:) forControlEvents:UIControlEventTouchUpInside];
+        FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 400.0f, 400.0f)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.asynchronous = YES;
+        imageView.reflectionScale = 0.5f;
+        imageView.reflectionAlpha = 0.25f;
+        imageView.reflectionGap = 10.0f;
+        imageView.shadowOffset = CGSizeMake(0.0f, 0.9f);
+        imageView.shadowBlur = 5.0f;
+        imageView.cornerRadius = 10.0f;
+        view = imageView;
     }
     
-    return button;
+    //set image
+    ((FXImageView *)view).image = [UIImage imageNamed:@"book1.jpg"];
+    
+    return view;
 }
 
 - (void) curentUserSystem {
@@ -158,13 +177,6 @@
         LoginViewController *logIn = [[LoginViewController alloc]init];
         [self presentViewController:logIn animated:NO completion:nil];
     }
-}
-
-- (CATransform3D)carousel:(iCarousel *)carousel itemTransformForOffset:(CGFloat)offset baseTransform:(CATransform3D)transform
-{
-    //implement 'flip3D' style carousel
-    transform = CATransform3DRotate(transform, M_PI / 8.0f, 0.0f, 1.0f, 0.0f);
-    return CATransform3DTranslate(transform, 0.0f, 0.0f, offset * carousel.itemWidth);
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value

@@ -258,6 +258,7 @@
     return array;
 }
 
+
 /*
  *  Method : notificationWithInterestBookCommingNew
  *  Des : if book selected interest new release. It will notice

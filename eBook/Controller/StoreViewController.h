@@ -10,7 +10,7 @@
 #import "DetailBookViewController.h"
 #import "iCarousel.h"
 
-@interface StoreViewController : UIViewController <iCarouselDataSource,iCarouselDelegate>
+@interface StoreViewController : UIViewController 
 
 @property (strong, nonatomic) DetailBookViewController *detailViewController;
 

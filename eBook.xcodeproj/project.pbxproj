@@ -60,6 +60,8 @@
 		444F210719B4C24E00BE4C26 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210619B4C24E00BE4C26 /* User.m */; };
 		444F210A19B4C81F00BE4C26 /* Books.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210919B4C81F00BE4C26 /* Books.m */; };
 		444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210C19B4C8DD00BE4C26 /* BooksManager.m */; };
+		4450A79E19C2FAC500C0F4A7 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450A79B19C2FAC500C0F4A7 /* FXImageView.m */; };
+		4450A79F19C2FAC500C0F4A7 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450A79D19C2FAC500C0F4A7 /* UIImage+FX.m */; };
 		446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D1BAF19B6D2530050D003 /* SettingTableViewController.m */; };
 		446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D1BB019B6D2530050D003 /* SettingTableViewController.xib */; };
 		44B8913819B83B2300CE581A /* 1star.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913219B83B2300CE581A /* 1star.png */; };
@@ -192,6 +194,10 @@
 		444F210919B4C81F00BE4C26 /* Books.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Books.m; sourceTree = "<group>"; };
 		444F210B19B4C8DD00BE4C26 /* BooksManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BooksManager.h; sourceTree = "<group>"; };
 		444F210C19B4C8DD00BE4C26 /* BooksManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BooksManager.m; sourceTree = "<group>"; };
+		4450A79A19C2FAC500C0F4A7 /* FXImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FXImageView.h; sourceTree = "<group>"; };
+		4450A79B19C2FAC500C0F4A7 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
+		4450A79C19C2FAC500C0F4A7 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
+		4450A79D19C2FAC500C0F4A7 /* UIImage+FX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FX.m"; sourceTree = "<group>"; };
 		446D1BAE19B6D2530050D003 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		446D1BAF19B6D2530050D003 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		446D1BB019B6D2530050D003 /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 		440D878A19B62DD00067EE28 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				4450A79919C2FAC500C0F4A7 /* FXImageView */,
 				4409FF1719B92A2D000051A4 /* Reader */,
 				44D04CFD19B6EE9A00CD32FD /* iCarousel */,
 				440D878B19B62DE40067EE28 /* GBPathImageView.h */,
@@ -490,6 +497,17 @@
 				444F210C19B4C8DD00BE4C26 /* BooksManager.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4450A79919C2FAC500C0F4A7 /* FXImageView */ = {
+			isa = PBXGroup;
+			children = (
+				4450A79A19C2FAC500C0F4A7 /* FXImageView.h */,
+				4450A79B19C2FAC500C0F4A7 /* FXImageView.m */,
+				4450A79C19C2FAC500C0F4A7 /* UIImage+FX.h */,
+				4450A79D19C2FAC500C0F4A7 /* UIImage+FX.m */,
+			);
+			path = FXImageView;
 			sourceTree = "<group>";
 		};
 		44B8913119B83AE100CE581A /* Stars */ = {
@@ -726,6 +744,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				44D04CF119B6E7CC00CD32FD /* AboutViewController.m in Sources */,
+				4450A79F19C2FAC500C0F4A7 /* UIImage+FX.m in Sources */,
 				4409FF5219B92A37000051A4 /* ThumbsMainToolbar.m in Sources */,
 				4409FF5019B92A37000051A4 /* ReaderThumbView.m in Sources */,
 				4409FF4A19B92A37000051A4 /* ReaderThumbCache.m in Sources */,
@@ -738,6 +757,7 @@
 				4409FF4F19B92A37000051A4 /* ReaderThumbsView.m in Sources */,
 				444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */,
 				444F20B619B48A2C00BE4C26 /* main.m in Sources */,
+				4450A79E19C2FAC500C0F4A7 /* FXImageView.m in Sources */,
 				44D04D3B19B7156400CD32FD /* DetailBookViewController.m in Sources */,
 				44D91EC219B6D935001DD683 /* AccountTableViewController.m in Sources */,
 				44D91ECC19B6DB8D001DD683 /* ChangeEmailViewController.m in Sources */,
