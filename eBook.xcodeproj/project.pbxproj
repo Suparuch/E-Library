@@ -10,6 +10,10 @@
 		2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */; };
 		2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */; };
 		2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */; };
+		44042CE319C6A8ED00204DA7 /* SeeAllCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44042CE119C6A8ED00204DA7 /* SeeAllCell.m */; };
+		44042CE419C6A8ED00204DA7 /* SeeAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44042CE219C6A8ED00204DA7 /* SeeAllCell.xib */; };
+		44042CE919C6B1D300204DA7 /* SeeAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44042CE719C6B1D300204DA7 /* SeeAllViewController.m */; };
+		44042CEA19C6B1D300204DA7 /* SeeAllViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44042CE819C6B1D300204DA7 /* SeeAllViewController.xib */; };
 		4409FF4119B92A37000051A4 /* CGPDFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF1A19B92A37000051A4 /* CGPDFDocument.m */; };
 		4409FF4219B92A37000051A4 /* ReaderConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF1C19B92A37000051A4 /* ReaderConstants.m */; };
 		4409FF4319B92A37000051A4 /* ReaderContentPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409FF1E19B92A37000051A4 /* ReaderContentPage.m */; };
@@ -117,6 +121,12 @@
 		2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		2D66F42519B5FA70001CA7E1 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
+		44042CE019C6A8ED00204DA7 /* SeeAllCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeAllCell.h; sourceTree = "<group>"; };
+		44042CE119C6A8ED00204DA7 /* SeeAllCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeAllCell.m; sourceTree = "<group>"; };
+		44042CE219C6A8ED00204DA7 /* SeeAllCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeAllCell.xib; sourceTree = "<group>"; };
+		44042CE619C6B1D300204DA7 /* SeeAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeAllViewController.h; sourceTree = "<group>"; };
+		44042CE719C6B1D300204DA7 /* SeeAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeAllViewController.m; sourceTree = "<group>"; };
+		44042CE819C6B1D300204DA7 /* SeeAllViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeAllViewController.xib; sourceTree = "<group>"; };
 		4409FF1919B92A37000051A4 /* CGPDFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGPDFDocument.h; sourceTree = "<group>"; };
 		4409FF1A19B92A37000051A4 /* CGPDFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGPDFDocument.m; sourceTree = "<group>"; };
 		4409FF1B19B92A37000051A4 /* ReaderConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReaderConstants.h; sourceTree = "<group>"; };
@@ -301,12 +311,39 @@
 				44BC186919B8CECE00BAC2FC /* ShelfViewController.h */,
 				44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */,
 				44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */,
-				44D04D3819B7156400CD32FD /* DetailBookViewController.h */,
-				44D04D3919B7156400CD32FD /* DetailBookViewController.m */,
-				44D04D3A19B7156400CD32FD /* DetailBookViewController.xib */,
 				440D878319B62D5E0067EE28 /* Setting */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		44042CD319C69EED00204DA7 /* SeeAll */ = {
+			isa = PBXGroup;
+			children = (
+				44042CE619C6B1D300204DA7 /* SeeAllViewController.h */,
+				44042CE719C6B1D300204DA7 /* SeeAllViewController.m */,
+				44042CE819C6B1D300204DA7 /* SeeAllViewController.xib */,
+			);
+			name = SeeAll;
+			sourceTree = "<group>";
+		};
+		44042CD419C69EFE00204DA7 /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				44D04D3819B7156400CD32FD /* DetailBookViewController.h */,
+				44D04D3919B7156400CD32FD /* DetailBookViewController.m */,
+				44D04D3A19B7156400CD32FD /* DetailBookViewController.xib */,
+			);
+			name = BookDetail;
+			sourceTree = "<group>";
+		};
+		44042CE519C6A90000204DA7 /* SeeAllColection */ = {
+			isa = PBXGroup;
+			children = (
+				44042CE019C6A8ED00204DA7 /* SeeAllCell.h */,
+				44042CE119C6A8ED00204DA7 /* SeeAllCell.m */,
+				44042CE219C6A8ED00204DA7 /* SeeAllCell.xib */,
+			);
+			name = SeeAllColection;
 			sourceTree = "<group>";
 		};
 		4409FF1719B92A2D000051A4 /* Reader */ = {
@@ -601,6 +638,7 @@
 		44D04D0819B709AE00CD32FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				44042CE519C6A90000204DA7 /* SeeAllColection */,
 				44D69C2519B80CE60089F639 /* DetailCell */,
 			);
 			name = View;
@@ -615,6 +653,8 @@
 				2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */,
 				4486DE0D19C59C3A0031437D /* StoreBookView.xib */,
 				4486DE1319C5B8120031437D /* CategoryView.xib */,
+				44042CD419C69EFE00204DA7 /* BookDetail */,
+				44042CD319C69EED00204DA7 /* SeeAll */,
 			);
 			name = StoreView;
 			sourceTree = "<group>";
@@ -737,6 +777,7 @@
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
 				4486DE1019C59F810031437D /* page.png in Resources */,
 				44B8913C19B83B2300CE581A /* 3star.png in Resources */,
+				44042CEA19C6B1D300204DA7 /* SeeAllViewController.xib in Resources */,
 				44B8913F19B83C4D00CE581A /* allRating.png in Resources */,
 				4486DE1419C5B8120031437D /* CategoryView.xib in Resources */,
 				446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */,
@@ -754,6 +795,7 @@
 				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,
 				44B8913D19B83B2300CE581A /* emplyStar.png in Resources */,
 				44B8913919B83B2300CE581A /* 4star.png in Resources */,
+				44042CE419C6A8ED00204DA7 /* SeeAllCell.xib in Resources */,
 				44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,9 +836,11 @@
 				44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */,
 				4409FF5419B92A37000051A4 /* UIXToolbarView.m in Sources */,
 				44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */,
+				44042CE319C6A8ED00204DA7 /* SeeAllCell.m in Sources */,
 				4409FF5319B92A37000051A4 /* ThumbsViewController.m in Sources */,
 				4409FF4D19B92A37000051A4 /* ReaderThumbRender.m in Sources */,
 				4409FF4B19B92A37000051A4 /* ReaderThumbFetch.m in Sources */,
+				44042CE919C6B1D300204DA7 /* SeeAllViewController.m in Sources */,
 				44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */,
 				444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */,
 				44BC186C19B8CECE00BAC2FC /* ShelfViewController.m in Sources */,

@@ -43,7 +43,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.bookArray = [BooksManager getAllBookDidAdd];
+    //self.bookArray = [BooksManager getAllBookDidAdd];
     [self setShelf];
 }
 
