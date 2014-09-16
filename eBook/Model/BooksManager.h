@@ -7,14 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@protocol BooksDelegate <NSObject>
-@optional
-
-- (void) booksDownloadProgress:(short)progress;
-- (void) booksDownloadComplete:(BOOL)success;
-
-@end
+#import <Parse/Parse.h>
 
 @interface BooksManager : NSObject
 
@@ -22,10 +15,11 @@
 + (NSArray *)searchBookWithAuthor:(NSString *)author;
 + (NSArray *)searchBookWithCategory:(NSString *)category;
 + (NSArray *)getAllBookDidAdd;
-+ (void)addBookToDownload:(NSString *)select;
-+ (void)download:(NSString *)selected forDelegate:(id<BooksDelegate>)delegate;
+- (void)addBookToDownload:(NSString *)select;
+- (void) writeToPhoto:(NSString *)bookname image:(PFFile *)image;
 + (void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
 + (NSInteger)getRating:(NSString *)bookname;
 + (NSArray *)getReview:(NSString *)bookId;
 + (void)saveReview:(NSString *)text withBookname:(NSString *)bookname;
++ (UIImage *)retriveAllPhoto:(NSString *)bookname;
 @end

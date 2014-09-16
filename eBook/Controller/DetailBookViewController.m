@@ -249,8 +249,10 @@
     self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
     [self.downloadButton setTitleColor:[UIColor_HexString colorFromHexString:@"#B7B7B7"] forState:UIControlStateNormal];
     self.downloadButton.enabled = NO;
-    [BooksManager addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
     
+    BooksManager *book = [[BooksManager alloc]init];
+    [book addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
+    [book writeToPhoto:[self.detailItem valueForKey:@"bookname"] image:[self.detailItem valueForKey:@"imagebook"]];
     
     UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];

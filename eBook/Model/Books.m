@@ -61,12 +61,6 @@
     return bookData;
 }
 
-/*
- *  Method : getRelationBook
- *  Des : get book relation with name
- *  parum : authorname = objectId
- *
- */
 
 /*
  *  Method : getTop10Book

@@ -8,7 +8,6 @@
 
 #import "BooksManager.h"
 #import "User.h"
-#import <Parse/Parse.h>
 
 @implementation BooksManager
 
@@ -67,7 +66,7 @@
  *  param : select = bookname
  *
  */
-+ (void)addBookToDownload:(NSString *)select {
+- (void)addBookToDownload:(NSString *)select {
     
     PFQuery *query = [PFQuery queryWithClassName:@"Books"];
     [query whereKey:@"bookname" equalTo:select];
@@ -81,8 +80,58 @@
         [relation addObject:book]; // friendUser is a PFUser that represents the friend
         [[PFUser currentUser] saveInBackground];
     }];
+}
+
+/*
+ *  Method : writeToPhoto
+ *  Des : save photo to local db
+ *  param : bookname = bookname
+ *          image = image
+ *
+ */
+-(void) writeToPhoto:(NSString *)bookname image:(PFFile *)image{
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
+    NSString *str= [NSString stringWithFormat:@"%@.png",bookname];
+    NSString *filePath = [path stringByAppendingPathComponent:str];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    
+    if (![fileManager fileExistsAtPath:path])
+    {
+        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
+    }
+    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    if (!fileExists) {
+        PFFile *userImageFile = image;
+        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                [imageData writeToFile:filePath atomically:YES];
+            }
+        }];
+    }
+}
+
+/*
+ *  Method : retriveToPhoto
+ *  Des : display photo to local db
+ *  param : bookname = bookname
+ *
+ */
++(UIImage *)retriveAllPhoto:(NSString *)bookname {
+    
+    //get the documents directory:
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
+    NSString *filePath = [path stringByAppendingPathComponent:bookname];
     
     
+    UIImage *image1=[UIImage imageWithContentsOfFile:filePath];
+    
+    return image1;
 }
 
 /*

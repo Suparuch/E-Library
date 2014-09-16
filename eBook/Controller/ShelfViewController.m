@@ -2,37 +2,30 @@
 //  ShelfViewController.m
 //  eBook
 //
-//  Created by Sittikorn on 9/4/2557 BE.
+//  Created by Sittikorn on 9/16/2557 BE.
 //  Copyright (c) 2557 Sittikorn. All rights reserved.
 //
 
 #import "ShelfViewController.h"
-#import "BooksManager.h"
+#import "ShelfCell.h"
 #import <Parse/Parse.h>
+#import "BooksManager.h"
 #import "ReaderViewController.h"
 #import "UIColor+HexString.h"
 
-@interface ShelfViewController () <ReaderViewControllerDelegate>
+@interface ShelfViewController () <UICollectionViewDataSource,UICollectionViewDelegate,ReaderViewControllerDelegate>
 
-@property (strong, nonatomic) UIButton *buttonDownload;
-@property (strong, nonatomic) NSArray *bookArray;
+@property (nonatomic,strong) UICollectionView *myCollectionView;
 @property (strong, nonatomic) UIProgressView *progressView;
 @property (weak, nonatomic) NSTimer *timer;
-@property (strong, nonatomic) NSMutableArray *rectArray;
+
+@property (nonatomic,strong) NSArray *getAllBookAdd;
 
 @end
 
 @implementation ShelfViewController
 
-@synthesize rectArray;
-
--(BOOL)isLandScape{
-    
-    UIInterfaceOrientation ort =  [[UIApplication sharedApplication] statusBarOrientation];
-    
-    return UIInterfaceOrientationIsLandscape(ort);
-}
-
+@synthesize myCollectionView;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,27 +34,22 @@
     }
     return self;
 }
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.bookArray = [BooksManager getAllBookDidAdd];
-    [self setShelf];
-}
 
--(void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     
-    NSArray *viewsToRemove = [self.mainBookView subviews];
-    
-    for (UIView *v in viewsToRemove) {
-        [v removeFromSuperview];
-    }
+    [self.myCollectionView reloadData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    rectArray = [[NSMutableArray alloc] initWithCapacity:self.mainBookView.subviews.count];
+    [self addCollectionView];
+    self.getAllBookAdd = [BooksManager getAllBookDidAdd];
+    
+    
+    UINib *nib = [UINib nibWithNibName:@"ShelfCell" bundle:nil];
+    [myCollectionView registerNib:nib forCellWithReuseIdentifier:@"cellIdentifier"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,198 +57,89 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma Show Shlef
 
--(void)setShelf{
+- (void)addCollectionView {
+    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    CGFloat view_w = 275;
-    CGFloat view_h = 340;
-    CGFloat view_x = 5;
-    CGFloat view_y = 50;
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    myCollectionView=[[UICollectionView alloc] initWithFrame:self.view.frame collectionViewLayout:layout];
+    [myCollectionView setDataSource:self];
+    [myCollectionView setDelegate:self];
     
-    if ([self.bookArray count]>3) {
-        if ([self.bookArray count]/ 3 == 0){
-            shelfNeed = ([self.bookArray count]/3);
-        } else {
-            shelfNeed = ([self.bookArray count]/3)+1;
-        }
-    }
-    else
-    {
-        shelfNeed = 2;
-    }
+    [myCollectionView setBackgroundColor:[UIColor whiteColor]];
     
-    for (int i = 0; i < [self.bookArray count] ; i++) {
-        
-        UIView *bookView = [[UIView alloc]initWithFrame:CGRectMake(view_x, view_y, view_w, view_h)];
-        bookView.backgroundColor = [UIColor clearColor];
-        
-        UIImageView *bookImageView = [[UIImageView alloc]initWithFrame:CGRectMake(23, 0, 175, 230)];
-        PFFile *userImageFile = [[self.bookArray objectAtIndex:i] valueForKey:@"imagebook"];
-        NSData *imageData = [userImageFile getData];
-        bookImageView.image = [UIImage imageWithData:imageData];
-        bookImageView.layer.borderWidth = 1;
-        bookImageView.layer.masksToBounds = YES;
-        bookImageView.layer.cornerRadius = 15.;
-        
-        UILabel *booknameLabel = [[UILabel alloc] initWithFrame:CGRectMake(view_x - 20 ,view_y + 10, view_w -20, view_h +50)];
-        booknameLabel.font = [UIFont systemFontOfSize:12];
-        booknameLabel.text = [[self.bookArray objectAtIndex:i] valueForKey:@"bookname"];
-        booknameLabel.textAlignment = NSTextAlignmentCenter;
-        
-        
-        self.buttonDownload = [[UIButton alloc]init];
-        self.buttonDownload.frame = CGRectMake(23, 0,175, 230);
-        [self.buttonDownload setBackgroundColor:[UIColor redColor]];
-        self.buttonDownload.tag = i;
-        self.buttonDownload.layer.masksToBounds = YES;
-        self.buttonDownload.layer.cornerRadius = 4;
-        [self.buttonDownload addTarget:self action:@selector(download:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        [bookView addSubview:self.buttonDownload];
-        [bookView addSubview:booknameLabel];
-        [bookView addSubview:bookImageView];
-        [self.mainBookView addSubview:bookView];
-        [self moveBook];
-    }
+    [self.view addSubview:myCollectionView];
+    
 }
 
--(void)moveBook
+
+#pragma --
+#pragma UICollectionView
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    
-    CGFloat view_w = 170;
-    CGFloat view_h = 230;
-    CGFloat view_x = 75;
-    CGFloat view_y = 100;
-    
-    CGFloat bookMarginX = 230;
-    CGFloat bookMarginY = 310;
-    
-    int bookIndex = 1;
-    int shelfBarIndex = 1;
-    NSInteger shelfBook;
-    
-    
-    CGFloat shelfMarginY = 200;
-    //CGFloat shelfX = 38;
-    CGFloat shelfY = 200;
-    //CGFloat shelfWidth = 693;
-    CGFloat shelfHeight = 5;
-    
-    NSInteger totalShelf ;
-    CGFloat pageHeight;
-    
-    shelfBook  = 3;
-    
-    if (([self.mainBookView.subviews count] % shelfBook)==0) {
-        NSLog(@"in shelf =0  %u",[self.mainBookView.subviews count] % shelfBook);
-        [self.scrollView setScrollEnabled:YES];
-        
-        totalShelf = ([self.mainBookView.subviews count]/shelfBook);
-        
-    }else{
-        
-        NSLog(@"in shelf =!0  %u",[self.mainBookView.subviews count] % shelfBook);
-        totalShelf = ([self.mainBookView.subviews count]/shelfBook+1);
-    }
-    if (totalShelf <= 1) {
-        totalShelf = 1;
-        [self.scrollView setScrollEnabled:YES];
-        pageHeight = 586;
-    }
-    else
-    {
-        pageHeight = shelfY + ((totalShelf -1)*shelfMarginY) + shelfHeight + 75;
-    }
-    
-    [self.scrollView setFrame:CGRectMake(0, 0, 1536, 2048)];
-    [self.scrollView setContentSize:CGSizeMake(320, pageHeight)];
-    [self.mainBookView setFrame:CGRectMake(0, -78, 1536, pageHeight)];
-    
-    NSLog(@"mainBookView %f",self.mainBookView.frame.origin.y);
-    
-    [self ManageShelf:totalShelf];
-    NSLog(@"subview %@",self.mainBookView.subviews);
-    for (UIView *bookViewDetail in self.mainBookView.subviews) {
-        
-        if (bookIndex % (shelfBook+1) == 0) {
-            shelfBarIndex++;
-            bookIndex = 1;
-        }
-        CGFloat book_x = view_x + (bookMarginX * (bookIndex++ -1));
-        CGFloat book_y = view_y + (bookMarginY * (shelfBarIndex -1));
-        
-        bookViewDetail.frame = CGRectMake(book_x, book_y, view_w, view_h);
-        
-        
-        CGRect Rect = bookViewDetail.frame;
-        [rectArray addObject:[NSValue valueWithCGRect:Rect]];
-    }
-    [self.scrollView scrollsToTop];
-    
+    return 1;
 }
--(void)ManageShelf:(NSInteger)totalShowShelf
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    for (NSInteger i=1; i <= shelfNeed; i++) {
-        [self.scrollView viewWithTag:i].hidden = (i>totalShowShelf);
-    }
+    return self.getAllBookAdd.count;
 }
 
-
-#pragma Download
-
-
--(IBAction)download:(id)sender {
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShelfCell *cell = (ShelfCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    UIButton *button = (UIButton *)sender;
-    NSInteger i = button.tag;
     
-    NSInteger index = [rectArray count] - 1;
-    for (id object in [rectArray reverseObjectEnumerator]) {
-        if ([rectArray indexOfObject:object inRange:NSMakeRange(0, index)] != NSNotFound) {
-            [rectArray removeObjectAtIndex:index];
-        }
-        index--;
-    }
+    cell.image.image = [BooksManager retriveAllPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"]];
+    cell.bookname.text =[[self.getAllBookAdd objectAtIndex:indexPath.row ] valueForKey:@"bookname"];
+    cell.image.layer.borderWidth = 1;
+    cell.image.layer.masksToBounds = YES;
+    cell.image.layer.cornerRadius = 6;
     
-    CGRect myRect = [[rectArray objectAtIndex:i] CGRectValue];
-    //NSLog(@"%@", NSStringFromCGRect(myRect));
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(175, 280);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(40, 40, 80, 40);
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *selectedCell = [collectionView cellForItemAtIndexPath:indexPath];
+    
     PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
     PFQuery *query = [relation query];
-    [query whereKey:@"bookname" equalTo:[[self.bookArray objectAtIndex:i]valueForKey:@"bookname"]];
+    [query whereKey:@"bookname" equalTo:[[self.getAllBookAdd objectAtIndex:indexPath.row]valueForKey:@"bookname"]];
     
     NSArray *getBookData = [query findObjects];
-    
-    NSLog(@"getBookData %@",getBookData);
     
     PFFile *bookData = [[getBookData objectAtIndex:0] valueForKey:@"bookdata"];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
-    NSString *filePath = [path stringByAppendingPathComponent:[[self.bookArray objectAtIndex:i]valueForKey:@"bookname"]];
+    NSString *filePath = [path stringByAppendingPathComponent:[[self.getAllBookAdd objectAtIndex:indexPath.row]valueForKey:@"bookname"]];
     
     NSLog(@"filepath %@",path);
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSError *error;
-    
-    if (![fileManager fileExistsAtPath:path])
-    {
-        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-        
-    }
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     if (!fileExists) {
         
         self.progressView = [[UIProgressView alloc]initWithProgressViewStyle:UIProgressViewStyleBar];
-        self.progressView.frame = CGRectMake(myRect.origin.x +40 ,myRect.origin.y + 200, myRect.size.width - 20, myRect.size.height -100);
+        self.progressView.frame = CGRectMake(selectedCell.frame.origin.x + 10, selectedCell.frame.origin.y + 200, selectedCell.frame.size.width - 20, selectedCell.frame.size.height - 100);
         self.progressView.layer.borderWidth = 0.1;
         self.progressView.progress = 0.0;
         self.progressView.trackTintColor = [UIColor whiteColor];
         [self.progressView setProgressTintColor:[UIColor_HexString colorFromHexString:@"#87CEFA"]];
         [self.progressView setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
         
-        [self.mainBookView addSubview:self.progressView];
+        [self.myCollectionView addSubview:self.progressView];
         
         [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             
@@ -274,43 +153,33 @@
         }
          ];
         
-        [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-        [self.view setUserInteractionEnabled:NO];
-        
         self.timer = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(setCustomProgress) userInfo:nil repeats:YES];
         
     } else {
         
-        [self didClickOpenPDF:sender];
+        [self didClickOpenPDF:indexPath.row];
         
     }
 }
 
 -(void)setCustomProgress
 {
-    
     if(self.progressView.progress == 1.0)
-        
     {
-        
         [self.timer invalidate];
         self.timer = nil;
         [self.progressView removeFromSuperview];
-        [self.view setUserInteractionEnabled:YES];
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
         
         NSLog(@"DONE !!!");
     }
 }
 
--(void)didClickOpenPDF:(id)sender {
+-(void)didClickOpenPDF:(int)i {
     
     BOOL success;
     
-    UIButton *button = (UIButton *)sender;
-    NSInteger i = button.tag;
     
-    NSString* filePathName = [[self.bookArray objectAtIndex:i]valueForKey:@"bookname"];
+    NSString* filePathName = [[self.getAllBookAdd objectAtIndex:i]valueForKey:@"bookname"];
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
@@ -337,6 +206,5 @@
         [self.navigationController presentViewController:readerViewController animated:YES completion:nil];
     }
 }
-
 
 @end

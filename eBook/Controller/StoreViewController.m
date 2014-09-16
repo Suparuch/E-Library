@@ -136,7 +136,7 @@
     
     //create carousel
     carousel1 = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
-    //carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     //carousel1.type = iCarouselTypeRotary;
     carousel1.type = iCarouselTypeCoverFlow2;
     carousel1.clipsToBounds = YES;
@@ -481,6 +481,14 @@
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
     controller.detailItem = [self.getNewRelease objectAtIndex:index];
     controller.view.frame = self.navigationController.view.bounds;
+    
+    for (int i = 0; i < self.getNewRelease.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getTop10 objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+            break;
+        }
+    }
     
     UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
     childNavController.view.frame = controller.view.frame;

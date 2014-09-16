@@ -63,6 +63,10 @@
 		444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F210C19B4C8DD00BE4C26 /* BooksManager.m */; };
 		4450A79E19C2FAC500C0F4A7 /* FXImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450A79B19C2FAC500C0F4A7 /* FXImageView.m */; };
 		4450A79F19C2FAC500C0F4A7 /* UIImage+FX.m in Sources */ = {isa = PBXBuildFile; fileRef = 4450A79D19C2FAC500C0F4A7 /* UIImage+FX.m */; };
+		4454AD9419C89533004D17FD /* ShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4454AD9219C89533004D17FD /* ShelfViewController.m */; };
+		4454AD9519C89533004D17FD /* ShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4454AD9319C89533004D17FD /* ShelfViewController.xib */; };
+		4454AD9A19C89667004D17FD /* ShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4454AD9819C89667004D17FD /* ShelfCell.m */; };
+		4454AD9B19C89667004D17FD /* ShelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4454AD9919C89667004D17FD /* ShelfCell.xib */; };
 		446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D1BAF19B6D2530050D003 /* SettingTableViewController.m */; };
 		446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D1BB019B6D2530050D003 /* SettingTableViewController.xib */; };
 		4486DE0C19C598850031437D /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4486DE0B19C598850031437D /* SwipeView.m */; };
@@ -78,8 +82,6 @@
 		44B8913F19B83C4D00CE581A /* allRating.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913E19B83C4D00CE581A /* allRating.png */; };
 		44BB15D519C84C5500D0B9DB /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 44BB15D419C84C5500D0B9DB /* page.png */; };
 		44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186719B8C80100BAC2FC /* UIColor+HexString.m */; };
-		44BC186C19B8CECE00BAC2FC /* ShelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */; };
-		44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */; };
 		44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */; };
 		44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */; };
 		44CE48C319B6E36100844AF6 /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48C119B6E36100844AF6 /* NotificationTableViewController.m */; };
@@ -208,6 +210,12 @@
 		4450A79B19C2FAC500C0F4A7 /* FXImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FXImageView.m; sourceTree = "<group>"; };
 		4450A79C19C2FAC500C0F4A7 /* UIImage+FX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FX.h"; sourceTree = "<group>"; };
 		4450A79D19C2FAC500C0F4A7 /* UIImage+FX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FX.m"; sourceTree = "<group>"; };
+		4454AD9119C89533004D17FD /* ShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfViewController.h; sourceTree = "<group>"; };
+		4454AD9219C89533004D17FD /* ShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfViewController.m; sourceTree = "<group>"; };
+		4454AD9319C89533004D17FD /* ShelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfViewController.xib; sourceTree = "<group>"; };
+		4454AD9719C89667004D17FD /* ShelfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfCell.h; sourceTree = "<group>"; };
+		4454AD9819C89667004D17FD /* ShelfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfCell.m; sourceTree = "<group>"; };
+		4454AD9919C89667004D17FD /* ShelfCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfCell.xib; sourceTree = "<group>"; };
 		446D1BAE19B6D2530050D003 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		446D1BAF19B6D2530050D003 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		446D1BB019B6D2530050D003 /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
@@ -227,9 +235,6 @@
 		44BB15D419C84C5500D0B9DB /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 		44BC186619B8C80100BAC2FC /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
 		44BC186719B8C80100BAC2FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
-		44BC186919B8CECE00BAC2FC /* ShelfViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfViewController.h; sourceTree = "<group>"; };
-		44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfViewController.m; sourceTree = "<group>"; };
-		44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfViewController.xib; sourceTree = "<group>"; };
 		44CE48BA19B6E06100844AF6 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		44CE48BC19B6E06100844AF6 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
@@ -305,13 +310,11 @@
 		2D66F41C19B5F362001CA7E1 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4454AD9619C8956D004D17FD /* Shelf */,
 				44D4441019C56D6E00B18962 /* StoreView */,
 				2D66F41E19B5F37A001CA7E1 /* LoginViewController.h */,
 				2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */,
 				2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */,
-				44BC186919B8CECE00BAC2FC /* ShelfViewController.h */,
-				44BC186A19B8CECE00BAC2FC /* ShelfViewController.m */,
-				44BC186B19B8CECE00BAC2FC /* ShelfViewController.xib */,
 				440D878319B62D5E0067EE28 /* Setting */,
 			);
 			path = Controller;
@@ -555,6 +558,26 @@
 			path = FXImageView;
 			sourceTree = "<group>";
 		};
+		4454AD9619C8956D004D17FD /* Shelf */ = {
+			isa = PBXGroup;
+			children = (
+				4454AD9119C89533004D17FD /* ShelfViewController.h */,
+				4454AD9219C89533004D17FD /* ShelfViewController.m */,
+				4454AD9319C89533004D17FD /* ShelfViewController.xib */,
+			);
+			name = Shelf;
+			sourceTree = "<group>";
+		};
+		4454AD9C19C89696004D17FD /* ShelfCell */ = {
+			isa = PBXGroup;
+			children = (
+				4454AD9719C89667004D17FD /* ShelfCell.h */,
+				4454AD9819C89667004D17FD /* ShelfCell.m */,
+				4454AD9919C89667004D17FD /* ShelfCell.xib */,
+			);
+			name = ShelfCell;
+			sourceTree = "<group>";
+		};
 		4486DE0919C598850031437D /* SwipeView */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +671,7 @@
 		44D04D0819B709AE00CD32FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4454AD9C19C89696004D17FD /* ShelfCell */,
 				44042CE519C6A90000204DA7 /* SeeAllColection */,
 				44D69C2519B80CE60089F639 /* DetailCell */,
 			);
@@ -783,6 +807,7 @@
 				44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */,
 				44B8913A19B83B2300CE581A /* 5star.png in Resources */,
 				44BB15D519C84C5500D0B9DB /* page.png in Resources */,
+				4454AD9519C89533004D17FD /* ShelfViewController.xib in Resources */,
 				2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */,
 				44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */,
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
@@ -796,6 +821,7 @@
 				44B8913819B83B2300CE581A /* 1star.png in Resources */,
 				44B8913B19B83B2300CE581A /* 2star.png in Resources */,
 				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
+				4454AD9B19C89667004D17FD /* ShelfCell.xib in Resources */,
 				44D69C3A19B825770089F639 /* ReviewCell.xib in Resources */,
 				44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */,
 				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
@@ -805,7 +831,6 @@
 				44B8913D19B83B2300CE581A /* emplyStar.png in Resources */,
 				44B8913919B83B2300CE581A /* 4star.png in Resources */,
 				44042CE419C6A8ED00204DA7 /* SeeAllCell.xib in Resources */,
-				44BC186D19B8CECE00BAC2FC /* ShelfViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -834,6 +859,7 @@
 				444F210A19B4C81F00BE4C26 /* Books.m in Sources */,
 				4486DE0C19C598850031437D /* SwipeView.m in Sources */,
 				4409FF4719B92A37000051A4 /* ReaderDocumentOutline.m in Sources */,
+				4454AD9419C89533004D17FD /* ShelfViewController.m in Sources */,
 				44CE48D219B6E6CA00844AF6 /* problem.m in Sources */,
 				4409FF4819B92A37000051A4 /* ReaderMainPagebar.m in Sources */,
 				4409FF4F19B92A37000051A4 /* ReaderThumbsView.m in Sources */,
@@ -853,7 +879,6 @@
 				44042CE919C6B1D300204DA7 /* SeeAllViewController.m in Sources */,
 				44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */,
 				444F210D19B4C8DD00BE4C26 /* BooksManager.m in Sources */,
-				44BC186C19B8CECE00BAC2FC /* ShelfViewController.m in Sources */,
 				44D04D0019B6EE9A00CD32FD /* iCarousel.m in Sources */,
 				4409FF4119B92A37000051A4 /* CGPDFDocument.m in Sources */,
 				44D69C3919B825770089F639 /* ReviewCell.m in Sources */,
@@ -865,6 +890,7 @@
 				44E8FFB519B4CC7A003F8FD5 /* CategoryBooks.m in Sources */,
 				44CE48CE19B6E4AB00844AF6 /* ReportViewController.m in Sources */,
 				4409FF5119B92A37000051A4 /* ReaderViewController.m in Sources */,
+				4454AD9A19C89667004D17FD /* ShelfCell.m in Sources */,
 				4409FF4319B92A37000051A4 /* ReaderContentPage.m in Sources */,
 				440D879019B62DF80067EE28 /* ProfileViewController.m in Sources */,
 				444F210719B4C24E00BE4C26 /* User.m in Sources */,

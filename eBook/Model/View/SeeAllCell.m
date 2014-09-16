@@ -8,6 +8,7 @@
 
 #import "SeeAllCell.h"
 #import "UIColor+HexString.h"
+#import "DetailBookViewController.h"
 
 @implementation SeeAllCell
 
@@ -26,7 +27,7 @@
     [self.submit setTitle:@"GET BOOK" forState:UIControlStateNormal];
     [self.submit setTitleColor:[UIColor_HexString colorFromHexString:@"#5CfAB9"] forState:UIControlStateNormal];
     [self.submit.titleLabel sizeToFit];
-    [self.submit addTarget:self action:@selector(addOrder) forControlEvents:UIControlEventTouchUpInside];
+    [self.submit addTarget:self action:@selector(addOrder:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end
