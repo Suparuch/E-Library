@@ -8,6 +8,9 @@
 
 #import "LoginViewController.h"
 #import "User.h"
+#import "StoreViewController.h"
+#import "ShelfViewController.h"
+#import "SettingTableViewController.h"
 
 @interface LoginViewController () <UserDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -41,7 +44,9 @@
 - (void) userDidLogin:(BOOL)loggedIn {
     // Did we login successfully ?
     if (loggedIn) {
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
+        [self ShowNav];
+        
         
     } else {
         // Show error alert
@@ -52,4 +57,24 @@
                           otherButtonTitles:nil] show];
     }
 }
+
+-(void)ShowNav
+{
+    StoreViewController *StoreView = [[StoreViewController alloc]init];
+    ShelfViewController *shelfView = [[ShelfViewController alloc] init];
+    SettingTableViewController *category = [[SettingTableViewController alloc]init];
+    
+    UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:StoreView];
+    UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:shelfView];
+    UINavigationController *nav3 = [[UINavigationController alloc]initWithRootViewController:category];
+    
+    NSArray *viewControllersArray = [[NSArray alloc] initWithObjects:nav1 , nav2, nav3, nil];
+    
+    self.tabController = [[UITabBarController alloc] init];
+    
+    [self.tabController setViewControllers:viewControllersArray animated:YES];
+    [self presentViewController:self.tabController animated:YES completion:nil];
+    
+}
+
 @end

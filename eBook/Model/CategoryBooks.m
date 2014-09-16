@@ -19,10 +19,10 @@
 +(NSArray *)getAllCategory {
     PFQuery *query = [PFQuery queryWithClassName:@"Category"];
     NSArray *allCategory = [query findObjects];
-    
-    NSLog(@"allBookData : %@",allCategory);
+
     return allCategory;
 }
+
 
 
 @end

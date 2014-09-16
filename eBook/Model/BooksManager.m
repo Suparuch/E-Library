@@ -74,8 +74,8 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *addBook, NSError *error) {
         
         PFObject *book = addBook.lastObject;
-        
         [book incrementKey:@"downloadcount"];
+        [book saveInBackground];
         
         PFRelation *relation = [[PFUser currentUser] objectForKey:@"order"];
         [relation addObject:book]; // friendUser is a PFUser that represents the friend
@@ -95,60 +95,12 @@
     PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
     PFQuery *query = [relation query];
     
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    
     NSArray *getAllBook = [query findObjects];
     NSLog(@"getAllBook %@",getAllBook);
     
     return getAllBook;
-}
-
-/*
- *  Method : download
- *  Des : download books to local store
- *  param : selected = bookname
- *
- */
-+ (void)download:(NSString *)selected forDelegate:(id<BooksDelegate>)delegate{
-    
-    PFRelation *relation = [[PFUser currentUser] relationForKey:@"order"];
-    PFQuery *query = [relation query];
-    [query whereKey:@"bookname" equalTo:selected];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *getBookData, NSError *error) {
-        
-        NSLog(@"getBookData %@",getBookData);
-        
-        PFFile *bookData = [[getBookData objectAtIndex:0] valueForKey:@"bookdata"];
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
-        NSString *filePath = [path stringByAppendingPathComponent:selected];
-        
-        NSLog(@"filepath %@",path);
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        if (![fileManager fileExistsAtPath:path])
-        {
-            [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
-        }
-        BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
-        
-        if (!fileExists) {
-            [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                if (!error) {
-                    
-                    if ([delegate respondsToSelector:@selector(booksDownloadComplete:)]) {
-                        [data writeToFile:filePath atomically:YES];
-                        [delegate booksDownloadComplete:YES];
-                    }
-                }
-            } progressBlock:^(int percentDone) {
-                if ([delegate respondsToSelector:@selector(booksDownloadProgress:)]) {
-                    [delegate booksDownloadProgress:percentDone];
-                }
-                
-            }];
-        }
-    }];
 }
 
 /*
@@ -254,6 +206,7 @@
  */
 +(NSArray *)getUserInterestBook {
     NSArray *array;
+    
     
     return array;
 }

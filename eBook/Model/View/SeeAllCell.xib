@@ -34,10 +34,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaE-Z5-y9j">
-                        <rect key="frame" x="283" y="82" width="77" height="30"/>
+                        <rect key="frame" x="268" y="82" width="92" height="30"/>
                         <state key="normal" title="Button">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
+                        <connections>
+                            <action selector="summitAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yJP-Il-uO5"/>
+                        </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -48,7 +51,6 @@
                 <outlet property="datePublishLabel" destination="J06-eK-wac" id="WYM-7J-BQK"/>
                 <outlet property="imageBook" destination="L1C-fO-UNJ" id="rRk-HN-BtH"/>
                 <outlet property="submit" destination="QaE-Z5-y9j" id="Hxc-Xc-VmS"/>
-                <outlet property="submitAction" destination="QaE-Z5-y9j" id="E37-Xj-A8a"/>
             </connections>
         </collectionViewCell>
     </objects>

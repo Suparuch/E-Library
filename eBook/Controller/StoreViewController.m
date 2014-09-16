@@ -14,6 +14,8 @@
 #import "FXImageView.h"
 #import "SwipeView.h"
 #import "SeeAllViewController.h"
+#import "UIColor+HexString.h"
+#import "CategoryBooks.h"
 
 @interface StoreViewController () <iCarouselDataSource,iCarouselDelegate,SwipeViewDataSource,SwipeViewDelegate>
 
@@ -24,11 +26,22 @@
 @property (strong, nonatomic) UIView *titleView2;
 @property (strong, nonatomic) UIView *titleView3;
 @property (strong, nonatomic) UIView *titleView4;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @property (nonatomic, strong) iCarousel *carousel1;
 @property (nonatomic, strong) SwipeView *swipeView1;
 @property (nonatomic, strong) SwipeView *swipeView2;
 @property (nonatomic, strong) SwipeView *swipeView3;
+
+@property (nonatomic, strong) NSArray *allBookData;
+@property (nonatomic, strong) NSArray *getTop10;
+@property (nonatomic, strong) NSArray *getNewRelease;
+@property (nonatomic, strong) NSArray *getAllCategory;
+@property (nonatomic, strong) NSArray *getBookHighlight;
+
+@property (nonatomic, strong) NSMutableArray *getBookCategory;
+
+@property (nonatomic, strong) NSString *categoryName;
 
 @end
 
@@ -47,11 +60,20 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    self.navigationItem.hidesBackButton = YES;
+    
     [self curentUserSystem];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.allBookData = [Books getAllBook];
+    self.getTop10 = [Books getTop10Book:self.allBookData];
+    self.getNewRelease = [Books getNewRelease:self.allBookData];
+    self.getAllCategory = [CategoryBooks getAllCategory];
+    self.getBookHighlight = [Books getBookImageHighlight:self.allBookData];
     
     [self addTitleView];
     [self addTop10Book];
@@ -89,6 +111,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) curentUserSystem {
     
     PFUser *currentUser = [PFUser currentUser];
@@ -113,8 +136,9 @@
     
     //create carousel
     carousel1 = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
-    carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    carousel1.type = iCarouselTypeRotary;
+    //carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    //carousel1.type = iCarouselTypeRotary;
+    carousel1.type = iCarouselTypeCoverFlow2;
     carousel1.clipsToBounds = YES;
     carousel1.delegate = self;
     carousel1.dataSource = self;
@@ -146,7 +170,6 @@
     self.titleView2= [[UIView alloc] initWithFrame:CGRectMake(0, 330, self.scrollView.frame.size.width, 200)];
     self.titleView2.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.titleView2.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.1];
-    
     
     swipeView1 = [[SwipeView alloc] initWithFrame:CGRectMake(0,0, self.titleView2.frame.size.width, self.titleView2.frame.size.height)];
     swipeView1.alignment = SwipeViewAlignmentEdge;
@@ -224,16 +247,15 @@
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return 8;
+    return self.getBookHighlight.count;
 }
-
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
     
-    if (carousel == carousel1) {
+    if (view == nil)
+    {
         
-        
-        FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 420.0f, 280.0f)];
+        FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 460.0f, 250.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.asynchronous = YES;
         imageView.reflectionScale = 0.5f;
@@ -242,34 +264,56 @@
         imageView.shadowOffset = CGSizeMake(0.0f, 2.0f);
         imageView.shadowBlur = 5.0f;
         imageView.cornerRadius = 10.0f;
-        
-        self.titleView = imageView;
-        
-        ((FXImageView *)self.titleView).image = [UIImage imageNamed:@"book1.jpg"];
-        
-        return self.titleView;
+        view = imageView;
         
     }
     
-    return self.mainView;
+    //show placeholder
+    ((FXImageView *)view).processedImage = [UIImage imageNamed:@"page.png"];
+    
+    // set imagebook
+    PFFile *userImageFile = [[self.getBookHighlight objectAtIndex:index]valueForKey:@"highlightimage"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            ((FXImageView *)view).image = image;
+        }
+    }];
+    
+    view.contentMode = UIViewContentModeCenter;
+    return view;
 }
 
 - (CGFloat)carousel:(iCarousel *)carousel valueForOption:(iCarouselOption)option withDefault:(CGFloat)value
 {
-    if (option == iCarouselOptionSpacing)
-    {
-        return value * 1.1f;
+    if (option == iCarouselOptionWrap) {
+        return YES;
+    } else if (option == iCarouselOptionSpacing){
+        return value * 2.0f;
     }
     return value;
 }
 
+// highlight image to open detail
 -(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index {
     
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+    controller.detailItem = [self.getBookHighlight objectAtIndex:index];
+    for (int i = 0; i < self.getAllCategory.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getBookHighlight objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+            break;
+        }
+    }
     
     controller.view.frame = self.navigationController.view.bounds;
-    [self.navigationController.view addSubview:controller.view];
-    [self.navigationController addChildViewController:controller];
+    
+    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+    childNavController.view.frame = controller.view.frame;
+    
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
     
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         controller.view.alpha = 1.0;
@@ -284,12 +328,12 @@
 
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView
 {
-    if (swipeView == swipeView1) {
+    if (self.allBookData.count >= 10) {
         return 10;
-    } else if (swipeView == swipeView3 ){
-        return 10;
+    } else if (swipeView == swipeView2) {
+        return self.getAllCategory.count;
     } else {
-        return 5;
+        return self.allBookData.count;
     }
 }
 
@@ -297,63 +341,76 @@
 {
     if (!view)
     {
-        if (swipeView == swipeView1) {
+        if (swipeView == swipeView1) { // top 10
             
             view = [[NSBundle mainBundle] loadNibNamed:@"StoreBookView" owner:self options:nil][0];
             
-            
             // set bookname
             UILabel *bookName = (UILabel *)[view viewWithTag:101];
-            bookName.text = @"เมื่อวาน";
+            bookName.numberOfLines = 1;
+            bookName.lineBreakMode = NSLineBreakByWordWrapping;
+            bookName.text = [[self.getTop10 objectAtIndex:index]valueForKey:@"bookname"];
+            bookName.adjustsFontSizeToFitWidth  = YES;
             
             // set author
             UILabel *author = (UILabel *)[view viewWithTag:102];
-            author.text = @"ไปไหน";
-            
-            // set imagebook
-            UIImage *image = [UIImage imageNamed:@"page.png"];
-            
+            author.text = [[self.getTop10 objectAtIndex:index]valueForKey:@"authorname"];
             
             // set button to view detail
             UIButton *button = (UIButton *)[view viewWithTag:301];
-            [button setBackgroundImage:image forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(swipeButton:) forControlEvents:UIControlEventTouchUpInside];
+            [button addTarget:self action:@selector(top10Books:) forControlEvents:UIControlEventTouchUpInside];
             
-        } else if (swipeView == swipeView2) {
+            // set imagebook
+            PFFile *userImageFile = [[self.getTop10 objectAtIndex:index]valueForKey:@"imagebook"];
+            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    [button setBackgroundImage:image forState:UIControlStateNormal];
+                }
+            }];
+            
+        } else if (swipeView == swipeView2) { // category
             
             view = [[NSBundle mainBundle] loadNibNamed:@"CategoryView" owner:self options:nil][0];
             
-            // set imagebook
-            UIImage *image = [UIImage imageNamed:@"book1.jpg"];
-            
             // set button to view detail
             UIButton *button = (UIButton *)[view viewWithTag:301];
-            [button setBackgroundImage:image forState:UIControlStateNormal];
+            [button setTitle:[[self.getAllCategory objectAtIndex:index]valueForKey:@"categoryname"] forState:UIControlStateNormal];
+            button.layer.borderWidth = 1;
+            button.layer.cornerRadius = 6;
             button.clipsToBounds = YES;
             [button layer].cornerRadius = 10.0f;
+            button.layer.borderColor = [UIColor_HexString colorFromHexString:@"#3476D8"].CGColor;
             [button addTarget:self action:@selector(swipeCategoryButton:) forControlEvents:UIControlEventTouchUpInside];
             
-        } else if (swipeView == swipeView3) {
+        } else if (swipeView == swipeView3) { // news release
             
             view = [[NSBundle mainBundle] loadNibNamed:@"StoreBookView" owner:self options:nil][0];
             
             // set bookname
             UILabel *bookName = (UILabel *)[view viewWithTag:101];
-            bookName.text = @"เมื่อวาน";
+            bookName.numberOfLines = 1;
+            bookName.lineBreakMode = NSLineBreakByWordWrapping;
+            bookName.text = [[self.getNewRelease objectAtIndex:index]valueForKey:@"bookname"];
+            bookName.adjustsFontSizeToFitWidth  = YES;
             
             // set author
             UILabel *author = (UILabel *)[view viewWithTag:102];
-            author.text = @"ไปไหน";
-            
-            // set imagebook
-            UIImage *image = [UIImage imageNamed:@"page.png"];
-            
+            author.text = [[self.getNewRelease objectAtIndex:index]valueForKey:@"authorname"];
             
             // set button to view detail
             UIButton *button = (UIButton *)[view viewWithTag:301];
-            [button setBackgroundImage:image forState:UIControlStateNormal];
+            
             [button addTarget:self action:@selector(newReleaseButton:) forControlEvents:UIControlEventTouchUpInside];
             
+            // set imagebook
+            PFFile *userImageFile = [[self.getNewRelease objectAtIndex:index]valueForKey:@"imagebook"];
+            [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+                if (!error) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    [button setBackgroundImage:image forState:UIControlStateNormal];
+                }
+            }];
         }
     }
     
@@ -363,16 +420,12 @@
 #pragma mark -
 #pragma mark Button tap event
 
-// see highlight detail
--(IBAction)carouselToSeeHighlightDetail:(id)sender {
-    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
-    [self.navigationController pushViewController:seeAll animated:YES];
-}
-
 // see all 10 top
 -(IBAction)changeToSeeAll:(id)sender {
     NSLog(@"come Top 10");
     SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    seeAll.titleName = @"All Book";
+    seeAll.bookData = self.getTop10;
     [self.navigationController pushViewController:seeAll animated:YES];
 }
 
@@ -380,38 +433,30 @@
 -(IBAction)changeToSeeAllNewRelease:(id)sender {
     
     SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    seeAll.titleName = @"All Book New Release";
+    seeAll.bookData = self.getNewRelease;
+    
+    
     [self.navigationController pushViewController:seeAll animated:YES];
     
     NSLog(@"Come New Release");
 }
 
-// new release Book Detail
--(IBAction)newReleaseButton:(id)sender{
-    NSInteger index = [swipeView3 indexOfItemViewOrSubview:sender];
-    
-    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
-    controller.view.frame = self.navigationController.view.bounds;
-    
-    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
-    childNavController.view.frame = controller.view.frame;
-    
-    [self addChildViewController:controller];
-    [self.view addSubview:controller.view];
-    
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        controller.view.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [controller didMoveToParentViewController:self];
-    }];
-}
 
-
--(IBAction)swipeButton:(id)sender {
+-(IBAction)top10Books:(id)sender {
     
     NSInteger index = [swipeView1 indexOfItemViewOrSubview:sender];
     
-    
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+    controller.detailItem = [self.getTop10 objectAtIndex:index];
+    
+    for (int i = 0; i < self.getAllCategory.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getTop10 objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+            break;
+        }
+    }
     controller.view.frame = self.navigationController.view.bounds;
     
     UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -425,13 +470,49 @@
     } completion:^(BOOL finished) {
         [controller didMoveToParentViewController:self];
     }];
-
     
+    
+}
+// new release Book Detail
+-(IBAction)newReleaseButton:(id)sender{
+    
+    NSInteger index = [swipeView3 indexOfItemViewOrSubview:sender];
+    
+    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+    controller.detailItem = [self.getNewRelease objectAtIndex:index];
+    controller.view.frame = self.navigationController.view.bounds;
+    
+    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+    childNavController.view.frame = controller.view.frame;
+    
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        controller.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [controller didMoveToParentViewController:self];
+    }];
 }
 
 // see Category Book
 -(IBAction)swipeCategoryButton:(id)sender {
+    
+    NSInteger index = [swipeView2 indexOfItemViewOrSubview:sender];
+    
     SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    self.getBookCategory = [[NSMutableArray alloc]initWithCapacity:self.getTop10.count];
+    
+    for (int i = 0; i < self.allBookData.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:index]valueForKey:@"objectId"] isEqualToString:[[self.allBookData objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            [self.getBookCategory addObject:[self.allBookData objectAtIndex:i]];
+            NSLog(@"addBook %@",self.getBookCategory);
+        }
+    }
+    
+    seeAll.bookData = self.getBookCategory;
+    seeAll.titleName = [[self.getAllCategory objectAtIndex:index]valueForKey:@"categoryname"];
     [self.navigationController pushViewController:seeAll animated:YES];
     
 }

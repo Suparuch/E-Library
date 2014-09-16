@@ -10,4 +10,6 @@
 
 @interface LoginViewController : UIViewController
 
+@property (nonatomic, strong) UITabBarController *tabController;
+
 @end

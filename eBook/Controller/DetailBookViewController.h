@@ -10,6 +10,7 @@
 
 @interface DetailBookViewController : UIViewController
 
-@property (strong, nonatomic) NSDictionary *detailItem;
+@property (strong, nonatomic) NSArray *detailItem;
+@property (strong, nonatomic) NSString *cateogryName;
 
 @end

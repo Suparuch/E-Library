@@ -90,7 +90,8 @@
 - (IBAction)logout:(id)sender {
     
     [PFUser logOut];
+    
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
-    [self presentViewController:login animated:YES completion:nil];
+    [self.navigationController presentViewController:login animated:NO completion:nil];
 }
 @end

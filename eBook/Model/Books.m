@@ -31,19 +31,32 @@
 
 /*
  *  Method : getTop10Book
- *  Des : get top 10 download books
+ *  Des : sort book with downloadcount
+ *  param : data = AllBook
  *
  */
-+(NSArray *)getTop10Book {
++(NSArray *)getTop10Book:(NSArray *)data {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Books"];
-    [query orderByDescending:@"downloadcount"];
+    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"downloadcount" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
+    NSArray *bookData = [data sortedArrayUsingDescriptors:sortDescriptors];
     
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     
-    NSArray *bookData = [query findObjects];
+    return bookData;
+}
+
+
+/*
+ *  Method : newRelease
+ *  Des : sort book with createAt
+ *  param : data = AllBook
+ *
+ */
++(NSArray *)getNewRelease:(NSArray *)data {
     
-    NSLog(@"dataBook %@",bookData);
+    NSSortDescriptor *sortByName = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortByName];
+    NSArray *bookData = [data sortedArrayUsingDescriptors:sortDescriptors];
     
     return bookData;
 }
@@ -54,6 +67,26 @@
  *  parum : authorname = objectId
  *
  */
+
+/*
+ *  Method : getTop10Book
+ *  Des : sort book with downloadcount
+ *  param : data = AllBook
+ *
+ */
++(NSArray *)getBookImageHighlight:(NSArray *)data {
+    
+    NSMutableArray *bookData = [[NSMutableArray alloc]initWithCapacity:data.count];
+    
+    for (int i = 0; i < data.count; i++) {
+        if ([[data objectAtIndex:i]valueForKey:@"highlightimage"]) {
+            [bookData addObject:[data objectAtIndex:i]];
+        }
+    }
+    
+    return bookData;
+}
+
 +(NSArray *)getRelationBook:(NSString *)authorname {
     
     PFQuery *book = [PFQuery queryWithClassName:@"Books"];

@@ -10,4 +10,7 @@
 
 @interface SeeAllViewController : UIViewController
 
+@property (nonatomic,strong) NSString *titleName;
+@property (nonatomic,strong) NSArray *bookData;
+
 @end

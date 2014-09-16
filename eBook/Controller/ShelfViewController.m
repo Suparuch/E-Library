@@ -18,13 +18,13 @@
 @property (strong, nonatomic) NSArray *bookArray;
 @property (strong, nonatomic) UIProgressView *progressView;
 @property (weak, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSMutableArray *rectArray;
 
 @end
 
 @implementation ShelfViewController
-{
-    NSMutableArray *rectArray;
-}
+
+@synthesize rectArray;
 
 -(BOOL)isLandScape{
     
@@ -43,7 +43,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    //self.bookArray = [BooksManager getAllBookDidAdd];
+    self.bookArray = [BooksManager getAllBookDidAdd];
     [self setShelf];
 }
 
@@ -111,6 +111,7 @@
         
         self.buttonDownload = [[UIButton alloc]init];
         self.buttonDownload.frame = CGRectMake(23, 0,175, 230);
+        [self.buttonDownload setBackgroundColor:[UIColor redColor]];
         self.buttonDownload.tag = i;
         self.buttonDownload.layer.masksToBounds = YES;
         self.buttonDownload.layer.cornerRadius = 4;
@@ -175,7 +176,7 @@
     
     [self.scrollView setFrame:CGRectMake(0, 0, 1536, 2048)];
     [self.scrollView setContentSize:CGSizeMake(320, pageHeight)];
-    [self.mainBookView setFrame:CGRectMake(0, -78, 320, pageHeight)];
+    [self.mainBookView setFrame:CGRectMake(0, -78, 1536, pageHeight)];
     
     NSLog(@"mainBookView %f",self.mainBookView.frame.origin.y);
     
@@ -211,6 +212,7 @@
 
 
 -(IBAction)download:(id)sender {
+    
     UIButton *button = (UIButton *)sender;
     NSInteger i = button.tag;
     

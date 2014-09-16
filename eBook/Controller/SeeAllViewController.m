@@ -9,6 +9,9 @@
 #import "SeeAllViewController.h"
 #import "SeeAllCell.h"
 #import "DetailBookViewController.h"
+#import <Parse/Parse.h>
+#import "BooksManager.h"
+#import "UIColor+HexString.h"
 
 @interface SeeAllViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -22,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.title = self.titleName;
+    NSLog(@"bookData %@",self.bookData);
+    
     [self addCollectionView];
     
     UINib *nib = [UINib nibWithNibName:@"SeeAllCell" bundle:nil];
@@ -44,7 +51,7 @@
     [myCollectionView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:myCollectionView];
-
+    
 }
 
 #pragma collectionView
@@ -56,7 +63,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 15;
+    return self.bookData.count;
 }
 
 // The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
@@ -64,11 +71,47 @@
 {
     SeeAllCell *cell = (SeeAllCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    cell.bookNameLabel.text = @"เมื่อวาน";
-    cell.authorLabel.text = @"ไปไหน";
-    cell.imageBook.image = [UIImage imageNamed:@"page.png"];
+    cell.bookNameLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"bookname"];
+    cell.authorLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"authorname"];
+    cell.datePublishLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"publisher"];
+    
+    // set imagebook
+    PFFile *userImageFile = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"imagebook"];
+    [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:imageData];
+            cell.imageBook.image = image;
+        }
+    }];
+    
+    
     [cell.submit setTitle:@"FREE" forState:UIControlStateNormal];
-    cell.datePublishLabel.text = @"January 2014";
+    
+    
+    NSArray *bookAdd = [BooksManager getAllBookDidAdd];
+    for (int i = 0; i < bookAdd.count; i++) {
+        NSString *bookname = [[bookAdd objectAtIndex:i]valueForKey:@"bookname"];
+        
+        if ([[[self.bookData objectAtIndex:indexPath.row]valueForKey:@"bookname"] isEqualToString:bookname]) {
+            cell.submit.layer.borderWidth = 1;
+            cell.submit.layer.cornerRadius = 6;
+            cell.submit.layer.masksToBounds = YES;
+            cell.submit.titleLabel.textAlignment = NSTextAlignmentCenter;
+            [cell.submit setTitle:@"GOT BOOK" forState:UIControlStateNormal];
+            [cell.submit.titleLabel sizeToFit];
+            cell.submit.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
+            [cell.submit setTitleColor:[UIColor_HexString colorFromHexString:@"#B7B7B7"] forState:UIControlStateNormal];
+            cell.submit.enabled = NO;
+            break;
+        } else {
+            cell.submit.titleLabel.textAlignment = NSTextAlignmentCenter;
+            cell.submit.layer.borderWidth = 1;
+            cell.submit.layer.cornerRadius = 6;
+            cell.submit.layer.borderColor = [UIColor_HexString colorFromHexString:@"#3476D8"].CGColor;
+            [cell.submit setTitle:@"FREE" forState:UIControlStateNormal];
+        }
+    }
+    
     
     cell.backgroundColor= [[UIColor greenColor]colorWithAlphaComponent:0.1];
     return cell;
@@ -84,7 +127,7 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-   
+    
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
     controller.view.frame = self.navigationController.view.bounds;
     
@@ -99,6 +142,6 @@
     } completion:^(BOOL finished) {
         [controller didMoveToParentViewController:self];
     }];
-
+    
 }
 @end

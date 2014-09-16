@@ -11,6 +11,7 @@
 #import "StoreViewController.h"
 #import "SettingTableViewController.h"
 #import "ShelfViewController.h"
+#import "Reachability.h"
 
 @interface AppDelegate ()
 
@@ -25,6 +26,22 @@
     [Parse setApplicationId:@"rwGuh8JoEfakRipXoGzbgpE6x7kfg8rDZbmmOulG"
                   clientKey:@"iBiQCuogARC38uyPFvSG9Yt4Rog76psbX1j2wuGk"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    reachability.reachableBlock = ^(Reachability *reachability) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"YES" forKey:@"IsConnected"];
+        NSLog(@"Network is reachable.");
+    };
+    
+    reachability.unreachableBlock = ^(Reachability *reachability) {
+        [[NSUserDefaults standardUserDefaults] setObject:@"NO" forKey:@"IsConnected"];
+        NSLog(@"Network is unreachable.");
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Sorry" message:@"Your Network is unreachable" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil, nil];
+        [alertView show];
+    };
+    
+    [reachability startNotifier];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
@@ -41,8 +58,7 @@
     UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:shelfView];
     UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:settingView];
     
-    
-    //UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:catagories];
+   
     
     
     /*
@@ -79,6 +95,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

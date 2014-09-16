@@ -44,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self changeBackground];
-    //[self createUI];
+    [self createUI];
     self.segmentSelect.selectedSegmentIndex = 0;
     
     self.tableView.delegate = self;
@@ -59,7 +59,7 @@
     
     //add label top10
     top10text = [[UILabel alloc]initWithFrame:CGRectMake(10, 160, self.view.frame.size.width, 310)];
-    top10text.text = [NSString stringWithFormat:@"More by Author name"];
+    top10text.text = [NSString stringWithFormat:@"More by %@",[self.detailItem valueForKey:@"authorname"]];
     top10text.font = [UIFont boldSystemFontOfSize:16];
     [self.dataView addSubview:top10text];
     
@@ -121,7 +121,7 @@
 
 -(void)createUI {
     
-    PFFile *userImageFile = self.detailItem[@"image"];
+    PFFile *userImageFile = [self.detailItem valueForKey:@"imagebook"];
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:imageData];
@@ -130,18 +130,16 @@
     }];
     
     [self.imageVIew layer].borderWidth = 1;
-    self.bookName.text = self.detailItem[@"title"];
-    self.authorName.text = self.detailItem[@"author"];
-    self.publishName.text = self.detailItem[@"publisher"];
-    self.numberPage.text = [self.detailItem[@"page"]stringValue];
+    self.bookName.text = [self.detailItem valueForKey:@"bookname"];
+    self.authorName.text = [self.detailItem valueForKey:@"authorname"];
+    self.publishName.text = [self.detailItem valueForKey:@"publisher"];
+    self.numberPage.text = [[self.detailItem valueForKey:@"page"]stringValue];
     
     NSArray *bookAdd = [BooksManager getAllBookDidAdd];
-    
     for (int i = 0; i < bookAdd.count; i++) {
-        
         NSString *bookname = [[bookAdd objectAtIndex:i]valueForKey:@"bookname"];
         
-        if ([[self.detailItem objectForKey:@"title"] isEqualToString:bookname]) {
+        if ([[self.detailItem valueForKey:@"bookname"] isEqualToString:bookname]) {
             [self.downloadButton setFrame:CGRectMake(224,65,63 + 19, 26)];
             self.downloadButton.layer.borderWidth = 1;
             self.downloadButton.layer.cornerRadius = 6;
@@ -157,7 +155,7 @@
             self.downloadButton.titleLabel.textAlignment = NSTextAlignmentCenter;
             self.downloadButton.layer.borderWidth = 1;
             self.downloadButton.layer.cornerRadius = 6;
-            self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
+            self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#3476D8"].CGColor;
             [self.downloadButton setTitle:@"FREE" forState:UIControlStateNormal];
         }
     }
@@ -214,14 +212,14 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"InformationCell" owner:self options:nil];
         cell = [nib objectAtIndex:indexPath.row];
         
-        cell.desText.text = self.detailItem[@"des"];
+        cell.desText.text = [self.detailItem valueForKey:@"des"];
         
-        cell.languageText.text = @" ";
-        cell.categoryText.text = @" ";
-        cell.publisherText.text = self.detailItem[@"author"];
-        cell.publishedText.text = self.detailItem[@"publisher"];
-        cell.sizeText.text = self.detailItem[@"size"];
-        cell.printLengthText.text = [self.detailItem[@"page"]stringValue];
+        cell.languageText.text = [self.detailItem valueForKey:@"language"];
+        cell.categoryText.text = self.cateogryName;
+        cell.publisherText.text = [self.detailItem valueForKey:@"authorname"];
+        cell.publishedText.text = [self.detailItem valueForKey:@"publisher"];
+        cell.sizeText.text = [self.detailItem valueForKey:@"filesize"];
+        cell.printLengthText.text = [[self.detailItem valueForKey:@"page"]stringValue];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -251,11 +249,12 @@
     self.downloadButton.layer.borderColor = [UIColor_HexString colorFromHexString:@"#B7B7B7"].CGColor;
     [self.downloadButton setTitleColor:[UIColor_HexString colorFromHexString:@"#B7B7B7"] forState:UIControlStateNormal];
     self.downloadButton.enabled = NO;
-    [BooksManager addBookToDownload:self.detailItem[@"title"]];
+    [BooksManager addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
     
     
     UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];
+    [self close:self];
     
 }
 
