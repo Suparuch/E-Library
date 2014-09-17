@@ -41,6 +41,7 @@
 }
 
 - (void)addCollectionView {
+    
     self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
@@ -86,6 +87,7 @@
     
     
     [cell.submit setTitle:@"FREE" forState:UIControlStateNormal];
+    [cell.submit addTarget:self action:@selector(addOrder:) forControlEvents:UIControlEventTouchUpInside];
     
     
     NSArray *bookAdd = [BooksManager getAllBookDidAdd];
@@ -117,6 +119,10 @@
     return cell;
 }
 
+-(IBAction)addOrder:(id)sender {
+    NSLog(@"add");
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(368, 120);
@@ -144,4 +150,7 @@
     }];
     
 }
+
+
+
 @end

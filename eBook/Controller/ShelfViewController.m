@@ -91,9 +91,18 @@
 {
     ShelfCell *cell = (ShelfCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
+    UIImage *image = [BooksManager retriveAllPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"]];
     
-    cell.image.image = [BooksManager retriveAllPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"]];
-    cell.bookname.text =[[self.getAllBookAdd objectAtIndex:indexPath.row ] valueForKey:@"bookname"];
+    if (image == nil) {
+        BooksManager *book = [[BooksManager alloc]init];
+        [book writeToPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"] image:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"imagebook"]];
+        
+        cell.image.image = [BooksManager retriveAllPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"]];
+    } else {
+        cell.image.image = image;
+    }
+    
+    cell.bookname.text =[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"];
     cell.image.layer.borderWidth = 1;
     cell.image.layer.masksToBounds = YES;
     cell.image.layer.cornerRadius = 6;
@@ -139,12 +148,15 @@
         [self.progressView setProgressTintColor:[UIColor_HexString colorFromHexString:@"#87CEFA"]];
         [self.progressView setTransform:CGAffineTransformMakeScale(1.0, 2.0)];
         
+        [selectedCell setUserInteractionEnabled:NO];
+        
         [self.myCollectionView addSubview:self.progressView];
         
         [bookData getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
             
             if (!error) {
                 [data writeToFile:filePath atomically:YES];
+                [selectedCell setUserInteractionEnabled:YES];
             }
             
         } progressBlock:^(int percentDone) {
@@ -174,10 +186,9 @@
     }
 }
 
--(void)didClickOpenPDF:(int)i {
+-(void)didClickOpenPDF:(NSInteger *)i {
     
     BOOL success;
-    
     
     NSString* filePathName = [[self.getAllBookAdd objectAtIndex:i]valueForKey:@"bookname"];
     

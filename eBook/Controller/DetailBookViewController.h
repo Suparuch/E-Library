@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class DetailBookViewController;
+
+@protocol relationDelegate <NSObject>
+
+- (void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData;
+
+@end
+
 @interface DetailBookViewController : UIViewController
+
+@property (nonatomic, weak) id <relationDelegate> delegate;
 
 @property (strong, nonatomic) NSArray *detailItem;
 @property (strong, nonatomic) NSString *cateogryName;
+
+@property (strong, nonatomic) NSArray *authordata;
 
 @end

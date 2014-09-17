@@ -99,6 +99,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
     
+    NSLog(@"filePath %@",filePath);
     if (![fileManager fileExistsAtPath:path])
     {
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&error];
@@ -107,11 +108,8 @@
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     if (!fileExists) {
         PFFile *userImageFile = image;
-        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
-            if (!error) {
-                [imageData writeToFile:filePath atomically:YES];
-            }
-        }];
+        NSData *imageData = [userImageFile getData];
+        [imageData writeToFile:filePath atomically:YES];
     }
 }
 
@@ -126,8 +124,8 @@
     //get the documents directory:
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
-    NSString *filePath = [path stringByAppendingPathComponent:bookname];
-    
+    NSString *str= [NSString stringWithFormat:@"%@.png",bookname];
+    NSString *filePath = [path stringByAppendingPathComponent:str];
     
     UIImage *image1=[UIImage imageWithContentsOfFile:filePath];
     

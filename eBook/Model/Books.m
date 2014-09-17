@@ -81,17 +81,23 @@
     return bookData;
 }
 
-+(NSArray *)getRelationBook:(NSString *)authorname {
-    
-    PFQuery *book = [PFQuery queryWithClassName:@"Books"];
-    [book includeKey:@"authorname.ojbectId"];
-    
-    book.cachePolicy = kPFCachePolicyNetworkElseCache;
-    
-    NSArray *bookData = [book findObjects];
-    
-    NSLog(@"dataBook %@",bookData);
-    
+/*
+ *  Method : getRelationBook
+ *  Des : get All with author relation
+ *  param : data = AllBook
+ *          authorname = authorname
+ *
+ */
++(NSArray *)getRelationBook:(NSArray *)data authorname:(NSString *)authorname {
+
+    NSMutableArray *bookData = [[NSMutableArray alloc]initWithCapacity:data.count];
+
+    for (int i = 0; i < data.count; i++) {
+        if ([[[data objectAtIndex:i] valueForKey:@"authorname"] isEqualToString:authorname]) {
+            [bookData addObject:[data objectAtIndex:i]];
+        }
+    }
+    NSLog(@"bookData %@",bookData);
     return bookData;
 }
 

@@ -37,6 +37,9 @@
 		440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440D878719B62D8B0067EE28 /* ProfileViewController.xib */; };
 		440D878D19B62DE40067EE28 /* GBPathImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878C19B62DE40067EE28 /* GBPathImageView.m */; };
 		440D879019B62DF80067EE28 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 440D878F19B62DF80067EE28 /* ProfileViewController.m */; };
+		441D510519C997620042F35C /* cloud-download.png in Resources */ = {isa = PBXBuildFile; fileRef = 441D510419C997620042F35C /* cloud-download.png */; };
+		441D510919C99FAE0042F35C /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 441D510719C99FAE0042F35C /* SettingViewController.m */; };
+		441D510A19C99FAE0042F35C /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 441D510819C99FAE0042F35C /* SettingViewController.xib */; };
 		44317CE019B90A45002045F1 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44317CDF19B90A45002045F1 /* MessageUI.framework */; };
 		44317CE219B90A52002045F1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44317CE119B90A52002045F1 /* MapKit.framework */; };
 		44317CE419B90A5C002045F1 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44317CE319B90A5C002045F1 /* MediaPlayer.framework */; };
@@ -67,8 +70,6 @@
 		4454AD9519C89533004D17FD /* ShelfViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4454AD9319C89533004D17FD /* ShelfViewController.xib */; };
 		4454AD9A19C89667004D17FD /* ShelfCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4454AD9819C89667004D17FD /* ShelfCell.m */; };
 		4454AD9B19C89667004D17FD /* ShelfCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4454AD9919C89667004D17FD /* ShelfCell.xib */; };
-		446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446D1BAF19B6D2530050D003 /* SettingTableViewController.m */; };
-		446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446D1BB019B6D2530050D003 /* SettingTableViewController.xib */; };
 		4486DE0C19C598850031437D /* SwipeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4486DE0B19C598850031437D /* SwipeView.m */; };
 		4486DE0E19C59C3A0031437D /* StoreBookView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4486DE0D19C59C3A0031437D /* StoreBookView.xib */; };
 		4486DE1419C5B8120031437D /* CategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4486DE1319C5B8120031437D /* CategoryView.xib */; };
@@ -80,6 +81,8 @@
 		44B8913C19B83B2300CE581A /* 3star.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913619B83B2300CE581A /* 3star.png */; };
 		44B8913D19B83B2300CE581A /* emplyStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913719B83B2300CE581A /* emplyStar.png */; };
 		44B8913F19B83C4D00CE581A /* allRating.png in Resources */ = {isa = PBXBuildFile; fileRef = 44B8913E19B83C4D00CE581A /* allRating.png */; };
+		44BA71DF19C95926001FDA92 /* PopupSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BA71DD19C95926001FDA92 /* PopupSearchTableViewController.m */; };
+		44BA71E019C95926001FDA92 /* PopupSearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BA71DE19C95926001FDA92 /* PopupSearchTableViewController.xib */; };
 		44BB15D519C84C5500D0B9DB /* page.png in Resources */ = {isa = PBXBuildFile; fileRef = 44BB15D419C84C5500D0B9DB /* page.png */; };
 		44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186719B8C80100BAC2FC /* UIColor+HexString.m */; };
 		44CE48BD19B6E06100844AF6 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CE48BB19B6E06100844AF6 /* ChangePasswordViewController.m */; };
@@ -174,6 +177,10 @@
 		440D878C19B62DE40067EE28 /* GBPathImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBPathImageView.m; sourceTree = "<group>"; };
 		440D878E19B62DF80067EE28 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		440D878F19B62DF80067EE28 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		441D510419C997620042F35C /* cloud-download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-download.png"; sourceTree = "<group>"; };
+		441D510619C99FAE0042F35C /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		441D510719C99FAE0042F35C /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		441D510819C99FAE0042F35C /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		44317CDF19B90A45002045F1 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		44317CE119B90A52002045F1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		44317CE319B90A5C002045F1 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -216,9 +223,6 @@
 		4454AD9719C89667004D17FD /* ShelfCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelfCell.h; sourceTree = "<group>"; };
 		4454AD9819C89667004D17FD /* ShelfCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelfCell.m; sourceTree = "<group>"; };
 		4454AD9919C89667004D17FD /* ShelfCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelfCell.xib; sourceTree = "<group>"; };
-		446D1BAE19B6D2530050D003 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
-		446D1BAF19B6D2530050D003 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
-		446D1BB019B6D2530050D003 /* SettingTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingTableViewController.xib; sourceTree = "<group>"; };
 		4486DE0A19C598850031437D /* SwipeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeView.h; sourceTree = "<group>"; };
 		4486DE0B19C598850031437D /* SwipeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeView.m; sourceTree = "<group>"; };
 		4486DE0D19C59C3A0031437D /* StoreBookView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreBookView.xib; sourceTree = "<group>"; };
@@ -232,6 +236,9 @@
 		44B8913619B83B2300CE581A /* 3star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3star.png; sourceTree = "<group>"; };
 		44B8913719B83B2300CE581A /* emplyStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emplyStar.png; sourceTree = "<group>"; };
 		44B8913E19B83C4D00CE581A /* allRating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = allRating.png; sourceTree = "<group>"; };
+		44BA71DC19C95926001FDA92 /* PopupSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupSearchTableViewController.h; sourceTree = "<group>"; };
+		44BA71DD19C95926001FDA92 /* PopupSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupSearchTableViewController.m; sourceTree = "<group>"; };
+		44BA71DE19C95926001FDA92 /* PopupSearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupSearchTableViewController.xib; sourceTree = "<group>"; };
 		44BB15D419C84C5500D0B9DB /* page.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = page.png; sourceTree = "<group>"; };
 		44BC186619B8C80100BAC2FC /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
 		44BC186719B8C80100BAC2FC /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
@@ -408,9 +415,9 @@
 		440D878319B62D5E0067EE28 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				446D1BAE19B6D2530050D003 /* SettingTableViewController.h */,
-				446D1BAF19B6D2530050D003 /* SettingTableViewController.m */,
-				446D1BB019B6D2530050D003 /* SettingTableViewController.xib */,
+				441D510619C99FAE0042F35C /* SettingViewController.h */,
+				441D510719C99FAE0042F35C /* SettingViewController.m */,
+				441D510819C99FAE0042F35C /* SettingViewController.xib */,
 				440D878419B62D710067EE28 /* Profile */,
 				44D91EBE19B6D91B001DD683 /* Account */,
 				44CE48BF19B6E31B00844AF6 /* Notification */,
@@ -610,6 +617,16 @@
 			name = Stars;
 			sourceTree = "<group>";
 		};
+		44BA71D319C954A8001FDA92 /* PopupSearch */ = {
+			isa = PBXGroup;
+			children = (
+				44BA71DC19C95926001FDA92 /* PopupSearchTableViewController.h */,
+				44BA71DD19C95926001FDA92 /* PopupSearchTableViewController.m */,
+				44BA71DE19C95926001FDA92 /* PopupSearchTableViewController.xib */,
+			);
+			name = PopupSearch;
+			sourceTree = "<group>";
+		};
 		44BC186519B8C80100BAC2FC /* HexColor */ = {
 			isa = PBXGroup;
 			children = (
@@ -652,6 +669,7 @@
 		44D04CF319B6E7F000CD32FD /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				441D510419C997620042F35C /* cloud-download.png */,
 				44BB15D419C84C5500D0B9DB /* page.png */,
 				44B8913119B83AE100CE581A /* Stars */,
 				44D04CF419B6E87700CD32FD /* SG-Emblem-Color-EN.jpg */,
@@ -687,6 +705,7 @@
 				2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */,
 				4486DE0D19C59C3A0031437D /* StoreBookView.xib */,
 				4486DE1319C5B8120031437D /* CategoryView.xib */,
+				44BA71D319C954A8001FDA92 /* PopupSearch */,
 				44042CD419C69EFE00204DA7 /* BookDetail */,
 				44042CD319C69EED00204DA7 /* SeeAll */,
 			);
@@ -805,6 +824,7 @@
 				44D69C2B19B80D1C0089F639 /* InformationCell.xib in Resources */,
 				44CE48CF19B6E4AB00844AF6 /* ReportViewController.xib in Resources */,
 				44D91ECD19B6DB8D001DD683 /* ChangeEmailViewController.xib in Resources */,
+				441D510519C997620042F35C /* cloud-download.png in Resources */,
 				44B8913A19B83B2300CE581A /* 5star.png in Resources */,
 				44BB15D519C84C5500D0B9DB /* page.png in Resources */,
 				4454AD9519C89533004D17FD /* ShelfViewController.xib in Resources */,
@@ -815,7 +835,6 @@
 				44042CEA19C6B1D300204DA7 /* SeeAllViewController.xib in Resources */,
 				44B8913F19B83C4D00CE581A /* allRating.png in Resources */,
 				4486DE1419C5B8120031437D /* CategoryView.xib in Resources */,
-				446D1BB219B6D2530050D003 /* SettingTableViewController.xib in Resources */,
 				44D04CF519B6E87700CD32FD /* SG-Emblem-Color-EN.jpg in Resources */,
 				44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */,
 				44B8913819B83B2300CE581A /* 1star.png in Resources */,
@@ -823,9 +842,11 @@
 				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
 				4454AD9B19C89667004D17FD /* ShelfCell.xib in Resources */,
 				44D69C3A19B825770089F639 /* ReviewCell.xib in Resources */,
+				441D510A19C99FAE0042F35C /* SettingViewController.xib in Resources */,
 				44CE48C419B6E36100844AF6 /* NotificationTableViewController.xib in Resources */,
 				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
 				4486DE0E19C59C3A0031437D /* StoreBookView.xib in Resources */,
+				44BA71E019C95926001FDA92 /* PopupSearchTableViewController.xib in Resources */,
 				44D04D3C19B7156400CD32FD /* DetailBookViewController.xib in Resources */,
 				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,
 				44B8913D19B83B2300CE581A /* emplyStar.png in Resources */,
@@ -856,12 +877,14 @@
 				4409FF4A19B92A37000051A4 /* ReaderThumbCache.m in Sources */,
 				4409FF4919B92A37000051A4 /* ReaderMainToolbar.m in Sources */,
 				4409FF4C19B92A37000051A4 /* ReaderThumbQueue.m in Sources */,
+				44BA71DF19C95926001FDA92 /* PopupSearchTableViewController.m in Sources */,
 				444F210A19B4C81F00BE4C26 /* Books.m in Sources */,
 				4486DE0C19C598850031437D /* SwipeView.m in Sources */,
 				4409FF4719B92A37000051A4 /* ReaderDocumentOutline.m in Sources */,
 				4454AD9419C89533004D17FD /* ShelfViewController.m in Sources */,
 				44CE48D219B6E6CA00844AF6 /* problem.m in Sources */,
 				4409FF4819B92A37000051A4 /* ReaderMainPagebar.m in Sources */,
+				441D510919C99FAE0042F35C /* SettingViewController.m in Sources */,
 				4409FF4F19B92A37000051A4 /* ReaderThumbsView.m in Sources */,
 				444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */,
 				444F20B619B48A2C00BE4C26 /* main.m in Sources */,
@@ -882,7 +905,6 @@
 				44D04D0019B6EE9A00CD32FD /* iCarousel.m in Sources */,
 				4409FF4119B92A37000051A4 /* CGPDFDocument.m in Sources */,
 				44D69C3919B825770089F639 /* ReviewCell.m in Sources */,
-				446D1BB119B6D2530050D003 /* SettingTableViewController.m in Sources */,
 				2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */,
 				44D4440F19C56A9C00B18962 /* StoreViewController.m in Sources */,
 				44D69C2A19B80D1C0089F639 /* InformationCell.m in Sources */,

@@ -10,7 +10,7 @@
 #import "User.h"
 #import "StoreViewController.h"
 #import "ShelfViewController.h"
-#import "SettingTableViewController.h"
+#import "SettingViewController.h"
 
 @interface LoginViewController () <UserDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
@@ -62,7 +62,7 @@
 {
     StoreViewController *StoreView = [[StoreViewController alloc]init];
     ShelfViewController *shelfView = [[ShelfViewController alloc] init];
-    SettingTableViewController *category = [[SettingTableViewController alloc]init];
+    SettingViewController *category = [[SettingViewController alloc]init];
     
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:StoreView];
     UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:shelfView];

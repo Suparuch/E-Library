@@ -16,6 +16,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *datePublishLabel;
 @property (strong, nonatomic) IBOutlet UIButton *submit;
 
-- (IBAction)summitAction:(id)sender;
+@property (strong,nonatomic ) NSArray *detailItem;
 
 @end

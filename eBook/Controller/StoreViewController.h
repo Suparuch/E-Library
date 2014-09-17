@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DetailBookViewController.h"
 #import "iCarousel.h"
+#import "PopupSearchTableViewController.h"
 
-@interface StoreViewController : UIViewController 
+@interface StoreViewController : UIViewController <UIPopoverControllerDelegate,RecentSearchesDelegate , UISearchBarDelegate,relationDelegate>
 
 @property (strong, nonatomic) DetailBookViewController *detailViewController;
-
+@property (strong, nonatomic) NSArray *bookArray;
 
 @end

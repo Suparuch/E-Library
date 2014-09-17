@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
 #import "Books.h"
-#import "SettingTableViewController.h"
+#import "SettingViewController.h"
 #import "FXImageView.h"
 #import "SwipeView.h"
 #import "SeeAllViewController.h"
@@ -26,7 +26,14 @@
 @property (strong, nonatomic) UIView *titleView2;
 @property (strong, nonatomic) UIView *titleView3;
 @property (strong, nonatomic) UIView *titleView4;
+
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
+
+@property (strong, nonatomic) UISearchBar *mySearchBar;
+@property (weak, nonatomic) UIToolbar *toolBar;
+@property (nonatomic) PopupSearchTableViewController *recentSearchesController;
+@property (nonatomic) UIPopoverController *recentSearchesPopoverController;
+@property (strong, nonatomic) NSMutableArray* filteredTableData;
 
 @property (nonatomic, strong) iCarousel *carousel1;
 @property (nonatomic, strong) SwipeView *swipeView1;
@@ -38,16 +45,18 @@
 @property (nonatomic, strong) NSArray *getNewRelease;
 @property (nonatomic, strong) NSArray *getAllCategory;
 @property (nonatomic, strong) NSArray *getBookHighlight;
+@property (nonatomic, strong) NSArray *getBookRelation;
 
 @property (nonatomic, strong) NSMutableArray *getBookCategory;
-
 @property (nonatomic, strong) NSString *categoryName;
+
+@property (nonatomic, assign) BOOL isFiltered;
 
 @end
 
 @implementation StoreViewController
 
-@synthesize swipeView1,swipeView2,swipeView3,carousel1;
+@synthesize swipeView1,swipeView2,swipeView3,carousel1,mySearchBar,toolBar;
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -79,6 +88,7 @@
     [self addTop10Book];
     [self addCategoryView];
     [self addNewsRelease];
+    [self addSearchView];
 }
 
 - (void)viewDidUnload
@@ -254,7 +264,6 @@
     
     if (view == nil)
     {
-        
         FXImageView *imageView = [[FXImageView alloc] initWithFrame:CGRectMake(0, 0, 460.0f, 250.0f)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         imageView.asynchronous = YES;
@@ -265,7 +274,6 @@
         imageView.shadowBlur = 5.0f;
         imageView.cornerRadius = 10.0f;
         view = imageView;
-        
     }
     
     //show placeholder
@@ -307,6 +315,9 @@
         }
     }
     
+    self.getBookRelation = [Books getRelationBook:self.getBookHighlight authorname:[[self.getBookHighlight objectAtIndex:index]valueForKey:@"authorname"]];
+    controller.authordata = self.getBookRelation;
+    
     controller.view.frame = self.navigationController.view.bounds;
     
     UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -347,7 +358,7 @@
             
             // set bookname
             UILabel *bookName = (UILabel *)[view viewWithTag:101];
-            bookName.numberOfLines = 1;
+            bookName.numberOfLines = 2;
             bookName.lineBreakMode = NSLineBreakByWordWrapping;
             bookName.text = [[self.getTop10 objectAtIndex:index]valueForKey:@"bookname"];
             bookName.adjustsFontSizeToFitWidth  = YES;
@@ -389,7 +400,7 @@
             
             // set bookname
             UILabel *bookName = (UILabel *)[view viewWithTag:101];
-            bookName.numberOfLines = 1;
+            bookName.numberOfLines = 2;
             bookName.lineBreakMode = NSLineBreakByWordWrapping;
             bookName.text = [[self.getNewRelease objectAtIndex:index]valueForKey:@"bookname"];
             bookName.adjustsFontSizeToFitWidth  = YES;
@@ -449,14 +460,19 @@
     
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
     controller.detailItem = [self.getTop10 objectAtIndex:index];
+    controller.delegate = self;
     
-    for (int i = 0; i < self.getAllCategory.count; i++) {
+    for (int i = 0; i < self.getTop10.count; i++) {
         
         if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getTop10 objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
             controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
             break;
         }
     }
+    
+    self.getBookRelation = [Books getRelationBook:self.getTop10 authorname:[[self.getTop10 objectAtIndex:index]valueForKey:@"authorname"]];
+    controller.authordata = self.getBookRelation;
+    
     controller.view.frame = self.navigationController.view.bounds;
     
     UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
@@ -480,6 +496,11 @@
     
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
     controller.detailItem = [self.getNewRelease objectAtIndex:index];
+    controller.delegate = self;
+    
+    self.getBookRelation = [Books getRelationBook:self.getNewRelease authorname:[[self.getNewRelease objectAtIndex:index]valueForKey:@"authorname"]];
+    controller.authordata = self.getBookRelation;
+    
     controller.view.frame = self.navigationController.view.bounds;
     
     for (int i = 0; i < self.getNewRelease.count; i++) {
@@ -523,5 +544,157 @@
     seeAll.titleName = [[self.getAllCategory objectAtIndex:index]valueForKey:@"categoryname"];
     [self.navigationController pushViewController:seeAll animated:YES];
     
+}
+
+
+#pragma mark - UISearchBarDelegate
+
+
+- (void)addSearchView {
+    
+    mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 150.0f, 30.0f)];
+    mySearchBar.barStyle = UIBarStyleDefault;
+    mySearchBar.delegate = self;
+    [mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
+    mySearchBar.placeholder = @"Search Store";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mySearchBar];
+}
+
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)aSearchBar {
+    
+    // Create the popover if it is not already open.
+    if (self.recentSearchesPopoverController == nil) {
+        
+        PopupSearchTableViewController *popUp = [[PopupSearchTableViewController alloc]initWithNibName:@"PopupSearchTableViewController" bundle:nil];
+        popUp.allBookbData = self.allBookData;
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:popUp];
+        
+        self.recentSearchesController = (PopupSearchTableViewController *)[navigationController topViewController];
+        self.recentSearchesController.delegate = self;
+        
+        // Create the popover controller to contain the navigation controller.
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:navigationController];
+        popover.delegate = self;
+        
+        // Ensure the popover is not dismissed if the user taps in the search bar by adding
+        // the search bar to the popover's list of pass-through views.
+        popover.passthroughViews = @[mySearchBar];
+        
+        self.recentSearchesPopoverController = popover;
+    }
+    
+    // Display the popover.
+    [self.recentSearchesPopoverController presentPopoverFromRect:[mySearchBar bounds] inView:mySearchBar permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+}
+
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.recentSearchesController filterResultsUsingString:searchText];
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    
+    self.recentSearchesPopoverController = nil;
+    [mySearchBar resignFirstResponder];
+}
+
+- (void)recentSearchesController:(PopupSearchTableViewController *)controller didSelectString:(NSString *)searchString {
+    
+    mySearchBar.text = searchString;
+    [self finishSearchWithString:searchString];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
+    
+    // When the search button is tapped, add the search term to recents and conduct the search.
+    NSString *searchString = [mySearchBar text];
+    [self finishSearchWithString:searchString];
+}
+
+- (void)finishSearchWithString:(NSString *)book {
+    
+    // Conduct the search. In this case, simply report the search term used.
+    [self.recentSearchesPopoverController dismissPopoverAnimated:YES];
+    self.recentSearchesPopoverController = nil;
+    
+    [mySearchBar resignFirstResponder];
+    
+    for (int i = 0; i < self.allBookData.count; i ++) {
+        
+        if ([[[self.allBookData objectAtIndex:i]valueForKey:@"bookname"] isEqualToString:book]) {
+            
+            DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+            controller.detailItem = [self.allBookData objectAtIndex:i];
+            controller.delegate = self;
+            controller.view.frame = self.navigationController.view.bounds;
+            
+            for (int i = 0; i < self.getNewRelease.count; i++) {
+                
+                if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.allBookData objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+                    controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+                    break;
+                }
+            }
+            
+            UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+            childNavController.view.frame = controller.view.frame;
+            
+            [self addChildViewController:controller];
+            [self.view addSubview:controller.view];
+            
+            [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                controller.view.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                [controller didMoveToParentViewController:self];
+            }];
+            
+        }
+    }
+}
+
+
+#pragma -
+#pragma relation Book
+
+-(void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData {
+    
+    [self openDetail:bookData];
+    
+}
+
+
+- (void)openDetail:(NSArray *)bookData {
+    
+    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+    
+    controller.detailItem = bookData;
+    controller.delegate = self;
+    
+    self.getBookRelation = [Books getRelationBook:self.getNewRelease authorname:[bookData valueForKey:@"authorname"]];
+    controller.authordata = self.getBookRelation;
+    
+    controller.view.frame = self.navigationController.view.bounds;
+    
+    for (int i = 0; i < self.getNewRelease.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[bookData valueForKeyPath:@"categoryId.objectId"]]) {
+            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+            break;
+        }
+    }
+    
+    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
+    childNavController.view.frame = controller.view.frame;
+    
+    [self addChildViewController:controller];
+    [self.view addSubview:controller.view];
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        controller.view.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [controller didMoveToParentViewController:self];
+    }];
 }
 @end

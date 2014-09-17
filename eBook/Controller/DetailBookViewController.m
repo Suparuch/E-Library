@@ -17,13 +17,13 @@
 
 @interface DetailBookViewController () <UIGestureRecognizerDelegate,UITableViewDataSource,UITableViewDelegate,SwipeViewDataSource,SwipeViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *dataView;
-@property (strong, nonatomic) IBOutlet UIImageView *imageVIew;
-@property (strong, nonatomic) IBOutlet UILabel *bookName;
-@property (strong, nonatomic) IBOutlet UILabel *authorName;
-@property (strong, nonatomic) IBOutlet UILabel *publishName;
-@property (strong, nonatomic) IBOutlet UILabel *numberPage;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIView *dataView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageVIew;
+@property (weak, nonatomic) IBOutlet UILabel *bookName;
+@property (weak, nonatomic) IBOutlet UILabel *authorName;
+@property (weak, nonatomic) IBOutlet UILabel *publishName;
+@property (weak, nonatomic) IBOutlet UILabel *numberPage;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentSelect;
 @property (strong, nonatomic) IBOutlet UIButton *downloadButton;
 
@@ -52,7 +52,8 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"InformationCell" bundle:nil] forCellReuseIdentifier:@"informationCell"];
     
-    NSLog(@"bookData %@",self.detailItem);
+    //NSLog(@"bookData %@",self.detailItem);
+    //NSLog(@"authorData %@",self.authordata);
 }
 
 - (void)addRelation {
@@ -131,6 +132,8 @@
     
     [self.imageVIew layer].borderWidth = 1;
     self.bookName.text = [self.detailItem valueForKey:@"bookname"];
+    self.bookName.adjustsFontSizeToFitWidth  = YES;
+    
     self.authorName.text = [self.detailItem valueForKey:@"authorname"];
     self.publishName.text = [self.detailItem valueForKey:@"publisher"];
     self.numberPage.text = [[self.detailItem valueForKey:@"page"]stringValue];
@@ -224,7 +227,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
-    
     return cell;
 }
 
@@ -254,7 +256,7 @@
     [book addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
     [book writeToPhoto:[self.detailItem valueForKey:@"bookname"] image:[self.detailItem valueForKey:@"imagebook"]];
     
-    UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+    UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];
     [self close:self];
     
@@ -263,7 +265,7 @@
 #pragma swipView
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView
 {
-    return 5;
+    return self.authordata.count;
 }
 
 - (UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -275,20 +277,27 @@
         
         // set bookname
         UILabel *bookName = (UILabel *)[view viewWithTag:101];
-        bookName.text = @"เมื่อวาน";
+        bookName.text = [[self.authordata objectAtIndex:index] valueForKey:@"bookname"];
+        bookName.adjustsFontSizeToFitWidth  = YES;
         
         // set author
         UILabel *author = (UILabel *)[view viewWithTag:102];
-        author.text = @"ไปไหน";
-        
-        // set imagebook
-        UIImage *image = [UIImage imageNamed:@"page.png"];
+        author.text = [[self.authordata objectAtIndex:index] valueForKey:@"authorname"];
         
         
         // set button to view detail
         UIButton *button = (UIButton *)[view viewWithTag:301];
-        [button setBackgroundImage:image forState:UIControlStateNormal];
         [button addTarget:self action:@selector(seebook:) forControlEvents:UIControlEventTouchUpInside];
+        
+        // set imagebook
+        PFFile *userImageFile = [[self.authordata objectAtIndex:index]valueForKey:@"imagebook"];
+        [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:imageData];
+                [button setBackgroundImage:image forState:UIControlStateNormal];
+            }
+        }];
+        
         
     }
     return view;
@@ -298,14 +307,30 @@
 #pragma Buttom Action
 
 - (IBAction)seeAllRelated:(id)sender {
+//    
+    NSLog(@"author %@",self.authordata);
     
-    [self close:self];
     SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    NSString *authorname = [NSString stringWithFormat:@"More by %@",[[self.authordata objectAtIndex:0]valueForKey:@"authorname"]];
+    seeAll.titleName = authorname;
+    seeAll.bookData = self.authordata;
+    
     [self.navigationController pushViewController:seeAll animated:YES];
     
 }
 
 - (IBAction)seebook:(id)sender {
-    NSLog(@"Select Book");
+    
+    [self close:self];
+    
+    NSInteger index = [swipeView1 indexOfItemViewOrSubview:sender];
+    
+    NSArray *bookRelation = [self.authordata objectAtIndex:index];
+    NSLog(@"bookRelationname %@",[bookRelation valueForKey:@"bookname"]);
+    
+    [self.delegate openRelationDataBook:self bookData:bookRelation];
 }
+
+
+
 @end

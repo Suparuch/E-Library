@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
 #import "StoreViewController.h"
-#import "SettingTableViewController.h"
+#import "SettingViewController.h"
 #import "ShelfViewController.h"
 #import "Reachability.h"
 
@@ -47,17 +47,13 @@
     
     
     StoreViewController  *storeView = [[StoreViewController alloc] init];
-    SettingTableViewController *settingView = [[SettingTableViewController alloc]init];
+    SettingViewController *settingView = [[SettingViewController alloc]init];
     ShelfViewController *shelfView = [[ShelfViewController alloc]init];
-    /*
-     CatagoriesViewController *catagories = [[CatagoriesViewController alloc] init];
-     */
     
     
     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
     UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:shelfView];
     UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:settingView];
-    
    
     
     

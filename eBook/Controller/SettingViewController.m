@@ -1,23 +1,24 @@
 //
-//  SettingTableViewController.m
+//  SettingViewController.m
 //  eBook
 //
-//  Created by Sittikorn on 9/3/2557 BE.
+//  Created by Sittikorn on 9/17/2557 BE.
 //  Copyright (c) 2557 Sittikorn. All rights reserved.
 //
 
-#import "SettingTableViewController.h"
+#import "SettingViewController.h"
 #import "ProfileViewController.h"
 #import "AccountTableViewController.h"
 #import "NotificationTableViewController.h"
 #import "ReportViewController.h"
 #import "AboutViewController.h"
 
-@interface SettingTableViewController ()
+@interface SettingViewController () <UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *myTableVIew;
 
 @end
 
-@implementation SettingTableViewController
+@implementation SettingViewController
 {
     NSArray *allMenu;
 }
@@ -33,10 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.tableView.scrollEnabled = NO;
+    self.myTableVIew.delegate = self;
+    self.myTableVIew.dataSource = self;
     
     allMenu = @[@"My Profile",@"Account",@"Notifications",@"Help",@"Report a Problem",@"About E-Book Store"];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,8 +64,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.row == 0) {
-        
         ProfileViewController *profile = [[ProfileViewController alloc]initWithNibName:@"ProfileViewController" bundle:nil];
         [self.navigationController pushViewController:profile animated:YES];
     } else if (indexPath.row == 1){
@@ -79,7 +81,8 @@
         AboutViewController *about = [[AboutViewController alloc]initWithNibName:@"AboutViewController" bundle:nil];
         [self.navigationController pushViewController:about animated:YES];
     }
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.myTableVIew deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
