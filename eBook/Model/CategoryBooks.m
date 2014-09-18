@@ -19,7 +19,6 @@
 +(NSArray *)getAllCategory {
     PFQuery *query = [PFQuery queryWithClassName:@"Category"];
     
-    query.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     NSArray *allCategory = [query findObjects];
     

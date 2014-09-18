@@ -18,6 +18,7 @@
 @property (nonatomic,strong) UICollectionView *myCollectionView;
 @property (strong, nonatomic) UIProgressView *progressView;
 @property (weak, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @property (nonatomic,strong) NSArray *getAllBookAdd;
 
@@ -35,21 +36,19 @@
     return self;
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    
-    [self.myCollectionView reloadData];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self addCollectionView];
-    self.getAllBookAdd = [BooksManager getAllBookDidAdd];
-    
     
     UINib *nib = [UINib nibWithNibName:@"ShelfCell" bundle:nil];
     [myCollectionView registerNib:nib forCellWithReuseIdentifier:@"cellIdentifier"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.getAllBookAdd = [BooksManager getAllBookDidAdd];
+    [self.myCollectionView reloadData];
+    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -68,13 +67,24 @@
     
     [myCollectionView setBackgroundColor:[UIColor whiteColor]];
     
-    [self.view addSubview:myCollectionView];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self. refreshControl addTarget:self action:@selector(startRefresh:) forControlEvents:UIControlEventValueChanged];
+    myCollectionView.alwaysBounceVertical = YES;
+    [myCollectionView addSubview:self.refreshControl];
     
+    [self.view addSubview:myCollectionView];
 }
 
 
 #pragma --
 #pragma UICollectionView
+
+- (IBAction)startRefresh:(id)sender {
+    
+    self.getAllBookAdd = [BooksManager getAllBookDidAdd];
+    [myCollectionView reloadData];
+    [self.refreshControl endRefreshing];
+}
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

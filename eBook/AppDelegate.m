@@ -47,16 +47,12 @@
     
     
     StoreViewController  *storeView = [[StoreViewController alloc] init];
-    SettingViewController *settingView = [[SettingViewController alloc]init];
     ShelfViewController *shelfView = [[ShelfViewController alloc]init];
-    
     
     UINavigationController *myNav1=[[UINavigationController alloc] initWithRootViewController:storeView];
     UINavigationController *myNav2=[[UINavigationController alloc] initWithRootViewController:shelfView];
-    UINavigationController *myNav3=[[UINavigationController alloc] initWithRootViewController:settingView];
-   
-    
-    
+
+
     /*
      [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor_HexString colorFromHexString:@"#FFFFFF"]}]; //change coloer title name
      [[UITabBar appearance] setTintColor:[UIColor_HexString colorFromHexString:@"#87CEFA"]]; //change color tabbar icon
@@ -66,7 +62,7 @@
     
     
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2,myNav3, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:myNav1,myNav2, nil];
     
     //set the login view
     self.window.rootViewController = self.tabBarController;

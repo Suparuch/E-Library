@@ -16,6 +16,11 @@
 #import "SeeAllViewController.h"
 #import "UIColor+HexString.h"
 #import "CategoryBooks.h"
+#import "ProfileViewController.h"
+#import "AccountTableViewController.h"
+#import "NotificationTableViewController.h"
+#import "ReportViewController.h"
+#import "AboutViewController.h"
 
 @interface StoreViewController () <iCarouselDataSource,iCarouselDelegate,SwipeViewDataSource,SwipeViewDelegate>
 
@@ -33,7 +38,6 @@
 @property (weak, nonatomic) UIToolbar *toolBar;
 @property (nonatomic) PopupSearchTableViewController *recentSearchesController;
 @property (nonatomic) UIPopoverController *recentSearchesPopoverController;
-@property (strong, nonatomic) NSMutableArray* filteredTableData;
 
 @property (nonatomic, strong) iCarousel *carousel1;
 @property (nonatomic, strong) SwipeView *swipeView1;
@@ -42,9 +46,9 @@
 
 @property (nonatomic, strong) NSArray *allBookData;
 @property (nonatomic, strong) NSArray *getTop10;
+@property (nonatomic, strong) NSArray *getAllAuthor;
 @property (nonatomic, strong) NSArray *getNewRelease;
 @property (nonatomic, strong) NSArray *getAllCategory;
-@property (nonatomic, strong) NSArray *getBookHighlight;
 @property (nonatomic, strong) NSArray *getBookRelation;
 
 @property (nonatomic, strong) NSMutableArray *getBookCategory;
@@ -79,10 +83,12 @@
     [super viewDidLoad];
     
     self.allBookData = [Books getAllBook];
+    self.getAllAuthor = [Books getAuthorData];
     self.getTop10 = [Books getTop10Book:self.allBookData];
     self.getNewRelease = [Books getNewRelease:self.allBookData];
     self.getAllCategory = [CategoryBooks getAllCategory];
-    self.getBookHighlight = [Books getBookImageHighlight:self.allBookData];
+    
+    NSLog(@"getTop10 %@",self.getAllAuthor);
     
     [self addTitleView];
     [self addTop10Book];
@@ -147,7 +153,6 @@
     //create carousel
     carousel1 = [[iCarousel alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, 300)];
     carousel1.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    //carousel1.type = iCarouselTypeRotary;
     carousel1.type = iCarouselTypeCoverFlow2;
     carousel1.clipsToBounds = YES;
     carousel1.delegate = self;
@@ -257,7 +262,11 @@
 
 - (NSInteger)numberOfItemsInCarousel:(iCarousel *)carousel
 {
-    return self.getBookHighlight.count;
+    if (self.getAllAuthor.count > 8) {
+        return 8;
+    } else {
+        return self.getAllAuthor.count;
+    }
 }
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -280,7 +289,7 @@
     ((FXImageView *)view).processedImage = [UIImage imageNamed:@"page.png"];
     
     // set imagebook
-    PFFile *userImageFile = [[self.getBookHighlight objectAtIndex:index]valueForKey:@"highlightimage"];
+    PFFile *userImageFile = [[self.getAllAuthor objectAtIndex:index]valueForKey:@"authorimage"];
     [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
         if (!error) {
             UIImage *image = [UIImage imageWithData:imageData];
@@ -305,32 +314,25 @@
 // highlight image to open detail
 -(void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index {
     
-    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
-    controller.detailItem = [self.getBookHighlight objectAtIndex:index];
-    for (int i = 0; i < self.getAllCategory.count; i++) {
-        
-        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getBookHighlight objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
-            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
-            break;
+    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    
+    NSString *authorName = [NSString stringWithFormat:@"More by %@",[[self.getAllAuthor objectAtIndex:index]valueForKey:@"authorname"]];
+    seeAll.titleName = authorName;
+    
+    NSMutableArray *bookWithAuthorName = [[NSMutableArray alloc]initWithCapacity:self.allBookData.count];
+    
+    for (int i = 0 ; i < self.allBookData.count; i++) {
+        if ([[[self.getAllAuthor objectAtIndex:index]valueForKey:@"objectId"] isEqualToString:[[self.allBookData objectAtIndex:i] valueForKeyPath:@"authorId.objectId"]]) {
+            [bookWithAuthorName addObject:[self.allBookData objectAtIndex:i]];
+            
         }
     }
     
-    self.getBookRelation = [Books getRelationBook:self.getBookHighlight authorname:[[self.getBookHighlight objectAtIndex:index]valueForKey:@"authorname"]];
-    controller.authordata = self.getBookRelation;
+    seeAll.bookData = bookWithAuthorName;;
+    seeAll.getAllCategory = self.getAllCategory;
+    seeAll.getAllAuthor = self.getAllAuthor;
     
-    controller.view.frame = self.navigationController.view.bounds;
-    
-    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
-    childNavController.view.frame = controller.view.frame;
-    
-    [self addChildViewController:controller];
-    [self.view addSubview:controller.view];
-    
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        controller.view.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [controller didMoveToParentViewController:self];
-    }];
+    [self.navigationController pushViewController:seeAll animated:YES];
 }
 
 
@@ -365,7 +367,12 @@
             
             // set author
             UILabel *author = (UILabel *)[view viewWithTag:102];
-            author.text = [[self.getTop10 objectAtIndex:index]valueForKey:@"authorname"];
+            for (int i = 0;i < self.getTop10.count; i++) {
+                if ([[[self.getTop10 objectAtIndex:index]valueForKeyPath:@"authorId.objectId"] isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+                    author.text = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
+                    break;
+                }
+            }
             
             // set button to view detail
             UIButton *button = (UIButton *)[view viewWithTag:301];
@@ -407,7 +414,12 @@
             
             // set author
             UILabel *author = (UILabel *)[view viewWithTag:102];
-            author.text = [[self.getNewRelease objectAtIndex:index]valueForKey:@"authorname"];
+            for (int i = 0;i < self.getNewRelease.count; i++) {
+                if ([[[self.getNewRelease objectAtIndex:index]valueForKeyPath:@"authorId.objectId"] isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+                    author.text = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
+                    break;
+                }
+            }
             
             // set button to view detail
             UIButton *button = (UIButton *)[view viewWithTag:301];
@@ -433,24 +445,13 @@
 
 // see all 10 top
 -(IBAction)changeToSeeAll:(id)sender {
-    NSLog(@"come Top 10");
-    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
-    seeAll.titleName = @"All Book";
-    seeAll.bookData = self.getTop10;
-    [self.navigationController pushViewController:seeAll animated:YES];
+    [self openSeeAll:self.getTop10 titleName:@"All Book"];
 }
 
 // see all New Release
 -(IBAction)changeToSeeAllNewRelease:(id)sender {
     
-    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
-    seeAll.titleName = @"All Book New Release";
-    seeAll.bookData = self.getNewRelease;
-    
-    
-    [self.navigationController pushViewController:seeAll animated:YES];
-    
-    NSLog(@"Come New Release");
+    [self openSeeAll:self.getNewRelease titleName:@"All Books New Release"];
 }
 
 
@@ -458,34 +459,7 @@
     
     NSInteger index = [swipeView1 indexOfItemViewOrSubview:sender];
     
-    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
-    controller.detailItem = [self.getTop10 objectAtIndex:index];
-    controller.delegate = self;
-    
-    for (int i = 0; i < self.getTop10.count; i++) {
-        
-        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getTop10 objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
-            controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
-            break;
-        }
-    }
-    
-    self.getBookRelation = [Books getRelationBook:self.getTop10 authorname:[[self.getTop10 objectAtIndex:index]valueForKey:@"authorname"]];
-    controller.authordata = self.getBookRelation;
-    
-    controller.view.frame = self.navigationController.view.bounds;
-    
-    UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
-    childNavController.view.frame = controller.view.frame;
-    
-    [self addChildViewController:controller];
-    [self.view addSubview:controller.view];
-    
-    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        controller.view.alpha = 1.0;
-    } completion:^(BOOL finished) {
-        [controller didMoveToParentViewController:self];
-    }];
+    [self openDetailBook:self.getTop10 index:index];
     
     
 }
@@ -494,19 +468,94 @@
     
     NSInteger index = [swipeView3 indexOfItemViewOrSubview:sender];
     
-    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
-    controller.detailItem = [self.getNewRelease objectAtIndex:index];
-    controller.delegate = self;
+    [self openDetailBook:self.getNewRelease index:index];
     
-    self.getBookRelation = [Books getRelationBook:self.getNewRelease authorname:[[self.getNewRelease objectAtIndex:index]valueForKey:@"authorname"]];
-    controller.authordata = self.getBookRelation;
+}
+
+// see Category Book
+-(IBAction)swipeCategoryButton:(id)sender {
     
-    controller.view.frame = self.navigationController.view.bounds;
+    NSInteger index = [swipeView2 indexOfItemViewOrSubview:sender];
     
-    for (int i = 0; i < self.getNewRelease.count; i++) {
+    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    
+    self.getBookCategory = [[NSMutableArray alloc]initWithCapacity:self.getTop10.count];
+    
+    for (int i = 0; i < self.allBookData.count; i++) {
         
-        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[self.getTop10 objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+        if ([[[self.getAllCategory objectAtIndex:index]valueForKey:@"objectId"] isEqualToString:[[self.allBookData objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            [self.getBookCategory addObject:[self.allBookData objectAtIndex:i]];
+        }
+    }
+    
+    seeAll.bookData = self.getBookCategory;
+    seeAll.titleName = [[self.getAllCategory objectAtIndex:index]valueForKey:@"categoryname"];
+    seeAll.getAllAuthor = self.getAllAuthor;
+    seeAll.getAllCategory = self.getAllCategory;
+    
+    [self.navigationController pushViewController:seeAll animated:YES];
+    
+}
+
+- (void)openSeeAll:(NSArray *)bookArray titleName:(NSString *)title{
+    
+    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    
+    seeAll.titleName = title;
+    seeAll.bookData = bookArray;
+    seeAll.getAllAuthor = self.getAllAuthor;
+    seeAll.getAllCategory = self.getAllCategory;
+    
+    [self.navigationController pushViewController:seeAll animated:YES];
+}
+
+// open setting
+- (IBAction)showEdit:(id)sender {
+    
+    SettingViewController *controller = [[SettingViewController alloc]initWithNibName:@"SettingViewController" bundle:nil];
+    
+    controller.view.frame = self.view.bounds;
+    
+    [self.view addSubview:controller.view];
+    [controller didMoveToParentViewController:self];
+    [self addChildViewController:controller];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    [self.view addSubview:navController.view];
+    [controller didMoveToParentViewController:self];
+    [self addChildViewController:navController];
+}
+
+
+
+// open detail book
+- (void)openDetailBook:(NSArray *)bookData index:(NSInteger)index{
+    
+    DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
+    controller.detailItem = [bookData objectAtIndex:index];
+    controller.delegate = self;
+    controller.authorData = self.getAllAuthor;
+    controller.categoryData = self.getAllCategory;
+    
+    NSLog(@"getAllAuthor %@",self.getAllAuthor);
+    
+    for (int i = 0; i < bookData.count; i++) {
+        
+        if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[[bookData objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
+            
             controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+            break;
+        }
+    }
+    
+    self.getBookRelation = [Books getRelationBook:bookData authorname:[[bookData objectAtIndex:index]valueForKeyPath:@"authorId.objectId"]];
+    
+    controller.bookDataRelation = self.getBookRelation;
+    
+    for (int i = 0;i < bookData.count; i++) {
+        if ([[[bookData objectAtIndex:index]valueForKeyPath:@"authorId.objectId"] isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+            controller.nameAuthor = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
             break;
         }
     }
@@ -523,29 +572,6 @@
         [controller didMoveToParentViewController:self];
     }];
 }
-
-// see Category Book
--(IBAction)swipeCategoryButton:(id)sender {
-    
-    NSInteger index = [swipeView2 indexOfItemViewOrSubview:sender];
-    
-    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
-    self.getBookCategory = [[NSMutableArray alloc]initWithCapacity:self.getTop10.count];
-    
-    for (int i = 0; i < self.allBookData.count; i++) {
-        
-        if ([[[self.getAllCategory objectAtIndex:index]valueForKey:@"objectId"] isEqualToString:[[self.allBookData objectAtIndex:i] valueForKeyPath:@"categoryId.objectId"]]) {
-            [self.getBookCategory addObject:[self.allBookData objectAtIndex:i]];
-            NSLog(@"addBook %@",self.getBookCategory);
-        }
-    }
-    
-    seeAll.bookData = self.getBookCategory;
-    seeAll.titleName = [[self.getAllCategory objectAtIndex:index]valueForKey:@"categoryname"];
-    [self.navigationController pushViewController:seeAll animated:YES];
-    
-}
-
 
 #pragma mark - UISearchBarDelegate
 
@@ -557,7 +583,10 @@
     mySearchBar.delegate = self;
     [mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     mySearchBar.placeholder = @"Search Store";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:mySearchBar];
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"LogoEdit.png"] landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(showEdit:)];
+    
+    self.navigationItem.rightBarButtonItems = @[editButton,[[UIBarButtonItem alloc] initWithCustomView:mySearchBar]];
 }
 
 
@@ -638,8 +667,8 @@
                 }
             }
             
-            UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
-            childNavController.view.frame = controller.view.frame;
+            
+            self.view.frame = controller.view.frame;
             
             [self addChildViewController:controller];
             [self.view addSubview:controller.view];
@@ -658,22 +687,33 @@
 #pragma -
 #pragma relation Book
 
--(void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData {
+-(void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData authorName:(NSString *)objectId{
     
-    [self openDetail:bookData];
+    [self openDetail:bookData authorName:objectId];
     
 }
 
 
-- (void)openDetail:(NSArray *)bookData {
+- (void)openDetail:(NSArray *)bookData authorName:(NSString *)objectId{
     
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
     
     controller.detailItem = bookData;
+    controller.authorData = self.getAllAuthor;
+    NSLog(@"getAllAuthor %@",self.getAllAuthor);
     controller.delegate = self;
     
-    self.getBookRelation = [Books getRelationBook:self.getNewRelease authorname:[bookData valueForKey:@"authorname"]];
-    controller.authordata = self.getBookRelation;
+    self.getBookRelation = [Books getRelationBook:self.getNewRelease authorname:objectId];
+    
+    controller.bookDataRelation = self.getBookRelation;
+    
+    for (int i = 0;i < self.getNewRelease.count; i++) {
+        if ([objectId isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+            controller.nameAuthor = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
+            break;
+        }
+    }
+    
     
     controller.view.frame = self.navigationController.view.bounds;
     

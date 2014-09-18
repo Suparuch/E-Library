@@ -13,9 +13,9 @@
 #import "ReportViewController.h"
 #import "AboutViewController.h"
 
-@interface SettingViewController () <UITableViewDataSource,UITableViewDelegate>
+@interface SettingViewController () <UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *myTableVIew;
-
+@property (strong, nonatomic) UINavigationBar *navbar;
 @end
 
 @implementation SettingViewController
@@ -34,11 +34,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     self.myTableVIew.delegate = self;
     self.myTableVIew.dataSource = self;
     
     allMenu = @[@"My Profile",@"Account",@"Notifications",@"Help",@"Report a Problem",@"About E-Book Store"];
     
+    [self changeBackground];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,8 +68,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (indexPath.row == 0) {
+        
         ProfileViewController *profile = [[ProfileViewController alloc]initWithNibName:@"ProfileViewController" bundle:nil];
         [self.navigationController pushViewController:profile animated:YES];
+        
     } else if (indexPath.row == 1){
         AccountTableViewController *account = [[AccountTableViewController alloc]initWithNibName:@"AccountTableViewController" bundle:nil];
         [self.navigationController pushViewController:account animated:YES];
@@ -83,6 +87,30 @@
     }
     
     [self.myTableVIew deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)changeBackground {
+    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
+    [self.myTableVIew layer].cornerRadius = 10;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
+    gestureRecognizer.cancelsTouchesInView = NO;
+    gestureRecognizer.delegate = self;
+    [self.view addGestureRecognizer:gestureRecognizer];
+}
+
+- (void)close:(id)sender {
+    [self willMoveToParentViewController:nil];
+    [self beginAppearanceTransition:NO animated:YES];
+    [UIView  animateWithDuration:0.3
+                      animations:^(void){
+                          self.view.alpha = 0.0;
+                      }
+                      completion:^(BOOL finished) {
+                          [self endAppearanceTransition];
+                          [self.view removeFromSuperview];
+                          [self removeFromParentViewController];
+                      }];
 }
 
 @end

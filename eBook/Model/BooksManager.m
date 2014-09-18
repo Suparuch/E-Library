@@ -48,19 +48,6 @@
 }
 
 /*
- *  Method : searchBookWithCategory
- *  Des : search book with Category name
- *  parum : category : categoryName
- *
- */
-+ (NSArray *)searchBookWithCategory:(NSString *)category {
-    
-    NSArray *categoryArray = @[@"nil"];
-    
-    return categoryArray;
-}
-
-/*
  *  Method : searchBook
  *  Des : add book in db for prepare downloading
  *  param : select = bookname
@@ -145,7 +132,6 @@
     query.cachePolicy = kPFCachePolicyNetworkElseCache;
     
     NSArray *getAllBook = [query findObjects];
-    NSLog(@"getAllBook %@",getAllBook);
     
     return getAllBook;
 }
@@ -234,38 +220,6 @@
     
     NSLog(@"average %ld",(long)average);
     return average;
-}
-
-/*
- *  Method : adduserInterestBook
- *  Des : user interesting book can add more than one
- *  param : selected = selected Category
- *
- */
-+(void)adduserInterestBook:(NSArray *)selected {
-    
-}
-
-/*
- *  Method : getUserInterestBook
- *  Des : get about user interest from selected
- *
- */
-+(NSArray *)getUserInterestBook {
-    NSArray *array;
-    
-    
-    return array;
-}
-
-
-/*
- *  Method : notificationWithInterestBookCommingNew
- *  Des : if book selected interest new release. It will notice
- *
- */
-+(void)notificationWithInterestBookCommingNew {
-    
 }
 
 @end

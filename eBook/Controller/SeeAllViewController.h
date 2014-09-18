@@ -12,5 +12,6 @@
 
 @property (nonatomic,strong) NSString *titleName;
 @property (nonatomic,strong) NSArray *bookData;
-
+@property (nonatomic,strong) NSArray *getAllCategory;
+@property (nonatomic,strong) NSArray *getAllAuthor;
 @end

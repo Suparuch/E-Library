@@ -12,10 +12,14 @@
 #import <Parse/Parse.h>
 #import "BooksManager.h"
 #import "UIColor+HexString.h"
+#import "Books.h"
 
 @interface SeeAllViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (strong,nonatomic) UICollectionView *myCollectionView;
+@property (strong,nonatomic) NSArray *bookAdd;
+@property (strong,nonatomic) NSArray *getBookRelation;
+
 @end
 
 @implementation SeeAllViewController
@@ -27,9 +31,10 @@
     // Do any additional setup after loading the view from its nib.
     
     self.title = self.titleName;
-    NSLog(@"bookData %@",self.bookData);
     
     [self addCollectionView];
+    
+    self.bookAdd = [BooksManager getAllBookDidAdd];
     
     UINib *nib = [UINib nibWithNibName:@"SeeAllCell" bundle:nil];
     [myCollectionView registerNib:nib forCellWithReuseIdentifier:@"cellIdentifier"];
@@ -39,6 +44,12 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    return (touch.view == self.view);
+}
+
 
 - (void)addCollectionView {
     
@@ -73,8 +84,14 @@
     SeeAllCell *cell = (SeeAllCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
     cell.bookNameLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"bookname"];
-    cell.authorLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"authorname"];
     cell.datePublishLabel.text = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"publisher"];
+    
+    for (int i = 0;i < self.getAllAuthor.count; i++) {
+        if ([[[self.bookData objectAtIndex:indexPath.row] valueForKeyPath:@"authorId.objectId"] isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+            cell.authorLabel.text = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
+            break;
+        }
+    }
     
     // set imagebook
     PFFile *userImageFile = [[self.bookData objectAtIndex:indexPath.row]valueForKey:@"imagebook"];
@@ -89,10 +106,8 @@
     [cell.submit setTitle:@"FREE" forState:UIControlStateNormal];
     [cell.submit addTarget:self action:@selector(addOrder:) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    NSArray *bookAdd = [BooksManager getAllBookDidAdd];
-    for (int i = 0; i < bookAdd.count; i++) {
-        NSString *bookname = [[bookAdd objectAtIndex:i]valueForKey:@"bookname"];
+    for (int i = 0; i < self.bookAdd.count; i++) {
+        NSString *bookname = [[self.bookAdd objectAtIndex:i]valueForKey:@"bookname"];
         
         if ([[[self.bookData objectAtIndex:indexPath.row]valueForKey:@"bookname"] isEqualToString:bookname]) {
             cell.submit.layer.borderWidth = 1;
@@ -133,9 +148,41 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self openDetailBook:self.bookData index:indexPath.row];
+    
+}
+
+// open detail book
+- (void)openDetailBook:(NSArray *)bookData index:(NSInteger)index{
     
     DetailBookViewController *controller = [[DetailBookViewController alloc] initWithNibName:@"DetailBookViewController" bundle:nil];
-    controller.view.frame = self.navigationController.view.bounds;
+    controller.detailItem = [bookData objectAtIndex:index];
+    
+    for (NSArray *book in bookData) {
+        
+        for (int i = 0; i < bookData.count; i++) {
+            
+            if ([[[self.getAllCategory objectAtIndex:i]valueForKey:@"objectId"] isEqualToString:[book valueForKeyPath:@"categoryId.objectId"]]) {
+                
+                controller.cateogryName = [[self.getAllCategory objectAtIndex:i]valueForKey:@"categoryname"];
+                break;
+            }
+        }
+    }
+    
+    self.getBookRelation = [Books getRelationBook:bookData authorname:[[bookData objectAtIndex:index]valueForKeyPath:@"authorId.objectId"]];
+    
+    controller.bookDataRelation = self.getBookRelation;
+    
+    for (NSArray *book in bookData) {
+        for (int i = 0;i < self.getAllAuthor.count; i++) {
+            
+            if ([[book valueForKeyPath:@"authorId.objectId"] isEqualToString:[[self.getAllAuthor objectAtIndex:i] valueForKey:@"objectId"]]) {
+                controller.nameAuthor = [[self.getAllAuthor objectAtIndex:i] valueForKey:@"authorname"];
+                break;
+            }
+        }
+    }
     
     UINavigationController *childNavController = [[UINavigationController alloc] initWithRootViewController:controller];
     childNavController.view.frame = controller.view.frame;
@@ -148,8 +195,8 @@
     } completion:^(BOOL finished) {
         [controller didMoveToParentViewController:self];
     }];
-    
 }
+
 
 
 

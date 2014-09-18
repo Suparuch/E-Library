@@ -12,7 +12,7 @@
 
 @protocol relationDelegate <NSObject>
 
-- (void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData;
+- (void)openRelationDataBook:(DetailBookViewController *)controller bookData:(NSArray *)bookData authorName:(NSString *)objectId;
 
 @end
 
@@ -23,6 +23,9 @@
 @property (strong, nonatomic) NSArray *detailItem;
 @property (strong, nonatomic) NSString *cateogryName;
 
-@property (strong, nonatomic) NSArray *authordata;
+@property (strong, nonatomic) NSArray *bookDataRelation;
+@property (strong, nonatomic) NSString *nameAuthor;
 
+@property (strong, nonatomic) NSArray *authorData;
+@property (strong, nonatomic) NSArray *categoryData;
 @end

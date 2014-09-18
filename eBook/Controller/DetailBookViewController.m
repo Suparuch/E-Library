@@ -43,6 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self changeBackground];
     [self createUI];
     self.segmentSelect.selectedSegmentIndex = 0;
@@ -52,15 +53,15 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"InformationCell" bundle:nil] forCellReuseIdentifier:@"informationCell"];
     
-    //NSLog(@"bookData %@",self.detailItem);
     //NSLog(@"authorData %@",self.authordata);
+    //NSLog(@"authorName %@",self.nameAuthor);
 }
 
 - (void)addRelation {
     
     //add label top10
     top10text = [[UILabel alloc]initWithFrame:CGRectMake(10, 160, self.view.frame.size.width, 310)];
-    top10text.text = [NSString stringWithFormat:@"More by %@",[self.detailItem valueForKey:@"authorname"]];
+    top10text.text = [NSString stringWithFormat:@"More by %@",self.nameAuthor];
     top10text.font = [UIFont boldSystemFontOfSize:16];
     [self.dataView addSubview:top10text];
     
@@ -134,7 +135,7 @@
     self.bookName.text = [self.detailItem valueForKey:@"bookname"];
     self.bookName.adjustsFontSizeToFitWidth  = YES;
     
-    self.authorName.text = [self.detailItem valueForKey:@"authorname"];
+    self.authorName.text = self.nameAuthor;
     self.publishName.text = [self.detailItem valueForKey:@"publisher"];
     self.numberPage.text = [[self.detailItem valueForKey:@"page"]stringValue];
     
@@ -219,7 +220,7 @@
         
         cell.languageText.text = [self.detailItem valueForKey:@"language"];
         cell.categoryText.text = self.cateogryName;
-        cell.publisherText.text = [self.detailItem valueForKey:@"authorname"];
+        cell.publisherText.text = self.nameAuthor;
         cell.publishedText.text = [self.detailItem valueForKey:@"publisher"];
         cell.sizeText.text = [self.detailItem valueForKey:@"filesize"];
         cell.printLengthText.text = [[self.detailItem valueForKey:@"page"]stringValue];
@@ -265,7 +266,7 @@
 #pragma swipView
 - (NSInteger)numberOfItemsInSwipeView:(SwipeView *)swipeView
 {
-    return self.authordata.count;
+    return self.bookDataRelation.count;
 }
 
 - (UIView *)swipeView:(SwipeView *)swipeView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
@@ -277,12 +278,12 @@
         
         // set bookname
         UILabel *bookName = (UILabel *)[view viewWithTag:101];
-        bookName.text = [[self.authordata objectAtIndex:index] valueForKey:@"bookname"];
+        bookName.text = [[self.bookDataRelation objectAtIndex:index] valueForKey:@"bookname"];
         bookName.adjustsFontSizeToFitWidth  = YES;
         
         // set author
         UILabel *author = (UILabel *)[view viewWithTag:102];
-        author.text = [[self.authordata objectAtIndex:index] valueForKey:@"authorname"];
+        author.text = self.nameAuthor;
         
         
         // set button to view detail
@@ -290,7 +291,7 @@
         [button addTarget:self action:@selector(seebook:) forControlEvents:UIControlEventTouchUpInside];
         
         // set imagebook
-        PFFile *userImageFile = [[self.authordata objectAtIndex:index]valueForKey:@"imagebook"];
+        PFFile *userImageFile = [[self.bookDataRelation objectAtIndex:index]valueForKey:@"imagebook"];
         [userImageFile getDataInBackgroundWithBlock:^(NSData *imageData, NSError *error) {
             if (!error) {
                 UIImage *image = [UIImage imageWithData:imageData];
@@ -307,13 +308,12 @@
 #pragma Buttom Action
 
 - (IBAction)seeAllRelated:(id)sender {
-//    
-    NSLog(@"author %@",self.authordata);
     
     SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
-    NSString *authorname = [NSString stringWithFormat:@"More by %@",[[self.authordata objectAtIndex:0]valueForKey:@"authorname"]];
-    seeAll.titleName = authorname;
-    seeAll.bookData = self.authordata;
+    seeAll.titleName = self.nameAuthor;
+    seeAll.bookData = self.bookDataRelation;
+    seeAll.getAllAuthor = self.authorData;
+    seeAll.getAllCategory = self.categoryData;
     
     [self.navigationController pushViewController:seeAll animated:YES];
     
@@ -325,10 +325,9 @@
     
     NSInteger index = [swipeView1 indexOfItemViewOrSubview:sender];
     
-    NSArray *bookRelation = [self.authordata objectAtIndex:index];
-    NSLog(@"bookRelationname %@",[bookRelation valueForKey:@"bookname"]);
+    NSArray *bookRelation = [self.bookDataRelation objectAtIndex:index];
     
-    [self.delegate openRelationDataBook:self bookData:bookRelation];
+    [self.delegate openRelationDataBook:self bookData:bookRelation authorName:[[self.bookDataRelation objectAtIndex:index]valueForKeyPath:@"authorId.objectId"]];
 }
 
 

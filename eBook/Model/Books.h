@@ -11,9 +11,9 @@
 @interface Books : NSObject
 
 +(NSArray *)getAllBook;
++(NSArray *)getAuthorData;
 +(NSArray *)getRelationBook:(NSArray *)data authorname:(NSString *)authorname;
 +(NSArray *)getTop10Book:(NSArray *)data;
 +(NSArray *)getNewRelease:(NSArray *)data;
-+(NSArray *)getBookImageHighlight:(NSArray *)data;
 
 @end

@@ -30,6 +30,20 @@
 }
 
 /*
+ *  Method : getAuthorData
+ *  Des : get author data
+ *
+ */
++(NSArray *)getAuthorData {
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Publisher"];
+    query.cachePolicy = kPFCachePolicyNetworkElseCache;
+    NSArray *authorData = [query findObjects];
+    
+    return authorData;
+}
+
+/*
  *  Method : getTop10Book
  *  Des : sort book with downloadcount
  *  param : data = AllBook
@@ -61,43 +75,22 @@
     return bookData;
 }
 
-
-/*
- *  Method : getTop10Book
- *  Des : sort book with downloadcount
- *  param : data = AllBook
- *
- */
-+(NSArray *)getBookImageHighlight:(NSArray *)data {
-    
-    NSMutableArray *bookData = [[NSMutableArray alloc]initWithCapacity:data.count];
-    
-    for (int i = 0; i < data.count; i++) {
-        if ([[data objectAtIndex:i]valueForKey:@"highlightimage"]) {
-            [bookData addObject:[data objectAtIndex:i]];
-        }
-    }
-    
-    return bookData;
-}
-
 /*
  *  Method : getRelationBook
  *  Des : get All with author relation
  *  param : data = AllBook
- *          authorname = authorname
+ *          authorname = Author objectId
  *
  */
 +(NSArray *)getRelationBook:(NSArray *)data authorname:(NSString *)authorname {
-
+    
     NSMutableArray *bookData = [[NSMutableArray alloc]initWithCapacity:data.count];
-
+    
     for (int i = 0; i < data.count; i++) {
-        if ([[[data objectAtIndex:i] valueForKey:@"authorname"] isEqualToString:authorname]) {
+        if ([[[data objectAtIndex:i] valueForKeyPath:@"authorId.objectId"] isEqualToString:authorname]) {
             [bookData addObject:[data objectAtIndex:i]];
         }
     }
-    NSLog(@"bookData %@",bookData);
     return bookData;
 }
 

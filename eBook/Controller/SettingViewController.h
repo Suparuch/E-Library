@@ -10,4 +10,6 @@
 
 @interface SettingViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIView *mainview;
+
 @end
