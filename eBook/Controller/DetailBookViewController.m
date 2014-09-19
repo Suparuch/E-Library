@@ -255,7 +255,7 @@
     
     BooksManager *book = [[BooksManager alloc]init];
     [book addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
-    [book writeToPhoto:[self.detailItem valueForKey:@"bookname"] image:[self.detailItem valueForKey:@"imagebook"]];
+    [book writeToPhoto:[self.detailItem valueForKey:@"bookname"] image:[self.detailItem valueForKey:@"imagebook"] imageInSeeAll:nil];
     
     UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:nil cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];

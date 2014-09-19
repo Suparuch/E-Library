@@ -16,7 +16,7 @@
 + (NSArray *)searchBookWithCategory:(NSString *)category;
 + (NSArray *)getAllBookDidAdd;
 - (void)addBookToDownload:(NSString *)select;
-- (void) writeToPhoto:(NSString *)bookname image:(PFFile *)image;
+-(void) writeToPhoto:(NSString *)bookname image:(PFFile *)image imageInSeeAll:(UIImage *)imageSeeAll;
 + (void)saveRating:(NSInteger)rating withName:(NSString *)bookname;
 + (NSInteger)getRating:(NSString *)bookname;
 + (NSArray *)getReview:(NSString *)bookId;

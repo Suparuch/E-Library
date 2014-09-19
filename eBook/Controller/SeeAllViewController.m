@@ -102,10 +102,6 @@
         }
     }];
     
-    
-    [cell.submit setTitle:@"FREE" forState:UIControlStateNormal];
-    [cell.submit addTarget:self action:@selector(addOrder:) forControlEvents:UIControlEventTouchUpInside];
-    
     for (int i = 0; i < self.bookAdd.count; i++) {
         NSString *bookname = [[self.bookAdd objectAtIndex:i]valueForKey:@"bookname"];
         
@@ -132,10 +128,6 @@
     
     cell.backgroundColor= [[UIColor greenColor]colorWithAlphaComponent:0.1];
     return cell;
-}
-
--(IBAction)addOrder:(id)sender {
-    NSLog(@"add");
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

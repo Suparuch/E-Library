@@ -76,7 +76,7 @@
  *          image = image
  *
  */
--(void) writeToPhoto:(NSString *)bookname image:(PFFile *)image{
+-(void) writeToPhoto:(NSString *)bookname image:(PFFile *)image imageInSeeAll:(UIImage *)imageSeeAll {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
@@ -94,9 +94,14 @@
     
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
     if (!fileExists) {
-        PFFile *userImageFile = image;
-        NSData *imageData = [userImageFile getData];
-        [imageData writeToFile:filePath atomically:YES];
+        if (image != nil) {
+            PFFile *userImageFile = image;
+            NSData *imageData = [userImageFile getData];
+            [imageData writeToFile:filePath atomically:YES];
+        } else {
+            NSData *imageData = UIImagePNGRepresentation(imageSeeAll);
+            [imageData writeToFile:filePath atomically:YES];
+        }
     }
 }
 

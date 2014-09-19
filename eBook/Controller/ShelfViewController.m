@@ -105,7 +105,7 @@
     
     if (image == nil) {
         BooksManager *book = [[BooksManager alloc]init];
-        [book writeToPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"] image:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"imagebook"]];
+        [book writeToPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"] image:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"imagebook"] imageInSeeAll:nil];
         
         cell.image.image = [BooksManager retriveAllPhoto:[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"]];
     } else {

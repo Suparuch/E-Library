@@ -17,7 +17,7 @@
 - (void)awakeFromNib {
     // Initialization code
 }
-/*
+
 - (IBAction)summitAction:(id)sender {
     
     [self.submit setFrame:CGRectMake(227,65,80, 40)];
@@ -39,11 +39,11 @@
     self.submit.enabled = NO;
     
     BooksManager *book = [[BooksManager alloc]init];
-    [book addBookToDownload:[self.detailItem valueForKey:@"bookname"]];
-    [book writeToPhoto:[self.detailItem valueForKey:@"bookname"] image:[self.detailItem valueForKey:@"imagebook"]];
+    [book addBookToDownload:self.bookNameLabel.text];
+    [book writeToPhoto:self.bookNameLabel.text image:nil imageInSeeAll:self.imageBook.image];
     
     UIAlertView *aleartView = [[UIAlertView alloc]initWithTitle:@"Success" message:@"Book already add to your shelf" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
     [aleartView show];
-}*/
+}
 
 @end
