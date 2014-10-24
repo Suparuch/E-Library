@@ -16,6 +16,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    self.bookNameLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (IBAction)summitAction:(id)sender {

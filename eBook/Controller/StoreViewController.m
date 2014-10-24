@@ -22,6 +22,7 @@
 #import "ReportViewController.h"
 #import "AboutViewController.h"
 
+
 @interface StoreViewController () <iCarouselDataSource,iCarouselDelegate,SwipeViewDataSource,SwipeViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -31,8 +32,6 @@
 @property (strong, nonatomic) UIView *titleView2;
 @property (strong, nonatomic) UIView *titleView3;
 @property (strong, nonatomic) UIView *titleView4;
-
-@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @property (strong, nonatomic) UISearchBar *mySearchBar;
 @property (weak, nonatomic) UIToolbar *toolBar;
@@ -52,9 +51,6 @@
 @property (nonatomic, strong) NSArray *getBookRelation;
 
 @property (nonatomic, strong) NSMutableArray *getBookCategory;
-@property (nonatomic, strong) NSString *categoryName;
-
-@property (nonatomic, assign) BOOL isFiltered;
 
 @end
 
@@ -94,7 +90,9 @@
     [self addTop10Book];
     [self addCategoryView];
     [self addNewsRelease];
-    [self addSearchView];
+    [self customView];
+    
+    [carousel1 scrollToItemAtIndex:2 animated:YES];
 }
 
 - (void)viewDidUnload
@@ -132,7 +130,6 @@
     
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        NSLog(@"Login");
     } else {
         // show the signup or login screen
         LoginViewController *logIn = [[LoginViewController alloc]init];
@@ -158,6 +155,7 @@
     carousel1.delegate = self;
     carousel1.dataSource = self;
     carousel1.scrollEnabled = YES;
+    [carousel1 scrollToItemAtIndex:5 duration:10.0f];
     
     //add carousel to view
     [self.titleView addSubview:carousel1];
@@ -499,7 +497,7 @@
 
 - (void)openSeeAll:(NSArray *)bookArray titleName:(NSString *)title{
     
-    SeeAllViewController *seeAll = [[SeeAllViewController alloc]initWithNibName:@"SeeAllViewController" bundle:nil];
+    SeeAllViewController *seeAll = [[SeeAllViewController alloc]init];
     
     seeAll.titleName = title;
     seeAll.bookData = bookArray;
@@ -510,21 +508,14 @@
 }
 
 // open setting
-- (IBAction)showEdit:(id)sender {
+- (void)settingTapped:(id)sender {
+
+    SettingViewController *settingVC = [[SettingViewController alloc] init];
+    UINavigationController *settingNC = [[UINavigationController alloc] initWithRootViewController:settingVC];
+    settingNC.modalPresentationStyle = UIModalPresentationFormSheet;
     
-    SettingViewController *controller = [[SettingViewController alloc]initWithNibName:@"SettingViewController" bundle:nil];
-    
-    controller.view.frame = self.view.bounds;
-    
-    [self.view addSubview:controller.view];
-    [controller didMoveToParentViewController:self];
-    [self addChildViewController:controller];
-    
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
-    
-    [self.view addSubview:navController.view];
-    [controller didMoveToParentViewController:self];
-    [self addChildViewController:navController];
+    [self.navigationController presentViewController:settingNC animated:YES completion:NULL];
+ 
 }
 
 
@@ -537,8 +528,6 @@
     controller.delegate = self;
     controller.authorData = self.getAllAuthor;
     controller.categoryData = self.getAllCategory;
-    
-    NSLog(@"getAllAuthor %@",self.getAllAuthor);
     
     for (int i = 0; i < bookData.count; i++) {
         
@@ -576,17 +565,19 @@
 #pragma mark - UISearchBarDelegate
 
 
-- (void)addSearchView {
+- (void)customView {
     
     mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 150.0f, 30.0f)];
     mySearchBar.barStyle = UIBarStyleDefault;
     mySearchBar.delegate = self;
+
     [mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     mySearchBar.placeholder = @"Search Store";
     
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"LogoEdit.png"] landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(showEdit:)];
+    UIBarButtonItem *settingButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"Setting.png"] landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(settingTapped:)];
     
-    self.navigationItem.rightBarButtonItems = @[editButton,[[UIBarButtonItem alloc] initWithCustomView:mySearchBar]];
+    self.navigationItem.rightBarButtonItems = @[settingButton,[[UIBarButtonItem alloc] initWithCustomView:mySearchBar]];
+    
 }
 
 
@@ -737,4 +728,8 @@
         [controller didMoveToParentViewController:self];
     }];
 }
+- (void)scrollToItemAtIndex:(NSInteger)index duration:(NSTimeInterval)scrollDuration {
+    
+}
+
 @end

@@ -12,6 +12,8 @@
 #import "ShelfViewController.h"
 #import "SettingViewController.h"
 
+
+
 @interface LoginViewController () <UserDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
@@ -26,6 +28,13 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.hidden = YES;
+    
+    [self customView];
+}
+
+- (void) customView {
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

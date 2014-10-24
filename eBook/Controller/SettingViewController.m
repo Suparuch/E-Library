@@ -13,46 +13,51 @@
 #import "ReportViewController.h"
 #import "AboutViewController.h"
 
-@interface SettingViewController () <UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *myTableVIew;
-@property (strong, nonatomic) UINavigationBar *navbar;
-@end
-
-@implementation SettingViewController
+@interface SettingViewController ()
 {
     NSArray *allMenu;
 }
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Setting";
-    }
-    return self;
-}
+@end
+
+@implementation SettingViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
-    
-    self.myTableVIew.delegate = self;
-    self.myTableVIew.dataSource = self;
+    self.title = @"Setting";
     
     allMenu = @[@"My Profile",@"Account",@"Notifications",@"Help",@"Report a Problem",@"About E-Book Store"];
     
-    [self changeBackground];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+    
+    // Dismissing  ViewControllers clicking outside of it
 }
 
-- (void)setBackGround {
-    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.7];
+- (void)handleTapBehind:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:nil]; //Passing nil gives us coordinates in the window
+        
+        //Then we convert the tap's location into the local view's coordinate system, and test to see if it's in or outside. If outside, dismiss the view.
+        
+        if (![self.view pointInside:[self.view convertPoint:location fromView:self.view.window] withEvent:nil])
+        {
+            // Remove the recognizer first so it's view.window is valid.
+            [self.view.window removeGestureRecognizer:sender];
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     return allMenu.count;
 }
 
@@ -87,30 +92,6 @@
     }
     
     [self.myTableVIew deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)changeBackground {
-    self.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
-    [self.myTableVIew layer].cornerRadius = 10;
-    
-    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(close:)];
-    gestureRecognizer.cancelsTouchesInView = NO;
-    gestureRecognizer.delegate = self;
-    [self.view addGestureRecognizer:gestureRecognizer];
-}
-
-- (void)close:(id)sender {
-    [self willMoveToParentViewController:nil];
-    [self beginAppearanceTransition:NO animated:YES];
-    [UIView  animateWithDuration:0.3
-                      animations:^(void){
-                          self.view.alpha = 0.0;
-                      }
-                      completion:^(BOOL finished) {
-                          [self endAppearanceTransition];
-                          [self.view removeFromSuperview];
-                          [self removeFromParentViewController];
-                      }];
 }
 
 @end

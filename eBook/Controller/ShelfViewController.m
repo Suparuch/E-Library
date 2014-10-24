@@ -12,6 +12,7 @@
 #import "BooksManager.h"
 #import "ReaderViewController.h"
 #import "UIColor+HexString.h"
+#import "Reachability.h"
 
 @interface ShelfViewController () <UICollectionViewDataSource,UICollectionViewDelegate,ReaderViewControllerDelegate>
 
@@ -112,7 +113,8 @@
         cell.image.image = image;
     }
     
-    cell.bookname.text =[[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"];
+    cell.bookname.text = [[self.getAllBookAdd objectAtIndex:indexPath.row] valueForKey:@"bookname"];
+    
     cell.image.layer.borderWidth = 1;
     cell.image.layer.masksToBounds = YES;
     cell.image.layer.cornerRadius = 6;
@@ -196,9 +198,7 @@
     }
 }
 
--(void)didClickOpenPDF:(NSInteger *)i {
-    
-    BOOL success;
+-(void)didClickOpenPDF:(NSInteger)i {
     
     NSString* filePathName = [[self.getAllBookAdd objectAtIndex:i]valueForKey:@"bookname"];
     
@@ -207,8 +207,9 @@
     NSString *dataPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[PFUser currentUser].username];
     NSString *filePath = [dataPath stringByAppendingPathComponent:filePathName];
     
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    BOOL success;
     success = [fileManager fileExistsAtPath:filePath];
     if (success) {
         NSLog(@"Open : %@",filePathName);

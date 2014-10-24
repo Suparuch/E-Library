@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D66F42119B5F37A001CA7E1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */; };
-		2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */; };
 		2D66F42919B5FA70001CA7E1 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */; };
+		2DFDDA5819F676A9009ECD7C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DFDDA5719F676A9009ECD7C /* LoginViewController.xib */; };
 		44042CE319C6A8ED00204DA7 /* SeeAllCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44042CE119C6A8ED00204DA7 /* SeeAllCell.m */; };
 		44042CE419C6A8ED00204DA7 /* SeeAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44042CE219C6A8ED00204DA7 /* SeeAllCell.xib */; };
 		44042CE919C6B1D300204DA7 /* SeeAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44042CE719C6B1D300204DA7 /* SeeAllViewController.m */; };
@@ -48,7 +48,6 @@
 		444F20B619B48A2C00BE4C26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B519B48A2C00BE4C26 /* main.m */; };
 		444F20B919B48A2C00BE4C26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20B819B48A2C00BE4C26 /* AppDelegate.m */; };
 		444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 444F20C319B48A2C00BE4C26 /* Images.xcassets */; };
-		444F20D019B48A2C00BE4C26 /* eBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 444F20CF19B48A2C00BE4C26 /* eBookTests.m */; };
 		444F20EB19B4C10500BE4C26 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EA19B4C10500BE4C26 /* Parse.framework */; };
 		444F20ED19B4C13500BE4C26 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EC19B4C13500BE4C26 /* AudioToolbox.framework */; };
 		444F20EF19B4C13D00BE4C26 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 444F20EE19B4C13D00BE4C26 /* CFNetwork.framework */; };
@@ -75,7 +74,7 @@
 		44AA120019C72D880080CA78 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AA11FF19C72D880080CA78 /* Reachability.m */; };
 		44AB916619CA8A3D00AAEA56 /* page@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AB916319CA8A3D00AAEA56 /* page@2x.png */; };
 		44AB916719CA8A3D00AAEA56 /* SG-Emblem-Color-EN@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44AB916419CA8A3D00AAEA56 /* SG-Emblem-Color-EN@2x.jpg */; };
-		44AB916919CA8C7900AAEA56 /* LogoEdit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AB916819CA8C7900AAEA56 /* LogoEdit@2x.png */; };
+		44AB916919CA8C7900AAEA56 /* Setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44AB916819CA8C7900AAEA56 /* Setting@2x.png */; };
 		44BA71DF19C95926001FDA92 /* PopupSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BA71DD19C95926001FDA92 /* PopupSearchTableViewController.m */; };
 		44BA71E019C95926001FDA92 /* PopupSearchTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44BA71DE19C95926001FDA92 /* PopupSearchTableViewController.xib */; };
 		44BC186819B8C80100BAC2FC /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 44BC186719B8C80100BAC2FC /* UIColor+HexString.m */; };
@@ -116,9 +115,9 @@
 /* Begin PBXFileReference section */
 		2D66F41E19B5F37A001CA7E1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		2D66F42519B5FA70001CA7E1 /* StoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
 		2D66F42719B5FA70001CA7E1 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
+		2DFDDA5719F676A9009ECD7C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		44042CE019C6A8ED00204DA7 /* SeeAllCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeeAllCell.h; sourceTree = "<group>"; };
 		44042CE119C6A8ED00204DA7 /* SeeAllCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeeAllCell.m; sourceTree = "<group>"; };
 		44042CE219C6A8ED00204DA7 /* SeeAllCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SeeAllCell.xib; sourceTree = "<group>"; };
@@ -179,15 +178,13 @@
 		44317CE519B90A65002045F1 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		44317CE719B90A74002045F1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		44317CE919B90A7C002045F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		444F20B019B48A2C00BE4C26 /* eBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		444F20B019B48A2C00BE4C26 /* E-Library.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "E-Library.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20B419B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444F20B519B48A2C00BE4C26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		444F20B719B48A2C00BE4C26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		444F20B819B48A2C00BE4C26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		444F20C319B48A2C00BE4C26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		444F20C919B48A2C00BE4C26 /* eBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = eBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		444F20CE19B48A2C00BE4C26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		444F20CF19B48A2C00BE4C26 /* eBookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = eBookTests.m; sourceTree = "<group>"; };
+		444F20C919B48A2C00BE4C26 /* E-LibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "E-LibraryTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		444F20EA19B4C10500BE4C26 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		444F20EC19B4C13500BE4C26 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		444F20EE19B4C13D00BE4C26 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -223,7 +220,7 @@
 		44AA11FF19C72D880080CA78 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		44AB916319CA8A3D00AAEA56 /* page@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "page@2x.png"; sourceTree = "<group>"; };
 		44AB916419CA8A3D00AAEA56 /* SG-Emblem-Color-EN@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "SG-Emblem-Color-EN@2x.jpg"; sourceTree = "<group>"; };
-		44AB916819CA8C7900AAEA56 /* LogoEdit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoEdit@2x.png"; sourceTree = "<group>"; };
+		44AB916819CA8C7900AAEA56 /* Setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Setting@2x.png"; sourceTree = "<group>"; };
 		44BA71DC19C95926001FDA92 /* PopupSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupSearchTableViewController.h; sourceTree = "<group>"; };
 		44BA71DD19C95926001FDA92 /* PopupSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupSearchTableViewController.m; sourceTree = "<group>"; };
 		44BA71DE19C95926001FDA92 /* PopupSearchTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupSearchTableViewController.xib; sourceTree = "<group>"; };
@@ -307,10 +304,17 @@
 				44D4441019C56D6E00B18962 /* StoreView */,
 				2D66F41E19B5F37A001CA7E1 /* LoginViewController.h */,
 				2D66F41F19B5F37A001CA7E1 /* LoginViewController.m */,
-				2D66F42019B5F37A001CA7E1 /* LoginViewController.xib */,
+				2DFDDA5719F676A9009ECD7C /* LoginViewController.xib */,
 				440D878319B62D5E0067EE28 /* Setting */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		2DFDDA5919F679DB009ECD7C /* Backgroud Layer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Backgroud Layer";
 			sourceTree = "<group>";
 		};
 		44042CD319C69EED00204DA7 /* SeeAll */ = {
@@ -442,7 +446,6 @@
 			children = (
 				444F20B219B48A2C00BE4C26 /* eBook */,
 				444F20E919B4C0E800BE4C26 /* Frameworks */,
-				444F20CC19B48A2C00BE4C26 /* eBookTests */,
 				444F20B119B48A2C00BE4C26 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -450,8 +453,8 @@
 		444F20B119B48A2C00BE4C26 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				444F20B019B48A2C00BE4C26 /* eBook.app */,
-				444F20C919B48A2C00BE4C26 /* eBookTests.xctest */,
+				444F20B019B48A2C00BE4C26 /* E-Library.app */,
+				444F20C919B48A2C00BE4C26 /* E-LibraryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -476,23 +479,6 @@
 			children = (
 				444F20B419B48A2C00BE4C26 /* Info.plist */,
 				444F20B519B48A2C00BE4C26 /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		444F20CC19B48A2C00BE4C26 /* eBookTests */ = {
-			isa = PBXGroup;
-			children = (
-				444F20CF19B48A2C00BE4C26 /* eBookTests.m */,
-				444F20CD19B48A2C00BE4C26 /* Supporting Files */,
-			);
-			path = eBookTests;
-			sourceTree = "<group>";
-		};
-		444F20CD19B48A2C00BE4C26 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				444F20CE19B48A2C00BE4C26 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -641,7 +627,7 @@
 		44D04CF319B6E7F000CD32FD /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				44AB916819CA8C7900AAEA56 /* LogoEdit@2x.png */,
+				44AB916819CA8C7900AAEA56 /* Setting@2x.png */,
 				44AB916319CA8A3D00AAEA56 /* page@2x.png */,
 				44AB916419CA8A3D00AAEA56 /* SG-Emblem-Color-EN@2x.jpg */,
 			);
@@ -660,6 +646,7 @@
 		44D04D0819B709AE00CD32FD /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2DFDDA5919F679DB009ECD7C /* Backgroud Layer */,
 				4454AD9C19C89696004D17FD /* ShelfCell */,
 				44042CE519C6A90000204DA7 /* SeeAllColection */,
 				44D69C2519B80CE60089F639 /* DetailCell */,
@@ -715,9 +702,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		444F20AF19B48A2C00BE4C26 /* eBook */ = {
+		444F20AF19B48A2C00BE4C26 /* E-Library */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 444F20D319B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "eBook" */;
+			buildConfigurationList = 444F20D319B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "E-Library" */;
 			buildPhases = (
 				444F20AC19B48A2C00BE4C26 /* Sources */,
 				444F20AD19B48A2C00BE4C26 /* Frameworks */,
@@ -727,14 +714,14 @@
 			);
 			dependencies = (
 			);
-			name = eBook;
+			name = "E-Library";
 			productName = eBook;
-			productReference = 444F20B019B48A2C00BE4C26 /* eBook.app */;
+			productReference = 444F20B019B48A2C00BE4C26 /* E-Library.app */;
 			productType = "com.apple.product-type.application";
 		};
-		444F20C819B48A2C00BE4C26 /* eBookTests */ = {
+		444F20C819B48A2C00BE4C26 /* E-LibraryTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 444F20D619B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "eBookTests" */;
+			buildConfigurationList = 444F20D619B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "E-LibraryTests" */;
 			buildPhases = (
 				444F20C519B48A2C00BE4C26 /* Sources */,
 				444F20C619B48A2C00BE4C26 /* Frameworks */,
@@ -745,9 +732,9 @@
 			dependencies = (
 				444F20CB19B48A2C00BE4C26 /* PBXTargetDependency */,
 			);
-			name = eBookTests;
+			name = "E-LibraryTests";
 			productName = eBookTests;
-			productReference = 444F20C919B48A2C00BE4C26 /* eBookTests.xctest */;
+			productReference = 444F20C919B48A2C00BE4C26 /* E-LibraryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -761,6 +748,7 @@
 				TargetAttributes = {
 					444F20AF19B48A2C00BE4C26 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 7KJK6HZWTM;
 					};
 					444F20C819B48A2C00BE4C26 = {
 						CreatedOnToolsVersion = 6.0;
@@ -768,7 +756,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 444F20AB19B48A2C00BE4C26 /* Build configuration list for PBXProject "eBook" */;
+			buildConfigurationList = 444F20AB19B48A2C00BE4C26 /* Build configuration list for PBXProject "E-Library" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -781,8 +769,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				444F20AF19B48A2C00BE4C26 /* eBook */,
-				444F20C819B48A2C00BE4C26 /* eBookTests */,
+				444F20AF19B48A2C00BE4C26 /* E-Library */,
+				444F20C819B48A2C00BE4C26 /* E-LibraryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -800,9 +788,9 @@
 				44CE48BE19B6E06100844AF6 /* ChangePasswordViewController.xib in Resources */,
 				444F20C419B48A2C00BE4C26 /* Images.xcassets in Resources */,
 				44042CEA19C6B1D300204DA7 /* SeeAllViewController.xib in Resources */,
+				2DFDDA5819F676A9009ECD7C /* LoginViewController.xib in Resources */,
 				4486DE1419C5B8120031437D /* CategoryView.xib in Resources */,
 				44D91EC319B6D935001DD683 /* AccountTableViewController.xib in Resources */,
-				2D66F42219B5F37A001CA7E1 /* LoginViewController.xib in Resources */,
 				4454AD9B19C89667004D17FD /* ShelfCell.xib in Resources */,
 				44AB916619CA8A3D00AAEA56 /* page@2x.png in Resources */,
 				44D69C3A19B825770089F639 /* ReviewCell.xib in Resources */,
@@ -811,7 +799,7 @@
 				44AB916719CA8A3D00AAEA56 /* SG-Emblem-Color-EN@2x.jpg in Resources */,
 				44D04CF219B6E7CC00CD32FD /* AboutViewController.xib in Resources */,
 				4486DE0E19C59C3A0031437D /* StoreBookView.xib in Resources */,
-				44AB916919CA8C7900AAEA56 /* LogoEdit@2x.png in Resources */,
+				44AB916919CA8C7900AAEA56 /* Setting@2x.png in Resources */,
 				44BA71E019C95926001FDA92 /* PopupSearchTableViewController.xib in Resources */,
 				44D04D3C19B7156400CD32FD /* DetailBookViewController.xib in Resources */,
 				440D878919B62D8B0067EE28 /* ProfileViewController.xib in Resources */,
@@ -892,7 +880,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				444F20D019B48A2C00BE4C26 /* eBookTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -901,7 +888,7 @@
 /* Begin PBXTargetDependency section */
 		444F20CB19B48A2C00BE4C26 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 444F20AF19B48A2C00BE4C26 /* eBook */;
+			target = 444F20AF19B48A2C00BE4C26 /* E-Library */;
 			targetProxy = 444F20CA19B48A2C00BE4C26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -926,6 +913,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -941,7 +929,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -967,6 +955,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -976,7 +965,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -989,6 +978,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -996,7 +988,9 @@
 				INFOPLIST_FILE = eBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "E-Library";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "eBook/Model/View/E-Library-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1008,6 +1002,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -1015,7 +1012,9 @@
 				INFOPLIST_FILE = eBook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "E-Library";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "eBook/Model/View/E-Library-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
@@ -1035,7 +1034,7 @@
 				INFOPLIST_FILE = eBookTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "E-LibraryTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eBook.app/eBook";
 			};
 			name = Debug;
@@ -1051,7 +1050,7 @@
 				INFOPLIST_FILE = eBookTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "E-LibraryTests";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/eBook.app/eBook";
 			};
 			name = Release;
@@ -1059,7 +1058,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		444F20AB19B48A2C00BE4C26 /* Build configuration list for PBXProject "eBook" */ = {
+		444F20AB19B48A2C00BE4C26 /* Build configuration list for PBXProject "E-Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				444F20D119B48A2C00BE4C26 /* Debug */,
@@ -1068,7 +1067,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		444F20D319B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "eBook" */ = {
+		444F20D319B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "E-Library" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				444F20D419B48A2C00BE4C26 /* Debug */,
@@ -1077,7 +1076,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		444F20D619B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "eBookTests" */ = {
+		444F20D619B48A2C00BE4C26 /* Build configuration list for PBXNativeTarget "E-LibraryTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				444F20D719B48A2C00BE4C26 /* Debug */,

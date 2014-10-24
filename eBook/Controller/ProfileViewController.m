@@ -42,7 +42,9 @@
     [self userPhoto];
     [self setText];
     [self logoutButton];
+
 }
+
 
 
 - (void)didReceiveMemoryWarning
@@ -76,9 +78,7 @@
 
 - (void)logoutButton
 {
-    /*
-     UIBarButtonItem *editButton = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"LogoEdit.png"] landscapeImagePhone:nil style:UIBarButtonItemStyleBordered target:self action:@selector(showEdit:)];*/
-    
+   
     UIBarButtonItem *logOut = [[UIBarButtonItem alloc]initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout:)];
     
     logOut.imageInsets = UIEdgeInsetsMake(0, -35, 0, 0);
@@ -94,4 +94,6 @@
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
     [self.navigationController presentViewController:login animated:NO completion:nil];
 }
+
+
 @end

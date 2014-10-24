@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingViewController : UIViewController
+@interface SettingViewController : UIViewController <UITableViewDataSource,UITableViewDelegate,UIGestureRecognizerDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *mainview;
+@property (strong, nonatomic) IBOutlet UITableView *myTableVIew;
 
 @end
