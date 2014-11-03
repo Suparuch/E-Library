@@ -72,7 +72,7 @@
     
     self.navigationItem.hidesBackButton = YES;
     
-    [self curentUserSystem];
+   // [self curentUserSystem];
 }
 
 - (void)viewDidLoad {
