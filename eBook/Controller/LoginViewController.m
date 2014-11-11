@@ -15,8 +15,12 @@
 
 
 @interface LoginViewController () <UserDelegate>
+
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+
 - (IBAction)loginAction:(id)sender;
 - (IBAction)forgotAction:(id)sender;
 
@@ -34,8 +38,22 @@
 
 - (void) customView {
     
+    UIView *usernameView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.usernameTextField.leftView = usernameView;
+    self.usernameTextField.leftViewMode = UITextFieldViewModeAlways;
     
+    UIColor *color = [[UIColor whiteColor] colorWithAlphaComponent:0.65];
+    self.usernameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username" attributes:@{NSForegroundColorAttributeName: color}];
+    
+    UIView *passwordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
+    self.passwordTextField.leftView = passwordView;
+    self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+    
+    self.passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: color}];
+    
+    self.loginButton.layer.cornerRadius = 10;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

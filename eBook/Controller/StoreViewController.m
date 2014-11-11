@@ -72,7 +72,7 @@
     
     self.navigationItem.hidesBackButton = YES;
     
-   // [self curentUserSystem];
+    [self curentUserSystem];
 }
 
 - (void)viewDidLoad {
@@ -509,13 +509,13 @@
 
 // open setting
 - (void)settingTapped:(id)sender {
-
+    
     SettingViewController *settingVC = [[SettingViewController alloc] init];
     UINavigationController *settingNC = [[UINavigationController alloc] initWithRootViewController:settingVC];
     settingNC.modalPresentationStyle = UIModalPresentationFormSheet;
     
     [self.navigationController presentViewController:settingNC animated:YES completion:NULL];
- 
+    
 }
 
 
@@ -570,7 +570,7 @@
     mySearchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 150.0f, 30.0f)];
     mySearchBar.barStyle = UIBarStyleDefault;
     mySearchBar.delegate = self;
-
+    
     [mySearchBar setAutocapitalizationType:UITextAutocapitalizationTypeNone];
     mySearchBar.placeholder = @"Search Store";
     
